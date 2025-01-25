@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+/* סגנון גלובלי */
+body {
+  background-color: #262A45 ; /* רקע אפור כהה */
+  color: #FFFFFF ; /* טקסט בצבע לבן-אפרפר */
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    
+
+
+  }
+  h1{
+    color: #B0B3FF 
+  }
+  h1, h2, h3 ,p{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+  }
+  

@@ -1,0 +1,14 @@
+<div class="note-list" dir="rtl">
+  <h1>רשימת כל הפתקים</h1>
+  @for (note of notes; track $index) {
+  <div class="note-item">
+    <p>{{note.id}}</p>
+    <p>{{note.text}}</p>
+    <p>{{note.createdDate}}</p>
+
+  </div>}
+</div>
+
+<button (click)="showAddNote = true">add new note</button>
+@if(showAddNote){
+<app-add-note></app-add-note>}

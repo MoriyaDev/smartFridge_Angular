@@ -1,0 +1,22 @@
+<form [formGroup]="addNoteForm">
+  <div>
+    <label>frigeId</label>
+    <input type="number" formControlName="fridgeId" required>
+  </div>
+
+  <div>
+    <label>text</label>
+    <input type="text" formControlName="text" required>
+  </div>
+
+  <div>
+    <label>createdDate</label>
+    <input type="text" formControlName="createdDate" required>
+  </div>
+
+  <div>
+    <label>isResolved</label>
+    <input type="boolean" formControlName="isResolved" required>
+  </div>
+
+  <button  (click)="addNote()" >add note</button>

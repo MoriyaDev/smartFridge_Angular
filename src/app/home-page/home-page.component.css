@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    /* background: #000; */
+    color: #fff;
+    /* font-family: Arial, sans-serif; */
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+p {
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+/* Center the fridge */
+.fridge-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Set up the fridge container */
+.fridge {
+    position: relative;
+    width: 300px;
+    height: 600px;
+    background: linear-gradient(135deg, #cccccc, #e6e6e6);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 0, 0, 0.5), 0 0 15px rgba(0, 255, 0, 0.5), 0 0 15px rgba(0, 0, 255, 0.5);
+    overflow: hidden;
+}
+
+/* Fridge sections */
+.fridge-section {
+    position: relative;
+    width: 100%;
+    background: #f1f1f1;
+    border-bottom: 2px solid #999;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Refrigerator section (top) */
+.refrigerator {
+    height: 375px;
+}
+
+/* Freezer section (bottom) */
+.freezer {
+    height: 225px;
+    border-bottom: none;
+    border-top: 2px solid #999;
+}
+
+/* Handle styling */
+.handle {
+    width: 20px;
+    height: 75px;
+    background: #333;
+    border-radius: 5px;
+    margin-right: 15px;
+}
