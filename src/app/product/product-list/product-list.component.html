@@ -1,1 +1,20 @@
-<p>product-list works!</p>
+<p>רשימת המוצרים שיש לי במקרר!</p>
+
+<div class="pro-list" dir="rtl">
+  @for (pro of products; track $index) {
+    <div class="pro-item">
+      <img [src]="pro.image" alt="product image">
+      <h3>name: {{pro.name}}</h3>
+      <p> category:{{pro.categoryID}}</p>
+      <p>{{pro.expiryDate}}</p>
+      <p>{{pro.fridgeId}}</p>
+      <p>{{pro.location}}</p>
+      <button (click)="showDetails(pro)">פרטים נוספים על המוצר</button>
+    </div>
+
+
+
+  }
+
+
+</div>

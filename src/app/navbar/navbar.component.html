@@ -1,8 +1,15 @@
-<nav>
+<!-- <nav>
     <ul>
       <li><a routerLink="/">Home</a></li>
       <li><a routerLink="/categories">Categories</a></li>
       <li><a routerLink="/notes">Notes</a></li>
     </ul>
   </nav>
-  
+   -->
+  <nav>
+   <ul>
+    <li style="cursor: pointer;" (click)="navigateTo('/home')">Home</li>
+    <li style="cursor: pointer;" (click)="navigateTo('/pro')">product</li>
+    <li style="cursor: pointer;" (click)="navigateTo('/notes')">Notes</li>
+  </ul>
+</nav>

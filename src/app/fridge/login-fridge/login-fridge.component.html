@@ -1,1 +1,18 @@
-<p>login-fridge works!</p>
+<h2>Login</h2>
+
+<form [formGroup]="loginForm">
+    <div>
+        <label for="name">שם</label>
+        <input id="name" type="text" formControlName="name" required>
+    </div>
+  
+    <div>
+        <label for="password">סיסמא</label>
+        <input id="password" type="password" formControlName="password" required>
+    </div>
+  
+    <button (click)="login()">להתחבר</button>
+  </form>
+
+  <button (click)="signup()">עדיין לא רשום?</button>
+  

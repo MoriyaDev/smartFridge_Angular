@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Fridge } from '../fridge.model';
 import { FridgeService } from '../fridge.service';
 import { Router } from '@angular/router';
 
@@ -28,7 +27,7 @@ export class SignupFridgeComponent {
   signup(){
     console.log(this.signupForm.value);
     this._fridgeService.signupFromServer(this.signupForm.value).subscribe(
-      ()=> this.router.navigate(['/home'])
+      ()=> this.router.navigate(['/login'])
     )
 
 }
