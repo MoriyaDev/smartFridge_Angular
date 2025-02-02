@@ -1,0 +1,14 @@
+<p>recipe-list works!</p>
+<div>
+    @for (recipe of recipes; track $index) {
+        <h2>{{recipe.id}}</h2>
+        <h2> כותרת : {{recipe.title}}</h2>
+        <img [src]="recipe.imageUrl" alt="recipe image">
+        <p>הוראות הכנה {{recipe.instructions}}</p>
+        <p>מוצרים חסרים: {{recipe.missedIngredientCount}}</p>
+        <p>מוצרים משומשים: {{recipe.usedIngredientCount}}</p>
+        <!-- <button (click)="showRecipeDetails(recipe)">פר��ים ��ו��פים על המתכו��</button> -->
+        <hr>
+    }
+
+</div>
