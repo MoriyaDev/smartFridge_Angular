@@ -19,14 +19,7 @@ export class NoteService {
     }
  
     addNoteFormServer(n: Note): Observable<any> {
-        var note: Note = {
-            id: 12345678,
-            fridgeId: 1,
-            text: "text1111",
-            createdDate: "12-12-2015",
-            isResolved: true
-        };
-        return this._http.post<any>(this.basicUrl, note);
+        return this._http.post<any>(this.basicUrl, n);
       }
 
     //   save(s: Student) {

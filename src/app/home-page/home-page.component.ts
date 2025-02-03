@@ -44,8 +44,8 @@ export class HomePageComponent implements OnInit {
     this.currentFridge = this._fridgeService.getFridge();
     console.log("Loaded fridge from service:", this.currentFridge);
 
-    if (this.currentFridge && this.currentFridge.fridgeName) {
-      this.fridgeName = this.currentFridge.fridgeName;
+    if (this.currentFridge && this.currentFridge.name) {
+      this.fridgeName = this.currentFridge.name;
     } else {
       console.log("No fridge found or fridge has no name.");
     }

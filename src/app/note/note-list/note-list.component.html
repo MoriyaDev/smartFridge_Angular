@@ -1,6 +1,10 @@
-<div class="note-list" dir="rtl">
+@if(showAddNote){
+  <app-add-note></app-add-note>}
+  <button (click)="showAddNote = true">add new note</button>
+
+  <div class="note-list" dir="rtl">
   <h1>רשימת כל הפתקים</h1>
-  @for (note of notes; track $index) {
+  @for (note of notes.reverse(); track $index) {
   <div class="note-item">
     <p>{{note.id}}</p>
     <p>{{note.text}}</p>
@@ -9,6 +13,3 @@
   </div>}
 </div>
 
-<button (click)="showAddNote = true">add new note</button>
-@if(showAddNote){
-<app-add-note></app-add-note>}

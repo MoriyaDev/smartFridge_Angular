@@ -1,14 +1,16 @@
-<p>recipe-list works!</p>
-<div>
+<p>📜 רשימת מתכונים</p>
+@if (isLoading) {
+  <p>⏳ מחשב בשבילך את המתכונים...</p>
+} @else {
+<div class="recipe-container">
     @for (recipe of recipes; track $index) {
-        <h2>{{recipe.id}}</h2>
-        <h2> כותרת : {{recipe.title}}</h2>
+    <div class="recipe-card">
+        <p>🍜{{recipe.title}}</p>
         <img [src]="recipe.imageUrl" alt="recipe image">
-        <p>הוראות הכנה {{recipe.instructions}}</p>
-        <p>מוצרים חסרים: {{recipe.missedIngredientCount}}</p>
-        <p>מוצרים משומשים: {{recipe.usedIngredientCount}}</p>
-        <!-- <button (click)="showRecipeDetails(recipe)">פר��ים ��ו��פים על המתכו��</button> -->
-        <hr>
+        <p><strong>📖 הוראות הכנה:</strong> {{recipe.instructions}}</p>
+        <p><strong>🛒 מוצרים חסרים:</strong> {{recipe.missedIngredientCount}}</p>
+        <p><strong>✅ מוצרים משומשים:</strong> {{recipe.usedIngredientCount}}</p>
+        <!-- <button (click)="showRecipeDetails(recipe)">📋 פרטים נוספים</button> -->
+    </div>
     }
-
-</div>
+</div>}

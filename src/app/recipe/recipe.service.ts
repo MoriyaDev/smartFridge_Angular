@@ -13,7 +13,7 @@ export class RecipeService {
 
     constructor(private _http: HttpClient) { }
     getRecipeByProductsFromServer(products: string): Observable<Recipe[]> {
-        const url = `${this.baseUrl}/findByIngredients?ingredients=${encodeURIComponent(products)}&number=3`;
+        const url = `${this.baseUrl}/findByIngredients?ingredients=${encodeURIComponent(products)}&number=6`;
         return this._http.get<Recipe[]>(url);
     }
     

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Note } from '../note.model';
 import { NoteService } from '../note.service';
 import { AddNoteComponent } from "../add-note/add-note.component";
+import { FridgeService } from '../../fridge/fridge.service';
 
 @Component({
   selector: 'app-note-list',
@@ -12,11 +13,19 @@ import { AddNoteComponent } from "../add-note/add-note.component";
 export class NoteListComponent {
   notes: Note[] = [];
   showAddNote: boolean = false;
+  currentFridge: any = null;
+
   ngOnInit(){
-    this.getNotes();
+
+    this.currentFridge = this._fridgeService.getFridge();
+    this.notes=this.currentFridge.notes;
+    // this.getNotes();
   }
 
-  constructor(private _noteService: NoteService) {
+  constructor(private _noteService: NoteService,
+    private _fridgeService: FridgeService,
+
+  ) {
   }
 
   getNotes() {
