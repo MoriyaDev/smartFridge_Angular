@@ -1,15 +1,33 @@
+<!-- <h1>רשימת כל הפתקים</h1>
+
 @if(showAddNote){
   <app-add-note></app-add-note>}
   <button (click)="showAddNote = true">add new note</button>
 
   <div class="note-list" dir="rtl">
-  <h1>רשימת כל הפתקים</h1>
   @for (note of notes.reverse(); track $index) {
   <div class="note-item">
     <p>{{note.id}}</p>
     <p>{{note.text}}</p>
     <p>{{note.createdDate}}</p>
+    <p>{{note.isResolved}}</p>
 
   </div>}
 </div>
+ -->
+ <h1>📌 רשימת כל הפתקים</h1>
 
+ @if(showAddNote){
+   <app-add-note></app-add-note>}
+ <button (click)="showAddNote = true">➕ הוסף פתק חדש</button>
+ 
+ <div class="note-list" dir="rtl">
+   @for (note of notes.reverse(); track $index) {
+     <div class="note-item">
+       <p>{{ note.text }}</p>
+       <p class="date">{{ formattedDate(note) }}</p>
+
+      </div>
+    }
+ </div>
+ 

@@ -1,4 +1,4 @@
-.pro-list {
+/* .pro-list {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -8,12 +8,44 @@
 
   }
   .pro-item {
-    background-color: #2F2F2F   ; /* צבע אפור בהיר יותר לפסקאות */
-    border: 4px solid #1C1C1C ; /* מסגרת סגולה עדינה */
+    background-color: #2F2F2F   ; 
+    border: 4px solid #1C1C1C ;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 20px;
     width: 30%;
     box-shadow: 0 8px 8px rgba(3, 0, 97, 0.2); 
   }
+ */
+ .pro-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
+.shelf {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  min-height: 100px;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.pro-item {
+  padding: 10px;
+  background: rgb(85, 85, 85);
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 120px;
+  color: #000;
+}
+
+.pro-item img {
+  max-width: 80px;
+  height: auto;
+}

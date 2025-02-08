@@ -1,10 +1,14 @@
-<p>רשימת המוצרים שיש לי במקרר!</p>
+<!-- @if(showAddProduct){
+  <app-add-product></app-add-product>
+}
+<button (click)="showAddProduct = true">add new product</button>
 
 <div class="pro-list" dir="rtl">
-  @for (pro of products; track $index) {
+  @for (pro of products.reverse(); track $index) {
     <div class="pro-item">
-      <img [src]="pro.image" alt="product image">
+      <img [src]="pro.ImageUrl" alt="product image">
       <h3>name: {{pro.name}}</h3>
+
       <p> category:{{pro.categoryID}}</p>
       <p>{{pro.expiryDate}}</p>
       <p>fridgeId:{{pro.fridgeId}}</p>
@@ -17,4 +21,27 @@
   }
 
 
+
+</div> -->
+<app-product-details 
+  [product]="selectedProduct" 
+  [isOpen]="isModalOpen" 
+  (close)="closeModal()">
+</app-product-details>
+
+<div class="pro-list" dir="rtl">
+  <div class="shelf" *ngFor="let shelf of shelves">
+    <div class="pro-item" 
+         *ngFor="let pro of shelf" 
+         [ngStyle]="{'background-image': getCategoryBackground(pro.categoryID), 'background-size': 'cover'}">
+
+      <h3>{{ getCategoryIcon(pro.categoryID) }} {{ pro.name }}</h3>
+      <img [src]="pro.ImageUrl" alt="product image">
+      <p>קטגוריה: {{ pro.categoryID }}</p>
+      <button (click)="showDetails(pro)">פרטים</button>
+      
+    </div>
+
 </div>
+
+

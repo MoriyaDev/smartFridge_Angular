@@ -12,13 +12,13 @@ export class Product {
     categoryID!: number;
   
     // כמות המוצר
-    quantity!: number;
+    Amount!: number;
   
     // סוג היחידות
-    unitType!: UnitType;
+    Unit!: string;
   
     // תמונה של המוצר (URL לתמונה)
-    image!: string;
+    ImageUrl!: string;
   
     // תאריך הקנייה
     purchaseDate!: Date;

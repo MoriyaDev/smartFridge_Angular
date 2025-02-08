@@ -1,0 +1,45 @@
+<form [formGroup]="addProductForm">
+    <div>
+      <label>Name</label>
+      <input type="text" formControlName="name" required>
+    </div>
+  
+    <div>
+      <label>Category</label>
+      <input type="number" formControlName="categoryID" required>
+    </div>
+  
+    <div>
+      <label>Amount</label>
+      <input type="number" formControlName="amount" required>
+    </div>
+  
+    <div>
+      <label>Unit</label>
+      <input type="text" formControlName="unit" required>
+    </div>
+  
+    <div>
+      <label>Image URL</label>
+      <input type="text" formControlName="imageUrl" required>
+    </div>
+  
+    <div>
+      <label>Purchase Date</label>
+      <input type="date" formControlName="purchaseDate" required>
+    </div>
+  
+    <div>
+      <label>Expiry Date</label>
+      <input type="date" formControlName="expiryDate" required>
+    </div>
+  
+    <div>
+      <label>Location</label>
+      <input type="text" formControlName="location" required>
+    </div>
+  
+    <button (click)="addProduct()">Add Product</button>
+  </form>
+  <br/>
+  

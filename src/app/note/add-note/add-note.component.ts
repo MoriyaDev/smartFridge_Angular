@@ -39,7 +39,7 @@ export class AddNoteComponent {
     addNote() {
       console.log(this.addNoteForm.value);
     
-      this._noteService.addNoteFormServer(this.addNoteForm.value).subscribe({
+      this._noteService.addNoteFromServer(this.addNoteForm.value).subscribe({
         next: (data) => {
           // הוספת הפתק למערך הפתקים במקרר
           this.currentFridge.notes.push(data);

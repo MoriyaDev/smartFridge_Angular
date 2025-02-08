@@ -12,13 +12,13 @@ export class NoteService {
 
 
     constructor(private _http: HttpClient) { }
-    getNotesFormServer(): Observable<Note[]> {
-        console.log("getNotesFormServer");
+    // getNotesFromServer(): Observable<Note[]> {
+    //     console.log("getNotesFromServer");
         
-        return this._http.get<Note[]>(this.basicUrl)
-    }
+    //     return this._http.get<Note[]>(this.basicUrl)
+    // }
  
-    addNoteFormServer(n: Note): Observable<any> {
+    addNoteFromServer(n: Note): Observable<any> {
         return this._http.post<any>(this.basicUrl, n);
       }
 

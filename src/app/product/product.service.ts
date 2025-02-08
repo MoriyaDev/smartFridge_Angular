@@ -12,11 +12,11 @@ export class ProductService {
 
 
     constructor(private _http: HttpClient) { }
-    getProductsByFridgeIdFormServer(fridgeId: number): Observable<Product[]> {
+    getProductsByFridgeIdFromServer(fridgeId: number): Observable<Product[]> {
         return this._http.get<Product[]>(`${this.baseUrl}/fridge/${fridgeId}`)
     }
  
-    addProductFormServer(p: Product): Observable<any> {
+    addProductFromServer(p: Product): Observable<any> {
         return this._http.post<any>(this.baseUrl, p);
       }
 

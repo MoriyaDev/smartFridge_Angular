@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import {SignupFridgeComponent} from './fridge/signup-fridge/signup-fridge.component';
 import { LoginFridgeComponent } from './fridge/login-fridge/login-fridge.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
+import {ProductDetailsComponent} from './product/product-details/product-details.component';
 import {RecipeListComponent} from './recipe/recipe-list/recipe-list.component';
 export const routes: Routes = [
   { path: '', redirectTo: "login", pathMatch: "full"}, 
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'add-note', component: AddNoteComponent },
 
   { path: 'pro', component: ProductListComponent },
+  { path: 'proD', component: ProductDetailsComponent},
 
   {path: 'rec', component:RecipeListComponent}
 
