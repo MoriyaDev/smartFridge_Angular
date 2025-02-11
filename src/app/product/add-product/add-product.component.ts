@@ -25,7 +25,7 @@ export class AddProductComponent {
       'categoryID': new FormControl('', Validators.required),
       'amount': new FormControl('', Validators.required),
       'unit': new FormControl('', Validators.required),
-      'imageUrl': new FormControl('', Validators.required),
+      'image': new FormControl('', Validators.required),
       'purchaseDate': new FormControl('', Validators.required),
       'expiryDate': new FormControl('', Validators.required),
       'location': new FormControl('', Validators.required)
@@ -45,7 +45,7 @@ export class AddProductComponent {
             categoryID: '',
             amount: '',
             unit: '',
-            imageUrl: '',
+            image: '',
             purchaseDate: '',
             expiryDate: '',
             location: ''

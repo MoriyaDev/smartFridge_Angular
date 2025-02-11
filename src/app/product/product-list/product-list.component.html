@@ -6,7 +6,7 @@
 <div class="pro-list" dir="rtl">
   @for (pro of products.reverse(); track $index) {
     <div class="pro-item">
-      <img [src]="pro.ImageUrl" alt="product image">
+      <img [src]="pro.Image" alt="product image">
       <h3>name: {{pro.name}}</h3>
 
       <p> category:{{pro.categoryID}}</p>
@@ -36,7 +36,7 @@
          [ngStyle]="{'background-image': getCategoryBackground(pro.categoryID), 'background-size': 'cover'}">
 
       <h3>{{ getCategoryIcon(pro.categoryID) }} {{ pro.name }}</h3>
-      <img [src]="pro.ImageUrl" alt="product image">
+      <img [src]="pro.image" alt="product image">
       <p>קטגוריה: {{ pro.categoryID }}</p>
       <button (click)="showDetails(pro)">פרטים</button>
       

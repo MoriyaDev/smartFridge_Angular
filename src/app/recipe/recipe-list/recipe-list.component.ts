@@ -13,7 +13,7 @@ export class RecipeListComponent {
   recipes: Recipe[] = [];
   currentFridge: any = null;
   isLoading: boolean = true;  // משתנה שיציין אם אנחנו עדיין בטעינה
-
+  filteredRecipes:Recipe[]=[];
   constructor(private _recipeService: RecipeService,
               private _fridgeService: FridgeService) {}
 
@@ -23,6 +23,8 @@ export class RecipeListComponent {
     if (this.currentFridge && this.currentFridge.products) {
       const products: Product[] = this.currentFridge.products;
       const productString = products.map(pro => pro.name).join(',');
+      console.log(productString);
+      
       this.getRecipes(productString);
     } else {
       console.warn('No products found in fridge');
@@ -35,6 +37,8 @@ export class RecipeListComponent {
     this._recipeService.getRecipeByProductsFromServer(products).subscribe({
       next: (data) => {
         this.recipes = data;
+        this.filteredRecipes = this.recipes.filter(r => !r.title.toLowerCase().includes('חזיר'));
+
         this.isLoading = false; // סיום טעינה
       },
       error: (error) => {

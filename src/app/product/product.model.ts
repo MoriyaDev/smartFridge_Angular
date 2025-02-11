@@ -18,7 +18,7 @@ export class Product {
     Unit!: string;
   
     // תמונה של המוצר (URL לתמונה)
-    ImageUrl!: string;
+    image!: string;
   
     // תאריך הקנייה
     purchaseDate!: Date;

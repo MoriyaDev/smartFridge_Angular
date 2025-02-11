@@ -1,57 +1,4 @@
-// import { Injectable } from '@angular/core';
-// import { map, Observable } from 'rxjs';
-// import { Fridge } from './fridge.model';
-// import { HttpClient } from '@angular/common/http';
 
-// @Injectable({
-//     providedIn: 'root'
-// })
-// export class FridgeService {
-//     private currentFridge: any = null;
-
-
-//     basicUrl = 'https://localhost:7194/api/Fridges';
-
-//     constructor(private _http: HttpClient) { }
-
-//     ngOnInit(): void {
-//         this.loadFridgeFromStorage();
-//     }
-//     private loadFridgeFromStorage(): void {
-//         const savedFridge = localStorage.getItem('selectedFridge');
-//         if (savedFridge) {
-//           this.currentFridge = JSON.parse(savedFridge);
-//         }
-//       }
-
-//    getFridgeByIdFromServer(i:number):Observable<any>{
-//         return this._http.get<any>(`${this.basicUrl}${i}`)
-//     }
-
-//     signupFromServer(f:Fridge):Observable<any>{
-//         return this._http.post<any>(this.basicUrl, f)
-//     }
-
-//     loginFromServer(f:Fridge):Observable<any>{
-//         return this._http.post<any>(`${this.basicUrl}/login`, f);
-//     }
-
-//       setFridge(fridgeData: any): void {
-//         this.currentFridge = fridgeData;
-//         localStorage.setItem('selectedFridge', JSON.stringify(fridgeData));
-//       }
-    
-//       // קבלת המקרר הנוכחי
-//       getFridge(): any {
-//         if (!this.currentFridge) {
-//           this.loadFridgeFromStorage(); // ✅ טוען מחדש מה- localStorage במקרה שהשירות נטען מחדש
-//         }
-//         return this.currentFridge;
-//       }
-
-
-
-// }
 
 
 import { Injectable } from '@angular/core';
@@ -88,6 +35,10 @@ export class FridgeService {
   loginFromServer(fridge: Fridge): Observable<any> {
     return this._http.post<any>(`${this.basicUrl}login`, fridge);
   }
+
+  // loginFromServer(loginData: ???): Observable<any> {
+  //   return this._http.post<{token: string; id: number}>(`https://localhost:7194/api/Auth`, loginData);
+  // }
 
   setFridge(fridgeData: any): void {
     if (fridgeData) { // ✅ בדיקה שהנתונים תקינים

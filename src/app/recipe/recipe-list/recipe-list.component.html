@@ -3,10 +3,10 @@
   <p>⏳ מחשב בשבילך את המתכונים...</p>
 } @else {
 <div class="recipe-container">
-    @for (recipe of recipes; track $index) {
+    @for (recipe of filteredRecipes; track $index) {
     <div class="recipe-card">
         <p>🍜{{recipe.title}}</p>
-        <img [src]="recipe.imageUrl" alt="recipe image">
+        <img [src]="recipe.image" alt="recipe image">
         <p><strong>📖 הוראות הכנה:</strong> {{recipe.instructions}}</p>
         <p><strong>🛒 מוצרים חסרים:</strong> {{recipe.missedIngredientCount}}</p>
         <p><strong>✅ מוצרים משומשים:</strong> {{recipe.usedIngredientCount}}</p>

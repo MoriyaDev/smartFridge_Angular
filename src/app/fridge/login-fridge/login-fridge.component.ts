@@ -74,6 +74,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FridgeService } from '../fridge.service';
+import {AuthService} from '../../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -85,7 +86,9 @@ import { Router } from '@angular/router';
 export class LoginFridgeComponent {
   public loginForm!: FormGroup;
 
-  constructor(private _fridgeService : FridgeService, private router: Router) {}
+  constructor(private _fridgeService : FridgeService, private router: Router,
+    private _authService :AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -94,23 +97,31 @@ export class LoginFridgeComponent {
     });
   }
 
-  login() {
-    this._fridgeService.loginFromServer(this.loginForm.value).subscribe({
-      next: (response: any) => {
-        console.log("Login successful:", response);
+  // login() {
+  //   this._fridgeService.loginFromServer(this.loginForm.value).subscribe({
+  //     next: (response: any) => {
+  //       console.log("Login successful:", response);
 
-        if (response?.fridgeId) {
-          localStorage.setItem('fridgeId', response.fridgeId.toString());
-          this.getFridgeById(response.fridgeId);
-        } else {
-          console.error("Login response does not contain fridgeId");
-        }
-      },
-      error: (error) => {
-        console.error('Login failed', error);
-        alert(error.error?.message || 'Login failed. Please try again.');
-      }
-    });
+  //       if (response?.fridgeId) {
+  //         localStorage.setItem('fridgeId', response.fridgeId.toString());
+  //         this.getFridgeById(response.fridgeId);
+  //       } else {
+  //         console.error("Login response does not contain fridgeId");
+  //       }
+  //     },
+  //     error: (error) => {
+  //       console.error('Login failed', error);
+  //       alert(error.error?.message || 'Login failed. Please try again.');
+  //     }
+  //   });
+  // }
+
+  login(){
+    const loginData = this.loginForm.value;
+    this._authService.login(loginData);
+    this.router.navigate(['/home']);
+
+
   }
 
   signup() {
