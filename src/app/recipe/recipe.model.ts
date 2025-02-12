@@ -7,4 +7,6 @@ export class Recipe {
     instructions!: string
     missedIngredientCount!: number
     usedIngredientCount!: number
+    isCritical !: boolean;
+    score!: number;
   }

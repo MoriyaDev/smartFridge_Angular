@@ -1,24 +1,58 @@
 <html lang="en">
-
-<div dir="rtl" style="text-align: center;">
-    
+  <div dir="rtl" style="text-align: center;">
     <h1>ברוכים הבאים למקרר: {{ currentFridge.name }}</h1>
-    <p>
-      ברוכים הבאים למקרר החכם שלנו<br>
-      כאן תוכלו לראות את המוצרים<br>
-      להכין מתכונים<br>
-      ולכתוב תזכורות
-</p>
+
   </div>
-  
+
+  <div class="home-container">
+    <!-- צד ימין: קוביות -->
+    <div class="right-section">
+      <!-- שעה ותאריך -->
+      <div class="card">
+        <div class="weather-clock">
+          <div class="weather">☀️ 25°C</div>
+          <div class="clock">🕒 12:45 PM</div>
+        </div>
+      </div>
+
+      <!-- פתקים -->
+      <div class="card">
+        <div class="notes-section">
+          <div class="card">פתק 1 📌</div>
+          <div class="card">פתק 2 📌</div>
+          <button class="button">כל הפתקים</button>
+        </div>
+      </div>
+
+      <!-- כפתור למתכונים -->
+      <div class="card">
+        <button class="button" (click)="tothefridge()">🔪 לדף המתכונים</button>
+      </div>
+    </div>
+
+    <!-- אנימציה של מקרר במרכז -->
+    <!-- <div class="fridge-animation-container">
+      <div class="freezer" (click)="navigateTo('freezer')"></div>
+      <div class="fridge" (click)="navigateTo('fridge')"></div>
+    </div> -->
+
     <div class="fridge-container">
         <div class="fridge">
-            <div class="fridge-section refrigerator">
+            <!-- מקרר -->
+            <div class="fridge-section refrigerator" (click)="tothePro()">
                 <div class="handle"></div>
             </div>
-            <div class="fridge-section freezer">
+            <!-- מקפיא -->
+            <div class="fridge-section freezer" (click)="tothePro();">
                 <div class="handle"></div>
             </div>
         </div>
     </div>
+    
+
+    <!-- צד שמאל: גרף -->
+    <div class="left-section">
+      <div class="chart-container">📊 גרף הקטגוריות במקרר</div>
+    </div>
+  </div>
 </html>

@@ -23,11 +23,8 @@
 
 
 </div> -->
-<app-product-details 
-  [product]="selectedProduct" 
-  [isOpen]="isModalOpen" 
-  (close)="closeModal()">
-</app-product-details>
+<app-add-product></app-add-product>
+
 
 <div class="pro-list" dir="rtl">
   <div class="shelf" *ngFor="let shelf of shelves">
@@ -44,4 +41,9 @@
 
 </div>
 
+<app-product-details 
+  [product]="selectedProduct" 
+  [isOpen]="isModalOpen" 
+  (close)="closeModal()">
+</app-product-details>
 

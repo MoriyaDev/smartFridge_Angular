@@ -17,46 +17,65 @@ export class AddProductComponent {
     private _fridgeService: FridgeService) { }
 
     ngOnInit() {
-    this.currentFridge = this._fridgeService.getFridge();
-
-    this.addProductForm = new FormGroup({
-      'name': new FormControl('', Validators.required),
-      'fridgeId': new FormControl(this.currentFridge.id, Validators.required),
-      'categoryID': new FormControl('', Validators.required),
-      'amount': new FormControl('', Validators.required),
-      'unit': new FormControl('', Validators.required),
-      'image': new FormControl('', Validators.required),
-      'purchaseDate': new FormControl('', Validators.required),
-      'expiryDate': new FormControl('', Validators.required),
-      'location': new FormControl('', Validators.required)
-    });
-  }
+      this._fridgeService.getFridgeObservable().subscribe(fridge => {
+        if (fridge) {
+          this.currentFridge = fridge;
+          this.createForm(); // יצירת טופס אחרי קבלת המקרר
+        }
+      });
+    }
+    
+    createForm() {
+      this.addProductForm = new FormGroup({
+        'name': new FormControl('', Validators.required),
+        'fridgeId': new FormControl(this.currentFridge?.id, Validators.required),
+        'categoryID': new FormControl('', Validators.required),
+        'amount': new FormControl('', Validators.required),
+        'unit': new FormControl('', Validators.required),
+        'image': new FormControl('', Validators.required),
+        'purchaseDate': new FormControl('', Validators.required),
+        'expiryDate': new FormControl('', Validators.required),
+        'location': new FormControl('', Validators.required)
+      });
+    }
+    
 
   addProduct() {
     this._productService.addProductFromServer(this.addProductForm.value).subscribe({
       next: (data) => {
         console.log('Product added:', data);
-
+  
+        // 1️⃣ עדכון המקרר בזיכרון
         this.currentFridge.products.push(data);
-        this.addProductForm.reset(
-          {
-            name: '',
-            fridgeId: this.currentFridge.id,
-            categoryID: '',
-            amount: '',
-            unit: '',
-            image: '',
-            purchaseDate: '',
-            expiryDate: '',
-            location: ''
-          }
-        );
+  
+        // 2️⃣ עדכון ה-Local Storage
+        let fridge = JSON.parse(localStorage.getItem("selectedFridge") || "{}");
+        fridge.products = fridge.products || [];
+        fridge.products.push(data);
+        localStorage.setItem("selectedFridge", JSON.stringify(fridge));
+  
+        // 3️⃣ 🔥 עדכון `BehaviorSubject` כדי שכל הרכיבים יראו את השינוי
+        this._fridgeService.setFridge(fridge);
+  
+        // 4️⃣ איפוס הטופס
+        this.addProductForm.reset({
+          name: '',
+          fridgeId: this.currentFridge.id,
+          categoryID: '',
+          amount: '',
+          unit: '',
+          image: '',
+          purchaseDate: '',
+          expiryDate: '',
+          location: ''
+        });
       },
       error: (error) => {
         console.error('Error adding product', error);
       }
-    })
+    });
   }
+  
 
  
 

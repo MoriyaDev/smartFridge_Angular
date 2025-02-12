@@ -14,6 +14,8 @@ export class RecipeListComponent {
   currentFridge: any = null;
   isLoading: boolean = true;  // משתנה שיציין אם אנחנו עדיין בטעינה
   filteredRecipes:Recipe[]=[];
+  productString : string='';
+  products :Product[] = [];
   constructor(private _recipeService: RecipeService,
               private _fridgeService: FridgeService) {}
 
@@ -21,18 +23,17 @@ export class RecipeListComponent {
     this.currentFridge = this._fridgeService.getFridge();
 
     if (this.currentFridge && this.currentFridge.products) {
-      const products: Product[] = this.currentFridge.products;
-      const productString = products.map(pro => pro.name).join(',');
-      console.log(productString);
-      
-      this.getRecipes(productString);
+      this.products = this.currentFridge.products;
+      this.productString = this.products.map(pro => pro.name).join(',');
+      console.log(this.productString);
+
     } else {
       console.warn('No products found in fridge');
       this.isLoading = false; // סיום טעינה גם אם אין מוצרים
     }
   }
 
-  getRecipes(products: string): void {
+  getRecipesByProducts(products: string): void {
     this.isLoading = true; // מתחילים טעינה
     this._recipeService.getRecipeByProductsFromServer(products).subscribe({
       next: (data) => {
@@ -47,4 +48,23 @@ export class RecipeListComponent {
       }
     });
   }
+
+  getRecipesbyExpiration(products :Product[]) {
+    this.isLoading = true; 
+    this._recipeService.getRecipesByExpirationFromServer(products).subscribe({
+      next: (data) => {
+        this.recipes = data;
+        this.isLoading = false; 
+      },
+      error: (error) => {
+        console.error('Error retrieving recipes', error);
+        this.isLoading = false; 
+      }
+    });
+
+  }
+
+  
+
+
 }

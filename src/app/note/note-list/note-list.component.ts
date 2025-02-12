@@ -16,17 +16,20 @@ export class NoteListComponent {
   showAddNote: boolean = false;
   currentFridge: any = null;
 
-  ngOnInit(){
-
-    this.currentFridge = this._fridgeService.getFridge();
-    this.notes=this.currentFridge.notes;
-    // this.getNotes();
-  }
-
+  
   constructor(private _noteService: NoteService,
     private _fridgeService: FridgeService,
 
   ) {
+  }
+
+  ngOnInit() {
+    this._fridgeService.getFridgeObservable().subscribe(fridge => {
+      if (fridge) {
+        this.currentFridge = fridge;
+        this.notes = fridge.notes;
+      }
+    });
   }
 
   // getNotes() {

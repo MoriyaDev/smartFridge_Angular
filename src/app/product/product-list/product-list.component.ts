@@ -28,9 +28,16 @@ export class ProductListComponent {
   ) { }
 
   ngOnInit() {
-    this.currentFridge = this._fridgeService.getFridge();
-    this.products = this.currentFridge.products;
-    this.organizeProducts();
+    this._fridgeService.getFridgeObservable().subscribe(fridge => {
+      if (fridge) {
+        this.currentFridge = fridge;
+        this.products = [...fridge.products]; // 👈 יוצרים עותק חדש כדי שהאנגולר יזהה שינוי
+        this.organizeProducts();
+      }
+    });
+  }
+  
+  
 
     // console.log("Loaded fridge from service:", this.currentFridge);   
 
@@ -39,8 +46,8 @@ export class ProductListComponent {
     // } else {
     //   console.log("No fridge found");
     // }   
-    //  this.getProductsByFridgeId(this.fridgeId);
-  }
+  //   //  this.getProductsByFridgeId(this.fridgeId);
+  // }
   organizeProducts() {
     const shelfSize = 8;
     this.shelves = [];

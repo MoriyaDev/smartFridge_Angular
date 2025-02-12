@@ -1,15 +1,24 @@
+
+<button (click)="getRecipesByProducts(this.productString)">קבל מתכונים לפי רכיבים</button>
+
+<!-- כפתור לקבלת מתכונים לפי תאריך תפוגה -->
+<button (click)="getRecipesbyExpiration(this.products)">קבל מתכונים לפי תאריך תפוגה</button>
+
+
 <p>📜 רשימת מתכונים</p>
 @if (isLoading) {
   <p>⏳ מחשב בשבילך את המתכונים...</p>
 } @else {
 <div class="recipe-container">
     @for (recipe of filteredRecipes; track $index) {
-    <div class="recipe-card">
+    <div class="r
+    ecipe-card">
         <p>🍜{{recipe.title}}</p>
         <img [src]="recipe.image" alt="recipe image">
         <p><strong>📖 הוראות הכנה:</strong> {{recipe.instructions}}</p>
         <p><strong>🛒 מוצרים חסרים:</strong> {{recipe.missedIngredientCount}}</p>
         <p><strong>✅ מוצרים משומשים:</strong> {{recipe.usedIngredientCount}}</p>
+        <p><strong>✅  score:</strong> {{recipe.score}}</p>
         <!-- <button (click)="showRecipeDetails(recipe)">📋 פרטים נוספים</button> -->
     </div>
     }
