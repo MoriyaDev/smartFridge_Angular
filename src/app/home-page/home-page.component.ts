@@ -35,8 +35,14 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/rec']);
   }
 
-  tothePro(){
+  totheFridgePro(){
     this.router.navigate(['/pro']);
+  } 
+  totheFreezerPro(){
+    this.router.navigate(['/pro']);
+  }
+  tothenote(){
+    this.router.navigate(['/notes']);
   }
 
 }

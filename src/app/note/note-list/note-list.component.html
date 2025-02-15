@@ -15,7 +15,7 @@
   </div>}
 </div>
  -->
- <h1>📌 רשימת כל הפתקים</h1>
+ <h1  class="bigT">תזכורות ופתקים</h1>
 
  @if(showAddNote){
    <app-add-note></app-add-note>}
@@ -23,11 +23,46 @@
  
  <div class="note-list" dir="rtl">
    @for (note of notes.reverse(); track $index) {
+    <div class="container">
+
+      <div class="box">
+        <span></span>
+        <div class="content">
+          <h2>{{note.type}}</h2>
+          <p> מה {{note.text}}</p>
+          <!-- <p class="dateN">תאריך {{note.createdDate}}</p> -->
+          <p>בוצע {{note.isResolved}}</p>
+          <a href="#">סמן כבוצע</a>
+        </div>
+      </div>
+
+      <div class="box">
+        <span></span>
+        <div class="content">
+          <h2>{{note.type}}</h2>
+          <p>{{note.text}}</p>
+          <a href="#">סמן כבוצע</a>
+        </div>
+      </div>
+
+      <div class="box">
+        <span></span>
+        <div class="content">
+          <h2>{{note.type}}</h2>
+          <p>{{note.text}}</p>
+          <a href="#">סמן כבוצע</a>
+        </div>
+      </div>
+
+    </div>
+      
+
+<!--     
      <div class="note-item">
        <p>{{ note.text }}</p>
        <p class="date">{{ formattedDate(note) }}</p>
 
-      </div>
+      </div> -->
     }
  </div>
  

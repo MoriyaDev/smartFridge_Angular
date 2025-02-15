@@ -35,6 +35,7 @@
       <h3>{{ getCategoryIcon(pro.categoryID) }} {{ pro.name }}</h3>
       <img [src]="pro.image" alt="product image">
       <p>קטגוריה: {{ pro.categoryID }}</p>
+      <p> קריטי {{pro.isCritical}}</p>
       <button (click)="showDetails(pro)">פרטים</button>
       
     </div>

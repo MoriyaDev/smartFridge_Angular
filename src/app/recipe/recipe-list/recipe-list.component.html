@@ -7,17 +7,46 @@
 
 <p>📜 רשימת מתכונים</p>
 @if (isLoading) {
+  <div>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
   <p>⏳ מחשב בשבילך את המתכונים...</p>
 } @else {
 <div class="recipe-container">
     @for (recipe of filteredRecipes; track $index) {
-    <div class="r
-    ecipe-card">
+    <div class="recipe-card">
         <p>🍜{{recipe.title}}</p>
         <img [src]="recipe.image" alt="recipe image">
         <p><strong>📖 הוראות הכנה:</strong> {{recipe.instructions}}</p>
         <p><strong>🛒 מוצרים חסרים:</strong> {{recipe.missedIngredientCount}}</p>
         <p><strong>✅ מוצרים משומשים:</strong> {{recipe.usedIngredientCount}}</p>
+
+        <p>מוצרים חסרים</p>
+        @if (recipe.missedIngredients.length > 0) {
+          @for (item of recipe.missedIngredients; track $index) {
+            <p>{{ item.name }}</p>
+          }
+        } @else {
+          <p>❌ אין מוצרים חסרים</p>
+        }
+        
+        <p>מוצרים משומשים</p>
+        @if (recipe.usedIngredients.length > 0) {
+          @for (item of recipe.usedIngredients; track $index) {
+            <p>{{ item.name }}</p>
+          }
+        } @else {
+          <p>❌ אין מוצרים משומשים</p>
+        }
+        
         <p><strong>✅  score:</strong> {{recipe.score}}</p>
         <!-- <button (click)="showRecipeDetails(recipe)">📋 פרטים נוספים</button> -->
     </div>

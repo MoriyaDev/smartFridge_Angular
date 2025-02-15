@@ -28,6 +28,7 @@ export class Product {
   
     // מיקום המוצר (Fridge או Freezer)
     location!: string;
+    isCritical!: Boolean
   }
 
   export enum UnitType {

@@ -1,58 +1,78 @@
 <html lang="en">
-  <div dir="rtl" style="text-align: center;">
-    <h1>ברוכים הבאים למקרר: {{ currentFridge.name }}</h1>
+<div dir="rtl" style="text-align: center;">
+  <h1 class="bigT">אין כמו המקרר של משפחת: {{ currentFridge.name }}</h1>
 
+</div>
+
+<div class="home-container">
+  <!-- צד ימין: קוביות -->
+  <div class="right-section">
+    <!-- שעה ותאריך -->
+    <div class="card">
+      <div class="weather-clock">
+        <div class="weather">☀️ 25°C</div>
+        <div class="clock">🕒 {{currentDateTime}} PM</div>
+      </div>
+    </div>
+
+    <!-- פתקים -->
+   <!-- פתקים -->
+<!-- פתקים בתוך כרטיס -->
+<div class="card">
+  <div class="note">
+      <h2>{{currentFridge.notes[1].type}}</h2>
+      <p>מה {{currentFridge.notes[1].text}}</p>
+      <p>בוצע {{currentFridge.notes[1].isResolved}}</p>
+      <a href="#">סמן כבוצע</a>
+  </div>
+  <div class="note">
+      <h2>{{currentFridge.notes[2].type}}</h2>
+      <p>{{currentFridge.notes[2].text}}</p>
+      <p>בוצע {{currentFridge.notes[2].isResolved}}</p>
+      <a href="#">סמן כבוצע</a>
+  </div>
+  <button class="testbutton" (click)="tothenote()" data-label="כל הפתקים">כל הפתקים</button>
+</div>
+
+
+
+    <div class="card">
+      <button class="testbutton" (click)="tothefridge()" data-label="כל המתכונים">לדף המתכונים</button>
+    </div>
   </div>
 
-  <div class="home-container">
-    <!-- צד ימין: קוביות -->
-    <div class="right-section">
-      <!-- שעה ותאריך -->
-      <div class="card">
-        <div class="weather-clock">
-          <div class="weather">☀️ 25°C</div>
-          <div class="clock">🕒 12:45 PM</div>
+
+  <div class="fridge-container">
+    <div class="fridge">
+        <!-- מקרר עליון -->
+        <div class="fridge-section refrigerator">
+            <div class="handle"></div>
         </div>
-      </div>
 
-      <!-- פתקים -->
-      <div class="card">
-        <div class="notes-section">
-          <div class="card">פתק 1 📌</div>
-          <div class="card">פתק 2 📌</div>
-          <button class="button">כל הפתקים</button>
+        <!-- מקפיא תחתון -->
+        <div class="fridge-section freezer">
+            <div class="handle"></div>
         </div>
-      </div>
 
-      <!-- כפתור למתכונים -->
-      <div class="card">
-        <button class="button" (click)="tothefridge()">🔪 לדף המתכונים</button>
-      </div>
-    </div>
+        <!-- תמונה של פנים המקרר (יופיע רק כשהמקרר נפתח) -->
+        <div class="shelves fridge-content" (click)="totheFridgePro()">
+            <img src="fridge1.jpg" alt="תוכן המקרר" width="100%">
+        </div>
 
-    <!-- אנימציה של מקרר במרכז -->
-    <!-- <div class="fridge-animation-container">
-      <div class="freezer" (click)="navigateTo('freezer')"></div>
-      <div class="fridge" (click)="navigateTo('fridge')"></div>
-    </div> -->
-
-    <div class="fridge-container">
-        <div class="fridge">
-            <!-- מקרר -->
-            <div class="fridge-section refrigerator" (click)="tothePro()">
-                <div class="handle"></div>
-            </div>
-            <!-- מקפיא -->
-            <div class="fridge-section freezer" (click)="tothePro();">
-                <div class="handle"></div>
-            </div>
+        <!-- תמונה של פנים המקפיא (יופיע רק כשהמקפיא נפתח) -->
+        <div class="shelves freezer-content" (click)="totheFreezerPro()">
+            <img src="frezz.jpg" alt="תוכן המקפיא" width="100%">
         </div>
     </div>
-    
+</div>
 
-    <!-- צד שמאל: גרף -->
-    <div class="left-section">
-      <div class="chart-container">📊 גרף הקטגוריות במקרר</div>
-    </div>
+
+
+
+  <!-- צד שמאל: גרף -->
+  <div class="left-section">
+    <div class="chart-container">📊 גרף הקטגוריות במקרר</div>
   </div>
+</div>
+
 </html>

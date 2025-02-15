@@ -1,129 +1,283 @@
-/* כללי */
+/* 🌑 עיצוב כללי */
 body {
-    background-color: #1a1d2b;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  background-color: #1a1d2b;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* הגדרת אזורים */
+/* 🏠 מבנה הדף */
 .home-container {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 100%; /* הגבלת רוחב הדף */
-    margin: 10px;
-    gap: 30px; /* רווח בין החלקים */
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* צד ימין, מקרר, צד שמאל */
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+  align-items: center;
 }
 
-/* צד ימין: 3 קוביות */
+/* 📌 צד ימין */
 .right-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 250px; /* רוחב קבוע */
-    height: 100%;
-    padding-right: 30px; /* מרווח בצד ימין */
-    gap: 20px; /* רווח בין הקוביות */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* כרטיסים */
+/* 📌 כרטיסים כלליים */
 .card {
-    background-color: #252a3f;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #252a3f; /* צבע אפור */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 300px;
+  margin: auto;
+  border: 1px solid #333; /* מסגרת כהה ועדינה */
 }
 
-/* אנימציה של מקרר */
-.fridge-animation-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 600px;
-    margin: 0 30px; /* מרווח מצדדים */
+/* 📝 עיצוב הפתקים עם אפקט סלוטייפ */
+.note {
+  background: #fff8d1; /* צבע צהוב עדין */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #ffcc00; /* קו צד כמו מחברת */
+  text-align: right;
+  position: relative;
+  margin: 10px 0;
+}
+
+/* 🎗️ אפקט סלוטייפ */
+.note::before,
+.note::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.6);
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.note::before { top: -15px; }
+.note::after { bottom: -15px; transform: translateX(-50%) rotate(5deg); }
+
+/* 📝 כותרות וטקסט בפתקים */
+.note h2 { font-size: 1.2em; color: #444; }
+.note p { font-size: 1em; color: #333; margin: 5px 0; }
+
+/* 🌡 מקרר
+.fridge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+/* 📊 צד שמאל - גרף */
+.left-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container {
+  background-color: #252a3f;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  height: 250px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.chart-container:hover {
+  transform: scale(1.05);
+}
+
+/* 🎨 כפתורים */
+.button, .testbutton {
+  background: linear-gradient(135deg, #6a5acd, #00d4ff);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover, .testbutton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* 🎨 כפתור מעוצב מיוחד */
+.testbutton {
+  width: 150px;
+  height: 50px;
+  border-radius: 180px;
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  position: relative;
+  left: calc(50% - 75px);
+  top: calc(50% - 25px);
+}
+
+.testbutton:after {
+  content: attr(data-label);
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  color: rgba(235, 235, 235, 1);
+  font-weight: bold;
+  z-index: 5;
+  position: absolute;
+  display: block;
+  border-radius: 180px;
+  width: 92%;
+  height: 80%;
+  top: 10%;
+  left: 4%;
+  background-color: rgb(19, 20, 22);
+}
+
+/* 🔠 כותרת ראשית */
+.bigT {
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: bold;
+  background: 
+    repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
+    repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 50%/2500px 2500px;
+  background-blend-mode: difference;
+  mix-blend-mode: lighten;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+
+
+
+
+/* ❄️ עיצוב מקרר */
+.fridge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .fridge {
-    position: relative;
-    width: 300px;
-    height: 600px;
-    background: linear-gradient(135deg, #cccccc, #e6e6e6);
-    border-radius: 15px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 0, 0, 0.5), 0 0 15px rgba(0, 255, 0, 0.5), 0 0 15px rgba(0, 0, 255, 0.5);
-    overflow: hidden;
+  position: relative;
+  width: 320px;
+  height: 600px;
+  background: linear-gradient(135deg, #d9d9d9, #f0f0f0);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
+/* 🏠 דלתות מקרר */
 .fridge-section {
-    position: relative;
-    width: 100%;
-    background: #f1f1f1;
-    border-bottom: 2px solid #999;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 15px;
-    box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
+  transform-origin: right center;
+  z-index: 10; /* כדי שהן יישארו קדימה כשהן סגורות */
 }
 
 .refrigerator {
-    height: 375px;
+  top: 0;
+  height: 375px;
+  background: #e6e6e6;
+  border-bottom: 2px solid #999;
 }
 
 .freezer {
-    height: 225px;
-    border-bottom: none;
-    border-top: 2px solid #999;
+  bottom: 0;
+  height: 225px;
+  background: #d1d1d1;
+  border-top: 2px solid #999;
 }
 
+/* 🖐️ ידיות מקרר */
 .handle {
-    width: 20px;
-    height: 75px;
-    background: #333;
-    border-radius: 5px;
-    margin-right: 15px;
+  position: absolute;
+  left: 10px; /* משאיר אותן בצד שמאל של הדלת */
+  top: 50%; /* ממקם באמצע גובה הדלת */
+  transform: translateY(-50%); /* מזיז אותן קצת למעלה כדי להיות בדיוק באמצע */
+  width: 20px;
+  height: 100px;
+  background: #333;
+  border-radius: 5px;
+  z-index: 15; /* מבטיח שהידיות יישארו תמיד מעל הדלת */
 }
 
-/* מזג אוויר ושעון */
-.weather-clock {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background-color: #252a3f;
-    padding: 15px;
-    border-radius: 12px;
+
+
+/* 🔄 פתיחת הדלתות */
+.refrigerator:hover {
+  transform: rotateY(110deg);
+  opacity: 0;
 }
 
-/* כפתורים */
-.button {
-    background: linear-gradient(135deg, #6a5acd, #00d4ff);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
+.freezer:hover {
+  transform: rotateY(110deg);
+  opacity: 0;
 }
 
-.button:hover {
-    opacity: 0.8;
+/* ❄️ תמונות פנים המקרר והמקפיא */
+.shelves {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+  z-index: 5; /* מוודא שהתמונה מעל הרקע */
 }
 
-/* אזור הגרף */
-.chart-container {
-    background-color: #252a3f;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    height: 200px; /* גובה מוגדר לגרף */
-    margin-right: 30px; /* רווח מצד ימין */
+/* 📌 תמונה של פנים המקרר */
+.fridge-content {
+  top: 3%;  /* הזזת התמונה טיפה למטה */
+  height: 60%;  /* התאמה קלה לגובה */
+  bottom: 16%;
+}
+
+/* 📌 תמונה של פנים המקפיא */
+.freezer-content {
+  
+  bottom: 16%; /* הרמת התמונה למעלה */
+  height: 30%; /* שמירה על פרופורציות */
+}
+
+/* 🔄 כשהמקרר נפתח – מציג את התמונה שלו */
+.refrigerator:hover ~ .fridge-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 🔄 כשהמקפיא נפתח – מציג את התמונה שלו */
+.freezer:hover ~ .freezer-content {
+  opacity: 1;
+  transform: scale(1);
 }

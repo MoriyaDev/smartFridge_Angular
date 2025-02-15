@@ -39,6 +39,7 @@ export class RecipeListComponent {
       next: (data) => {
         this.recipes = data;
         this.filteredRecipes = this.recipes.filter(r => !r.title.toLowerCase().includes('חזיר'));
+console.log("filteredRecipes",this.filteredRecipes);
 
         this.isLoading = false; // סיום טעינה
       },
