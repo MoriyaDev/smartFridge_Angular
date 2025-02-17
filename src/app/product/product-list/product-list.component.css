@@ -1,51 +1,196 @@
-/* .pro-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-  }
-  .pro-item {
-    background-color: #2F2F2F   ; 
-    border: 4px solid #1C1C1C ;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    width: 30%;
-    box-shadow: 0 8px 8px rgba(3, 0, 97, 0.2); 
-  }
- */
- .pro-list {
+
+.add-product-button {
+  position: fixed;
+  top: 15px; /* מעלה את הכפתור לראש הדף */
+  left: 20px; /* ממקם אותו בצד שמאל */
+  background-color: #ff9800;
+  color: rgb(255, 21, 21);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+  z-index: 2000;
+}
+
+.add-product-button:hover {
+  background-color: #e68900;
+  transform: scale(1.1);
+}
+
+/* עיצוב הטופס הקופץ */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000; /* המודל מעל הכל */
+
+}
+
+.modal-content {
+  position: relative; /* כדי שכפתור ה-X לא יזוז מחוץ למודל */
+  background: rgb(99, 99, 99);
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 28px;
+  cursor: pointer;
+  color: white; /* עכשיו הצבע לבן כדי שיהיה ברור */
+  font-weight: bold;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+
+/* כפתור X לסגירת המודל */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: red;
+}
+/* כפתור הוספת מוצר בראש הדף */
+.add-product-button {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s;
+  z-index: 1550;
+}
+
+.add-product-button:hover {
+  background-color: #e68900;
+  transform: scale(1.1);
+}
+
+/* קונטיינר של המקרר */
+.fridge-container {
+  width: 80%; /* הרחבת המקרר כדי שהמדפים יתפרשו יותר */
+  margin: 10px;
+  margin-right: 200px;
+  /* margin-left: 30px;  */
+   background-color: #2e2e2e;
+  border-radius: 15px;
+  padding: 20px;
+  padding-top: 8%;
+  position: relative;
+  border: 10px solid #b0bec5;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
 }
 
+/* מוצרים עם מרווחים טובים על המדף */
+.pro-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  width: 140px; /* מוצרים רחבים יותר */
+  height: 160px; /* מעט גבוהים יותר */
+  position: relative;
+  margin-top: -40px; /* מבטיח שהתמונה תיגע במדף */
+  padding-left: 10px; /* מרווחים בין מוצרים */
+  padding-right: 10px;
+}
+
+/* עיצוב המדפים */
 .shelf {
   display: flex;
-  gap: 10px;
-  padding: 10px;
-  background-color: #f3f3f3;
-  border-radius: 10px;
-  min-height: 100px;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-x: auto;
+  justify-content: space-around; /* מרווחים טובים בין המוצרים */
+  align-items: flex-end;
+  width: 100%;
+  min-height: 60px; /* מדף יותר עבה */
+  position: relative;
+  margin-bottom: 100px; /* יותר רווח בין המדפים */
 }
 
-.pro-item {
-  padding: 10px;
-  background: rgb(85, 85, 85);
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+/* יצירת פס המדף ארוך ורחב */
+.shelf::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px; /* מדף עבה יותר */
+  background: #777;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+}
+
+/* שם המוצר */
+.product-title {
+  font-size: 16px; /* כותרת ברורה יותר */
+  font-weight: bold;
+  color: white;
   text-align: center;
-  min-width: 120px;
-  color: #000;
+  margin-bottom: 10px;
 }
 
-.pro-item img {
-  max-width: 80px;
-  height: auto;
+/* כפתור פרטים */
+.details-button {
+  position: absolute;
+  bottom: -10px; /* ממקם את הכפתור מתחת למוצר */
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 5px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.details-button:hover {
+  background-color: #e68900;
 }

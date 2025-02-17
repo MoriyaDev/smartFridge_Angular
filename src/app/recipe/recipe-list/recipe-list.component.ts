@@ -12,7 +12,7 @@ import { Product } from '../../product/product.model';
 export class RecipeListComponent {
   recipes: Recipe[] = [];
   currentFridge: any = null;
-  isLoading: boolean = true;  // משתנה שיציין אם אנחנו עדיין בטעינה
+  isLoading: boolean = false;  // משתנה שיציין אם אנחנו עדיין בטעינה
   filteredRecipes:Recipe[]=[];
   productString : string='';
   products :Product[] = [];
@@ -50,20 +50,28 @@ console.log("filteredRecipes",this.filteredRecipes);
     });
   }
 
-  getRecipesbyExpiration(products :Product[]) {
+  getRecipesbyExpiration(products: Product[]) {
+    if (!products || products.length === 0) {
+        console.warn('אין מוצרים לשלוח לשרת.');
+        return;
+    }
+
     this.isLoading = true; 
     this._recipeService.getRecipesByExpirationFromServer(products).subscribe({
       next: (data) => {
-        this.recipes = data;
+        if (!data || data.length === 0) {
+            console.warn('לא נמצאו מתכונים מתאימים.');
+        } else {
+            this.recipes = data;
+        }
         this.isLoading = false; 
       },
       error: (error) => {
-        console.error('Error retrieving recipes', error);
+        console.error('שגיאה בקבלת מתכונים מהשרת:', error);
         this.isLoading = false; 
       }
     });
-
-  }
+}
 
   
 

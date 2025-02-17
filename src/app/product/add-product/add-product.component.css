@@ -1,0 +1,84 @@
+/* סגנון כללי של הטופס */
+.product-form {
+    width: 90%;
+    max-width: 400px;
+    background: #4e4e4e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    direction: rtl;
+    font-style: #333;
+  }
+  
+  /* כותרת של הטופס */
+  .product-form h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* עיצוב הקבוצות של השדות */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+  }
+  
+  .form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #ff9800;
+    outline: none;
+  }
+
+
+  
+  /* כפתור הוספת מוצר */
+  .add-button {
+    background: #ff9800;
+    color: rgb(190, 17, 17);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    /* transition: background 0.3s; */
+  }
+  
+  .add-button:hover {
+    background: #e68900;
+  }
+  
+
+  /* תפריט נפתח לקטגוריות */
+.form-group select {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .form-group select:focus {
+    border-color: #ff9800;
+    outline: none;
+  }
+  

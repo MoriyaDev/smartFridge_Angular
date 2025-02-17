@@ -38,9 +38,10 @@ export class HomePageComponent implements OnInit {
   totheFridgePro(){
     this.router.navigate(['/pro']);
   } 
-  totheFreezerPro(){
-    this.router.navigate(['/pro']);
-  }
+ 
+goToLocation(location: string) {
+  this.router.navigate(['/pro', location]); // ניתוב לדף המוצרים עם `location` שנבחר
+}
   tothenote(){
     this.router.navigate(['/notes']);
   }

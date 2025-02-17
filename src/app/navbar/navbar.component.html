@@ -3,7 +3,7 @@
     <li class="navbar-logo flexbox-left">
       <a class="navbar-item-inner flexbox">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">menu</span> <!-- אייקון תפריט -->
+          <span class="material-icons">menu</span>
         </div>
       </a>
     </li>
@@ -11,16 +11,19 @@
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/home'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">home</span> <!-- אייקון בית -->
+          <span class="material-icons">home</span>
         </div>
         <span class="link-text">בית</span>
       </a>
     </li>
+    
+    @if(true){
 
+    <!-- מוצרים, מתכונים ופתקים יוצגו רק אם המשתמש מחובר -->
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/pro'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">kitchen</span> <!-- אייקון מקרר -->
+          <span class="material-icons">kitchen</span>
         </div>
         <span class="link-text">מוצרים במקרר</span>
       </a>
@@ -29,25 +32,27 @@
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/rec'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">restaurant</span> <!-- אייקון מתכונים -->
+          <span class="material-icons">restaurant</span>
         </div>
         <span class="link-text">מתכונים</span>
       </a>
     </li>
 
-    <li class="navbar-item flexbox-left">
+    <li class="navbar-item flexbox-left" >
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/notes'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">sticky_note_2</span> <!-- אייקון פתקים -->
+          <span class="material-icons">sticky_note_2</span>
         </div>
         <span class="link-text">פתקים</span>
       </a>
     </li>
 
+    }
+
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/tips'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">tips_and_updates</span> <!-- אייקון טיפים -->
+          <span class="material-icons">tips_and_updates</span>
         </div>
         <span class="link-text">טיפים</span>
       </a>
@@ -56,7 +61,7 @@
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/support'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">settings</span> <!-- אייקון תמיכה -->
+          <span class="material-icons">settings</span>
         </div>
         <span class="link-text">תמיכה</span>
       </a>
@@ -65,41 +70,39 @@
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/settings'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">settings</span> <!-- אייקון הגדרות -->
+          <span class="material-icons">settings</span>
         </div>
         <span class="link-text">הגדרות</span>
       </a>
     </li>
 
-    <!-- הצגת כפתור התחברות/הרשמה אם המשתמש לא מחובר -->
-      <li class="navbar-item flexbox-left">
-        <a class="navbar-item-inner flexbox-left" [routerLink]="'/signup'">
-          <div class="navbar-item-inner-icon-wrapper flexbox">
-            <span class="material-icons">add-person</span> <!-- אייקון התחברות -->
-          </div>
-          <span class="link-text">הרשמה</span>
-        </a>
-      </li>
+    <!-- כפתורי התחברות והרשמה יוצגו רק אם המשתמש אינו מחובר -->
+    <li class="navbar-item flexbox-left" *ngIf="!isAuthenticated">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/signup'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">signup</span>
+        </div>
+        <span class="link-text">הרשמה</span>
+      </a>
+    </li>
 
-      <!-- @if (!isAuthenticated) { -->
-        <li class="navbar-item flexbox-left">
-          <a class="navbar-item-inner flexbox-left" [routerLink]="'/login'">
-            <div class="navbar-item-inner-icon-wrapper flexbox">
-              <span class="material-icons">login</span>
-            </div>
-            <span class="link-text">התחברות</span>
-          </a>
-        </li>
-      <!-- } -->
-      
-      <!-- @if (isAuthenticated) { -->
-        <li class="navbar-item flexbox-left">
-          <a class="navbar-item-inner flexbox-left" (click)="logout()" style="cursor: pointer;">
-            <div class="navbar-item-inner-icon-wrapper flexbox">
-              <span class="material-icons">logout</span>
-            </div>
-            <span class="link-text">יציאה</span>
-          </a>
-        </li>
-      <!-- } -->
-      
+    <li class="navbar-item flexbox-left" *ngIf="!isAuthenticated">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/login'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">login</span>
+        </div>
+        <span class="link-text">התחברות</span>
+      </a>
+    </li>
+
+    <!-- כפתור יציאה יוצג רק אם המשתמש מחובר -->
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" (click)="logout()" style="cursor: pointer;">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">logout</span>
+        </div>
+        <span class="link-text">יציאה</span>
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -1,45 +1,56 @@
-<form [formGroup]="addProductForm">
-    <div>
-      <label>Name</label>
-      <input type="text" formControlName="name" required>
-    </div>
+
+<form [formGroup]="addProductForm" class="product-form">
+  <h2>🛒 הוסף מוצר חדש</h2>
+
+
+
+
+
+<div class="form-group">
+  <label>📂 קטגוריה</label>
+  <select formControlName="categoryID" (change)="onCategoryChange($event)">
+    @for (category of categories; track category.id) {
+      <option [value]="category.id">
+        {{ category.name }}
+      </option>
+    }
+  </select>
+</div>
+
+<div>
+  <label>שם מוצר:</label>
+  <input type="text" formControlName="name" required placeholder="לדוגמה: חלב"> 
+</div>
+
+<div class="form-group">
+    <label>כמות</label>
+    <input type="number" formControlName="amount" required placeholder="לדוגמה: 2">
+  </div> 
+<div class="form-group">
+    <label>יחידה</label>
+    <input type="text" formControlName="unit" required placeholder="לדוגמה: ליטר">
+  </div> 
+
+  <div class="form-group">
+    <label>🔗 קישור לתמונה</label>
+    <input type="text" formControlName="image" required placeholder="הדבק כאן קישור לתמונה">
+  </div> 
+
+ <div class="form-group">
+    <label>🛒 תאריך רכישה</label>
+    <input type="date" formControlName="purchaseDate" required>
+  </div> 
+
+  <div class="form-group">
+    <label>⌛ תאריך תפוגה</label>
+    <input type="date" formControlName="expiryDate" required>
+  </div>
+
+  <div class="form-group">
+    <label>📍 מיקום במקרר</label>
+    <input type="text" formControlName="location" required placeholder="לדוגמה: מדף עליון">
+  </div>
   
-    <div>
-      <label>Category</label>
-      <input type="number" formControlName="categoryID" required>
-    </div>
-  
-    <div>
-      <label>Amount</label>
-      <input type="number" formControlName="amount" required>
-    </div>
-  
-    <div>
-      <label>Unit</label>
-      <input type="text" formControlName="unit" required>
-    </div>
-  
-    <div>
-      <label>image URL</label>
-      <input type="text" formControlName="image" required>
-    </div>
-  
-    <div>
-      <label>Purchase Date</label>
-      <input type="date" formControlName="purchaseDate" required>
-    </div>
-  
-    <div>
-      <label>Expiry Date</label>
-      <input type="date" formControlName="expiryDate" required>
-    </div>
-  
-    <div>
-      <label>Location</label>
-      <input type="text" formControlName="location" required>
-    </div>
-  
-    <button (click)="addProduct()">Add Product</button>
-  </form>
-  <br/>
-  
+
+  <button (click)="addProduct()" class="add-button">➕ הוסף מוצר</button>
+</form>

@@ -1,12 +1,26 @@
 <div class="modal-overlay" *ngIf="isOpen">
-    <div class="modal-content">
-      <button class="close-btn" (click)="closeModal()">✖</button>
-      <h2>{{ product?.name }}</h2>
-      <img [src]="product?.image" alt="product image">
-      <p>קטגוריה: {{ product?.categoryID }}</p>
-      <p>תאריך תפוגה: {{ product?.expiryDate }}</p>
-      <p>מיקום: {{ product?.location }}</p>
-      <p>Fridge ID: {{ product?.fridgeId }}</p>
+  <div class="modal-content">
+    
+    <!-- כפתור סגירה עם אפקט זוהר -->
+    <button class="close-btn" (click)="closeModal()">✖</button>
+
+    <!-- שם המוצר עם מסגרת זוהרת -->
+    <h2 class="modal-title glow">{{ product?.name }}</h2>
+
+    <!-- תמונת הקטגוריה כרקע -->
+    <div class="modal-image-container"
+         [ngStyle]="{'background-image': getCategoryBackground(product?.categoryID), 'background-size': 'cover'}">
+    </div>
+
+    <!-- פרטי המוצר -->
+    <div class="modal-info">
+      <p>ID: <span class="glow">{{ product?.id }}</span></p>
+
+      <p>קטגוריה: <span class="glow">{{ product?.categoryID }}</span></p>
+      <p>תאריך תפוגה: <span class="glow">{{ formatDate(product?.expiryDate) }}</span></p>
+      <p>מיקום במקרר: <span class="glow">{{ product?.location }}</span></p>
+      <button class="delete-btn" (click)="deleteProduct()">🗑️ מחק מוצר</button>
+
     </div>
   </div>
-  
+</div>

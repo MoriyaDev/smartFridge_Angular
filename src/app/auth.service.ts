@@ -45,7 +45,72 @@
 
 // }
 
-import { Injectable } from '@angular/core';
+// import { Injectable } from '@angular/core';
+// import { BehaviorSubject } from 'rxjs';
+// import { HttpClient } from '@angular/common/http';
+// import { FridgeService } from './fridge/fridge.service';
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AuthService {
+//   private apiUrl = 'https://localhost:7194/api/Auth'; // כתובת ה-API שלך
+//   isAuthenticated$ = new BehaviorSubject<boolean>(!!localStorage.getItem('appSession'));
+
+//   constructor(private _httpClient: HttpClient, private _fridgeService: FridgeService) {}
+
+//   private getStoredAuthState(): boolean {
+//     return typeof window !== 'undefined' && !!localStorage.getItem('appSession');
+//   }
+
+//   get isAuthenticated(): boolean {
+//     return this.isAuthenticated$.getValue();
+//   }
+
+//    login(credentials: any): void {
+//     this._httpClient.post<{ token: string; fridgeId: number }>(this.apiUrl, credentials).subscribe({
+//       next: (res) => {
+//         if (res.token && res.fridgeId) {
+//           if (typeof window !== 'undefined') {
+//             localStorage.setItem('appSession', JSON.stringify({ user: res.fridgeId, token: res.token }));
+//           }
+//           this.isAuthenticated$.next(true);
+//           this.loadFridge(res.fridgeId);
+//         }
+//       },
+//       error: (err) => {
+//         alert('שגיאה בהתחברות: ' + err.error);
+//       }
+//     });
+//   }
+
+//   logout(): void {
+//     if (typeof window !== 'undefined') {
+//       localStorage.removeItem('appSession');
+//       localStorage.removeItem('selectedFridge');
+//     }
+//     this.isAuthenticated$.next(false);
+//   }
+
+//   loadFridge(fridgeId: number) {
+//     this._fridgeService.getFridgeByIdFromServer(fridgeId).subscribe({
+//       next: (fridgeData: any) => {
+//         if (fridgeData && typeof window !== 'undefined') {
+//           localStorage.setItem('selectedFridge', JSON.stringify(fridgeData));
+//           this._fridgeService.setFridge(fridgeData);
+//         }
+//       },
+//       error: (error) => {
+//         console.error('Error retrieving fridge', error);
+//       }
+//     });
+//   }
+// }
+
+
+
+
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FridgeService } from './fridge/fridge.service';
@@ -53,11 +118,17 @@ import { FridgeService } from './fridge/fridge.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit {
   private apiUrl = 'https://localhost:7194/api/Auth'; // כתובת ה-API שלך
-  isAuthenticated$ = new BehaviorSubject<boolean>(!!localStorage.getItem('appSession'));
+  isAuthenticated$ = new BehaviorSubject<boolean>(false); // ברירת מחדל: לא מחובר
 
   constructor(private _httpClient: HttpClient, private _fridgeService: FridgeService) {}
+
+  ngOnInit() {
+    if (typeof window !== 'undefined' && localStorage.getItem('appSession')) {
+      this.isAuthenticated$.next(true);
+    }
+  }
 
   get isAuthenticated(): boolean {
     return this.isAuthenticated$.getValue();
@@ -67,11 +138,10 @@ export class AuthService {
     this._httpClient.post<{ token: string; fridgeId: number }>(this.apiUrl, credentials).subscribe({
       next: (res) => {
         if (res.token && res.fridgeId) {
-          // שמירת המשתמש וה-Token
-          localStorage.setItem('appSession', JSON.stringify({ user: res.fridgeId, token: res.token }));
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('appSession', JSON.stringify({ user: res.fridgeId, token: res.token }));
+          }
           this.isAuthenticated$.next(true);
-
-          // טעינת נתוני המקרר ושמירתם ב-Local Storage
           this.loadFridge(res.fridgeId);
         }
       },
@@ -82,23 +152,19 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('appSession');
-    localStorage.removeItem('selectedFridge');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('appSession');
+      localStorage.removeItem('selectedFridge');
+    }
     this.isAuthenticated$.next(false);
   }
 
   loadFridge(fridgeId: number) {
     this._fridgeService.getFridgeByIdFromServer(fridgeId).subscribe({
       next: (fridgeData: any) => {
-        console.log("Fridge data loaded:", fridgeData);
-
-        if (fridgeData) {
+        if (fridgeData && typeof window !== 'undefined') {
           localStorage.setItem('selectedFridge', JSON.stringify(fridgeData));
           this._fridgeService.setFridge(fridgeData);
-          // this.fridgeData$.next(fridgeData);
-
-        } else {
-          console.error("No fridge data received from server");
         }
       },
       error: (error) => {
@@ -107,5 +173,3 @@ export class AuthService {
     });
   }
 }
-
-

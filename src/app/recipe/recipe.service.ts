@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Recipe} from '../recipe/recipe.model';
 import { Product } from '../product/product.model';
 
@@ -9,7 +9,7 @@ import { Product } from '../product/product.model';
 })
 export class RecipeService {
 
-    baseUrl = 'https://localhost:7194/api/Recipes';
+    baseUrl = 'https://localhost:7194/api/recipes';
 
 
     constructor(private _http: HttpClient) { }
@@ -19,7 +19,10 @@ export class RecipeService {
     }
 
     getRecipesByExpirationFromServer(products: Product[]): Observable<Recipe[]> {
-        return this._http.post<Recipe[]>(`${this.baseUrl}/ranked-recipes`, products);
+        return this._http.post<Recipe[]>(`${this.baseUrl}/getRankedRecipes`, products,{
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' }) // וידוא שהתוכן נשלח בפורמט JSON
+
+        });
     }
     
     

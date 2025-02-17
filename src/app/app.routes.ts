@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'notes', component: NoteListComponent },
   { path: 'add-note', component: AddNoteComponent },
 
-  { path: 'pro', component: ProductListComponent },
+  { path: 'pro/:location', component: ProductListComponent },
   { path: 'proD', component: ProductDetailsComponent},
 
   {path: 'rec', component:RecipeListComponent}

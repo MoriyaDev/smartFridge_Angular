@@ -2,7 +2,9 @@
 <button (click)="getRecipesByProducts(this.productString)">קבל מתכונים לפי רכיבים</button>
 
 <!-- כפתור לקבלת מתכונים לפי תאריך תפוגה -->
-<button (click)="getRecipesbyExpiration(this.products)">קבל מתכונים לפי תאריך תפוגה</button>
+<button (click)="getRecipesbyExpiration(products)" [disabled]="isLoading">
+  {{ isLoading ? 'טוען...' : 'קבל מתכונים לפי תאריך תפוגה' }}
+</button>
 
 
 <p>📜 רשימת מתכונים</p>
@@ -18,7 +20,6 @@
       <li></li>
     </ul>
   </div>
-  <p>⏳ מחשב בשבילך את המתכונים...</p>
 } @else {
 <div class="recipe-container">
     @for (recipe of filteredRecipes; track $index) {

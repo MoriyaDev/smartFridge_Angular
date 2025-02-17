@@ -1,11 +1,143 @@
 ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
-
-
-
-❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
 15/01/2025
 להירשם ולהתחבר בתור מקרר
 לעשות ניווט נכון
+תמונות שקופות לפי קטגוריה
+לעצב דף מקררל פתוח חלון קטגוירות
+כל כרטיס של מוצר לעצבמודול של מוצר פרטים עליו
+שאני אפתח קטגוריה ואבחר ולא אכתוב
+
+מחיקת מוצר ממקרר
+
+❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌❌
+
 לעשות שיתווספו ימים לפג תוקף לפי מוצר
+שיהיה לי מוצרים מסוננים לפי מקפיא או מקרר ENUM 
+פו מתכונים עובדות
+לחבר מתכונים לדתה
+מוצג פג תוקף שיסומן
+לשלוח מוצרים למקרר למקפיא שימיין
+פונקצית מיון לפי קטגוריות
+
+
+
+
+
+===============================
+/* מקרר עם גלילה */
+.fridge-container {
+  width: 80%;
+  margin: auto;
+  background-color: #2e2e2e;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  border: 10px solid #b0bec5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  /* max-height: 80vh; */
+  overflow-y: auto;
+}
+
+
+
+/* כרטיס מוצר */
+.pro-item {
+  position: relative;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  width: 140px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid #b0bec5;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* שם המוצר */
+.product-title {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+}
+
+/* תמונת מוצר */
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* תאריך */
+.product-date {
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* כפתור הוספת מוצר */
+.add-product-button {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-product-button:hover {
+  background-color: #e68900;
+}
+
+/* נורה בראש המקרר */
+.fridge-light {
+  width: 80%;
+  height: 25px;
+  background: radial-gradient(circle, #fff, #f9f9f9, #ccc);
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(255, 255, 200, 0.9);
+}
+
+
+
+/* מדפים - מעוצבים עם אפקט עומק */
+.shelf {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(to bottom, #dce1e3, #cfd8dc); /* אפקט עומק */
+  padding: 15px;
+  border-radius: 8px;
+  width: 95%;
+  min-height: 150px;
+  border-bottom: 8px solid #90a4ae; /* קו שמדמה מדף */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transform: perspective(600px) rotateX(5deg); /* אפקט קל של עומק */
+}
+
+
+
 
 

@@ -1,125 +1,144 @@
+import { Component } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { FridgeService } from '../../fridge/fridge.service';
-import { AddProductComponent } from "../add-product/add-product.component";
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core'; @Component({
+import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { AddProductComponent } from "../add-product/add-product.component";
+import { ActivatedRoute } from '@angular/router';
+import { log } from 'console';
+
+@Component({
   selector: 'app-product-list',
   imports: [CommonModule, ProductDetailsComponent, AddProductComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
+  
+  // 🔹 משתנים לניהול הנתונים
   products: Product[] = [];
-  isShow: boolean = false
   currentFridge: any = null;
-  showAddProduct: boolean = false;
   shelves: any[][] = [];
   selectedProduct: any = null;
-  isModalOpen: boolean = false;
+  filteredProducts: any[] = []; // מוצרים אחרי סינון
+  location: string = 'Fridge'; // ברירת מחדל
 
+  // 🔹 משתנים לניהול המודלים (חלונות קופצים)
+  isModalOpen: boolean = false; // מודל פרטי מוצר
+  isAddProductModalOpen: boolean = false; // מודל הוספת מוצר
 
-
-  constructor(private _productService: ProductService,
+  constructor(
+    private _productService: ProductService,
     private _fridgeService: FridgeService,
-    private _router: Router
-  ) { }
-
-  ngOnInit() {
-    this._fridgeService.getFridgeObservable().subscribe(fridge => {
-      if (fridge) {
-        this.currentFridge = fridge;
-        this.products = [...fridge.products]; // 👈 יוצרים עותק חדש כדי שהאנגולר יזהה שינוי
+    private _router: Router,
+    private route: ActivatedRoute // נוסיף את `ActivatedRoute` כדי לקבל פרמטרים מהנתיב
+  ) {}
+  // 🔹 אתחול הנתונים של המקרר והמוצרים בעת טעינת הקומפוננטהngOnInit() {
+    ngOnInit() {
+      this.route.paramMap.subscribe(params => {
+        this.location = params.get('location') || 'Fridge'; // אם אין פרמטר, ברירת מחדל: מקרר
+        console.log("🔹 מיקום נבחר:", this.location);
+        this.filterProducts();
         this.organizeProducts();
+      });
+    
+      this._fridgeService.getFridgeObservable().subscribe(fridge => {
+        if (fridge) {
+          this.currentFridge = fridge;
+          this.products = [...fridge.products]; // יוצרים עותק חדש
+          this.filterProducts();
+        }
+      });
+    }
+  filterProducts() {
+    this.filteredProducts = this.products.filter(p => p.location == this.location);
+    this.organizeProducts();
+  }
+
+  // 🔹 ארגון מוצרים למדפים עם גודל קבוע לכל מדף
+  organizeProducts() {
+    const shelfSize = 8; // מספר מוצרים בכל מדף
+    this.shelves = [];
+    for (let i = 0; i < this.filteredProducts.length; i += shelfSize) {
+      this.shelves.push(this.filteredProducts.slice(i, i + shelfSize));
+    }
+  }
+
+  // 🔹 הצגת מודל פרטי מוצר
+  showDetails(product: any) {
+    console.log("Product selected:", product);
+    this.selectedProduct = product;
+    this.isModalOpen = true;
+  }
+
+  // 🔹 סגירת מודל פרטי מוצר
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  // 🔹 פתיחה/סגירה של מודל הוספת מוצר
+  toggleAddProductModal() {
+    this.isAddProductModalOpen = !this.isAddProductModalOpen;
+  }
+
+  // 🔹 כאשר מוצר נוסף, נסגור את המודל של ההוספה
+  handleProductAdded() {
+    this.isAddProductModalOpen = false;
+  }
+
+
+  // 🔹 מיפוי תמונות רקע לכל קטגוריה
+  categoryBackgrounds: { [key: string]: string } = {
+    1: "1.png",
+    2: "2.png",
+    3: "3.png",
+    4: "4.png",
+    5: "5.png",
+    6: "6.png",
+    7: "7.png",
+    8: "8.png",
+  };
+
+  // 🔹 קבלת תמונת רקע לפי קטגוריה
+  getCategoryBackground(categoryID: string): string {
+    return this.categoryBackgrounds[categoryID] 
+      ? `url('${this.categoryBackgrounds[categoryID]}')` 
+      : `url('assets/7.png')`; // תמונת ברירת מחדל
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`; // מציג: יום/חודש/שנה
+  }
+
+  deleteProduct(productId: number) {
+    console.log("🔵 התקבלה בקשת מחיקה למוצר עם ID:", productId);
+  
+    this._productService.deleteProductFromServer(productId).subscribe({
+      next: () => {
+        console.log('✅ המוצר נמחק בהצלחה מהשרת!', productId);
+        
+        // 🔥 עדכון רשימת המוצרים לאחר מחיקה
+        this.products = this.products.filter((p: Product) => p.id !== productId);
+        console.log("📌 רשימת מוצרים לאחר מחיקה:", this.products);
+  
+        // 🔄 עדכון המקרר
+        let fridge = JSON.parse(localStorage.getItem("selectedFridge") || "{}");
+        fridge.products = fridge.products.filter((p: Product) => p.id !== productId);
+        localStorage.setItem("selectedFridge", JSON.stringify(fridge));
+  
+        // 🔥 עדכון `BehaviorSubject` כדי שכל הרכיבים יתעדכנו
+        this._fridgeService.setFridge(fridge);
+      },
+      error: (error) => {
+        console.error('❌ שגיאה במחיקת המוצר מהשרת:', error);
       }
     });
   }
   
   
-
-    // console.log("Loaded fridge from service:", this.currentFridge);   
-
-    // if (this.currentFridge) {
-    //   this.fridgeId = this.currentFridge.id;
-    // } else {
-    //   console.log("No fridge found");
-    // }   
-  //   //  this.getProductsByFridgeId(this.fridgeId);
-  // }
-  organizeProducts() {
-    const shelfSize = 8;
-    this.shelves = [];
-    for (let i = 0; i < this.products.length; i += shelfSize) {
-      this.shelves.push(this.products.slice(i, i + shelfSize));
-    }
-  }
-
-  // getProductsByFridgeId(id: number): void {
-  //   this._productService.getProductsByFridgeIdFormServer(id).subscribe({
-  //     next: (data) => {
-  //       this.products = data;
-  //     },
-  //     error: (error) => {
-  //       console.error('Error retrieving products', error);
-  //     }
-  //   });
-  // }
-  showDetails(product: any) {
-    console.log("Product selected:", product); // לוודא שהמוצר נבחר
-    this.selectedProduct = product;
-    this.isModalOpen = true;  // תוודאי שזה משתנה
-    console.log("isModalOpen:", this.isModalOpen); // לוודא שהשדה משתנה
-  }
-
-  closeModal() {
-    this.isModalOpen = false;
-  }
-  categoryColors: { [key: string]: string } = {
-    1: "#AEDFF7", // מוצרי חלב - כחול בהיר
-    2: "#FFADAD", // בשר - אדום בהיר
-    3: "#B5E48C", // ירקות - ירוק
-    6: "#FFDD57", // פירות - צהוב
-    5: "#CBA6F7", // שתייה - סגול
-    8: "#D9D9D9" // כללי - אפור
-  };
-  categoryBackgrounds: { [key: string]: string } = {
-    1: "1milk.jpg", 
-    2: "2meat.jpg", 
-    3: "3v.jpg", 
-    4: "4f.jpg" ,
-    5: "5d.jpg",
-    6: "6all.jpg" 
-
-  };
-
-  getCategoryBackground(categoryID: string): string {
-    return this.categoryBackgrounds[categoryID] 
-      ? `url('${this.categoryBackgrounds[categoryID]}')` 
-      : `url('assets/milk.jpg')`; // תיקון בתמונה ברירת המחדל
-    }
   
-
-
-  getCategoryColor(categoryID: string): string {
-    return this.categoryColors[categoryID] || this.categoryColors["others"];
-  }
-  categoryIcons: { [key: string]: string } = {
-    1: "🥛", // מוצרי חלב - בקבוק חלב
-    2: "🍖", // בשר - נתח בשר
-    3: "🥕", // ירקות - גזר
-    4: "🍎", // פירות - תפוח
-    5: "🥤", // שתייה - כוס שתייה
-    6: "🛒" // כללי - עגלה
-  };
-
-  getCategoryIcon(categoryID: string): string {
-    return this.categoryIcons[categoryID] || this.categoryIcons["others"];
-  }
-
-
-
-
-
+  
 }
