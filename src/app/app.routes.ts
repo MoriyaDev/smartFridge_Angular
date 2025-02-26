@@ -10,8 +10,11 @@ import { LoginFridgeComponent } from './fridge/login-fridge/login-fridge.compone
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
 import {RecipeListComponent} from './recipe/recipe-list/recipe-list.component';
+// import { UpdateProductComponent } from './product/update-product/update-product.component';
+
+
 export const routes: Routes = [
-  { path: '', redirectTo: "login", pathMatch: "full"}, 
+  { path: '', redirectTo: "home", pathMatch: "full"}, 
   { path: 'home', component: HomePageComponent },
   { path: 'footer', component: FooterComponent },
 
@@ -23,6 +26,7 @@ export const routes: Routes = [
 
   { path: 'pro/:location', component: ProductListComponent },
   { path: 'proD', component: ProductDetailsComponent},
+  // { path: 'proUpdate', component: UpdateProductComponent},
 
   {path: 'rec', component:RecipeListComponent}
 

@@ -22,7 +22,7 @@
   <input type="text" formControlName="name" required placeholder="לדוגמה: חלב"> 
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
     <label>כמות</label>
     <input type="number" formControlName="amount" required placeholder="לדוגמה: 2">
   </div> 
@@ -39,7 +39,7 @@
  <div class="form-group">
     <label>🛒 תאריך רכישה</label>
     <input type="date" formControlName="purchaseDate" required>
-  </div> 
+  </div>  -->
 
   <div class="form-group">
     <label>⌛ תאריך תפוגה</label>
@@ -48,9 +48,16 @@
 
   <div class="form-group">
     <label>📍 מיקום במקרר</label>
-    <input type="text" formControlName="location" required placeholder="לדוגמה: מדף עליון">
+    <select formControlName="location">
+      <option value="Fridge">מקרר</option>
+      <option value="Freezer">מקפיא</option>
+    </select>
   </div>
   
+  
+  
+
+
 
   <button (click)="addProduct()" class="add-button">➕ הוסף מוצר</button>
 </form>

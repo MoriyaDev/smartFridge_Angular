@@ -73,8 +73,8 @@
 // }
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FridgeService } from '../fridge.service';
-import {AuthService} from '../../auth.service';
+import { FridgeService } from '../../service/fridge.service';
+import {AuthService} from '../../service/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -96,25 +96,6 @@ export class LoginFridgeComponent {
       'password': new FormControl('', Validators.required)
     });
   }
-
-  // login() {
-  //   this._fridgeService.loginFromServer(this.loginForm.value).subscribe({
-  //     next: (response: any) => {
-  //       console.log("Login successful:", response);
-
-  //       if (response?.fridgeId) {
-  //         localStorage.setItem('fridgeId', response.fridgeId.toString());
-  //         this.getFridgeById(response.fridgeId);
-  //       } else {
-  //         console.error("Login response does not contain fridgeId");
-  //       }
-  //     },
-  //     error: (error) => {
-  //       console.error('Login failed', error);
-  //       alert(error.error?.message || 'Login failed. Please try again.');
-  //     }
-  //   });
-  // }
 
   login(){
     const loginData = this.loginForm.value;

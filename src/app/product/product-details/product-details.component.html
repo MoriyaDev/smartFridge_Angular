@@ -15,12 +15,25 @@
     <!-- פרטי המוצר -->
     <div class="modal-info">
       <p>ID: <span class="glow">{{ product?.id }}</span></p>
-
       <p>קטגוריה: <span class="glow">{{ product?.categoryID }}</span></p>
       <p>תאריך תפוגה: <span class="glow">{{ formatDate(product?.expiryDate) }}</span></p>
       <p>מיקום במקרר: <span class="glow">{{ product?.location }}</span></p>
-      <button class="delete-btn" (click)="deleteProduct()">🗑️ מחק מוצר</button>
 
+      <button (click)="toggleUpdateForm()">📝 עדכן מוצר</button>
+      <button class="delete-btn" (click)="deleteProduct()">🗑️ מחק מוצר</button>
     </div>
+
+
+
+
+
+
   </div>
 </div>
+
+@if(isUpdateFormOpen){
+  <app-update-product
+  [product]="product"
+  (updateSuccess)="handleUpdate($event)"
+  (cancel)="toggleUpdateForm()">
+</app-update-product>}

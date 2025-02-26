@@ -11,17 +11,17 @@ export class Product {
     // הקטגוריה של המוצר
     categoryID!: number;
   
-    // כמות המוצר
-    Amount!: number;
+    // // כמות המוצר
+    // Amount!: number;
   
-    // סוג היחידות
-    Unit!: string;
+    // // סוג היחידות
+    // Unit!: string;
   
-    // תמונה של המוצר (URL לתמונה)
-    image!: string;
+    // // תמונה של המוצר (URL לתמונה)
+    // image!: string;
   
-    // תאריך הקנייה
-    purchaseDate!: Date;
+    // // תאריך הקנייה
+    // purchaseDate!: Date;
   
     // תאריך תפוגה
     expiryDate!: Date;

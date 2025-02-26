@@ -1,24 +1,24 @@
 
 
-<form [formGroup]="addNoteForm">
+<form [formGroup]="addNoteForm" class="product-form">
   <!-- <div>
     <label>frigeId</label>
     <input type="number" formControlName="fridgeId" required>
   </div> -->
 
-  <div>
+  <div class="form-group">
     <label>text</label>
     <input type="text" formControlName="text" required>
   </div>
 
-  <div>
+  <div class="form-group">
     <label>createdDate</label>
     <input type="date" formControlName="createdDate" required>
   </div>
 
-  <div>
+  <div class="form-group">
     <label>isResolved</label>
     <input type="checkbox" formControlName="isResolved" required>
   </div>
-  <button  (click)="addNote()" >add note</button>
+  <button  (click)="addNote()" class="add-button">add note</button>
 

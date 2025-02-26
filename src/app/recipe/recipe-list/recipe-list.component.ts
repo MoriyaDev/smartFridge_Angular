@@ -1,23 +1,26 @@
 import { Component } from '@angular/core';
-import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
-import { FridgeService } from '../../fridge/fridge.service';
-import { Product } from '../../product/product.model';
+import { Recipe } from '../../model/recipe.model';
+import { RecipeService } from '../../service/recipe.service';
+import { FridgeService } from '../../service/fridge.service';
+import { Product } from '../../model/product.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrl: './recipe-list.component.css'
+  styleUrl: './recipe-list.component.css',
+  imports: [CommonModule ],
 })
 export class RecipeListComponent {
-  recipes: Recipe[] = [];
+  recipes1: Recipe[] = [];
+  recipes2: Recipe[] = [];
   currentFridge: any = null;
-  isLoading: boolean = false;  // משתנה שיציין אם אנחנו עדיין בטעינה
-  filteredRecipes:Recipe[]=[];
-  productString : string='';
-  products :Product[] = [];
+  isLoading: boolean = false;
+  filteredRecipes: Recipe[] = [];
+  productString: string = '';
+  products: Product[] = [];
   constructor(private _recipeService: RecipeService,
-              private _fridgeService: FridgeService) {}
+    private _fridgeService: FridgeService) { }
 
   ngOnInit(): void {
     this.currentFridge = this._fridgeService.getFridge();
@@ -26,54 +29,44 @@ export class RecipeListComponent {
       this.products = this.currentFridge.products;
       this.productString = this.products.map(pro => pro.name).join(',');
       console.log(this.productString);
-
+      this.fetchRecipesByProducts(this.productString);
     } else {
       console.warn('No products found in fridge');
       this.isLoading = false; // סיום טעינה גם אם אין מוצרים
     }
   }
 
-  getRecipesByProducts(products: string): void {
-    this.isLoading = true; // מתחילים טעינה
-    this._recipeService.getRecipeByProductsFromServer(products).subscribe({
+  fetchRecipesApiByProducts(productString: string): void {
+    this.isLoading = true; 
+    this._recipeService.getRecipeByProductsApiFromServer(productString).subscribe({
       next: (data) => {
-        this.recipes = data;
-        this.filteredRecipes = this.recipes.filter(r => !r.title.toLowerCase().includes('חזיר'));
-console.log("filteredRecipes",this.filteredRecipes);
-
-        this.isLoading = false; // סיום טעינה
+        this.recipes2 = data;
+        this.filteredRecipes = this.recipes2.filter(r => !r.title.toLowerCase().includes('חזיר'));
+        this.isLoading = false; 
       },
       error: (error) => {
-        console.error('Error retrieving recipes', error);
-        this.isLoading = false; // סיום טעינה גם במקרה של שגיאה
+        this.isLoading = false; 
       }
     });
   }
 
-  getRecipesbyExpiration(products: Product[]) {
-    if (!products || products.length === 0) {
-        console.warn('אין מוצרים לשלוח לשרת.');
-        return;
-    }
-
+  fetchRecipesByProducts(productString: string): void {
     this.isLoading = true; 
-    this._recipeService.getRecipesByExpirationFromServer(products).subscribe({
+    this._recipeService.getRecipeByProductsFromServer(productString).subscribe({
       next: (data) => {
-        if (!data || data.length === 0) {
-            console.warn('לא נמצאו מתכונים מתאימים.');
-        } else {
-            this.recipes = data;
-        }
+        this.recipes1 = data;
+        this.filteredRecipes = this.recipes1.filter(r => !r.title.toLowerCase().includes('חזיר'));
         this.isLoading = false; 
       },
-      error: (error) => {
-        console.error('שגיאה בקבלת מתכונים מהשרת:', error);
+      error: () => {
         this.isLoading = false; 
       }
     });
-}
+  }
 
-  
+
+
+
 
 
 }

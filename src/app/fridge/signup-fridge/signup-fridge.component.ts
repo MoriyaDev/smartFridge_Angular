@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FridgeService } from '../fridge.service';
+import { FridgeService } from '../../service/fridge.service';
 import { Router } from '@angular/router';
 
 @Component({

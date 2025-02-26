@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Note } from '../note.model';
-import { NoteService } from '../note.service';
+import { Note } from '../../model/note.model';
+import { NoteService } from '../../service/note.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FridgeService } from '../../fridge/fridge.service';
+import { FridgeService } from '../../service/fridge.service';
 
 
 @Component({

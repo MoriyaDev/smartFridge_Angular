@@ -1,55 +1,96 @@
 
-<button (click)="getRecipesByProducts(this.productString)">קבל מתכונים לפי רכיבים</button>
 
-<!-- כפתור לקבלת מתכונים לפי תאריך תפוגה -->
-<button (click)="getRecipesbyExpiration(products)" [disabled]="isLoading">
-  {{ isLoading ? 'טוען...' : 'קבל מתכונים לפי תאריך תפוגה' }}
-</button>
+<div class="recipe-buttons-container">
+  <button class="recipe-button" (click)="fetchRecipesApiByProducts(productString)">🍲 מ API מצא מתכונים</button>
+  <!-- <button class="recipe-button" (click)="fetchRecipesByProducts(productString)">מצא מתכונים בשבילי</button> -->
+</div>
+<p>מתכונים</p>
 
 
-<p>📜 רשימת מתכונים</p>
 @if (isLoading) {
   <div>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+    <ul> <li></li> <li></li> <li></li><li></li><li></li> <li></li> <li></li>
     </ul>
   </div>
 } @else {
-<div class="recipe-container">
-    @for (recipe of filteredRecipes; track $index) {
-    <div class="recipe-card">
-        <p>🍜{{recipe.title}}</p>
-        <img [src]="recipe.image" alt="recipe image">
-        <p><strong>📖 הוראות הכנה:</strong> {{recipe.instructions}}</p>
-        <p><strong>🛒 מוצרים חסרים:</strong> {{recipe.missedIngredientCount}}</p>
-        <p><strong>✅ מוצרים משומשים:</strong> {{recipe.usedIngredientCount}}</p>
 
+  <div *ngIf="!isLoading">
+    <div class="recipe-container">
+      <div *ngFor="let recipe of recipes2; let i = index" class="recipe-card">
+        
+        <h3>🍜 {{ recipe.title }}</h3>
+        <img [src]="recipe.image" alt="recipe image">
+        
+        <p><strong>הוראות הכנה:</strong> {{ recipe.instructions }}</p>
+        <p><strong>מוצרים חסרים:</strong> {{ recipe.missedIngredientCount }}</p>
+        <p><strong>מוצרים משומשים:</strong> {{ recipe.usedIngredientCount }}</p>
+  
         <p>מוצרים חסרים</p>
         @if (recipe.missedIngredients.length > 0) {
           @for (item of recipe.missedIngredients; track $index) {
             <p>{{ item.name }}</p>
           }
         } @else {
-          <p>❌ אין מוצרים חסרים</p>
+          <p> אין מוצרים חסרים</p>
         }
-        
+
         <p>מוצרים משומשים</p>
         @if (recipe.usedIngredients.length > 0) {
           @for (item of recipe.usedIngredients; track $index) {
             <p>{{ item.name }}</p>
           }
         } @else {
-          <p>❌ אין מוצרים משומשים</p>
+          <p> אין מוצרים משומשים</p>
         }
+  
+        <p><strong>ציון:</strong> {{ recipe.score }}</p>
         
-        <p><strong>✅  score:</strong> {{recipe.score}}</p>
-        <!-- <button (click)="showRecipeDetails(recipe)">📋 פרטים נוספים</button> -->
+      </div>
     </div>
+  </div>
+  
+  
+  
+
+  <div class="recipe-container">
+    <div *ngFor="let recipe of recipes1" class="recipe-card">
+      
+      <!-- כותרת המתכון -->
+      <h2 class="recipe-title">{{ recipe.title }}</h2>
+  
+      <!-- מספר מוצרים משומשים וחסרים -->
+      <p class="info"><strong>מוצרים משומשים:</strong> {{ recipe.usedIngredientCount }}</p>
+      <p class="info"><strong>מוצרים חסרים:</strong> {{ recipe.missedIngredientCount }}</p>
+  
+      <!-- תמונת המתכון -->
+      <img [src]="'public/1.jpg'" alt="recipe image" class="recipe-image">
+  
+      <!-- רשימת מוצרים משומשים -->
+      <div class="ingredient-section">
+        <h3>מוצרים משומשים:</h3>
+        <div *ngFor="let used of recipe.usedPro.split(',')">
+          {{ used.trim() }}
+        </div>
+      </div>
+  
+      <!-- רשימת מוצרים חסרים -->
+       @if(recipe.missedIngredientCount > 0){
+      <div class="ingredient-section missing">
+        <h3>מוצרים חסרים:</h3>
+        <div *ngFor="let missed of recipe.missedPro.split(',')">
+          {{ missed.trim() }}
+        </div>
+      </div>
     }
-</div>}
+  
+      <!-- הוראות הכנה -->
+      <div class="instructions">
+        <h3>הוראות הכנה:</h3>
+        {{ recipe.instructions }}
+      </div>
+  
+    </div>
+  </div>
+  
+
+}

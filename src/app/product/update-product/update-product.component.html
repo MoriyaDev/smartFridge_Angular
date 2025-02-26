@@ -1,0 +1,27 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-button" (click)="cancel.emit()">&times;</span> 
+    <!-- כפתור סגירה של המודל -->
+    <h2>📝 עדכון מוצר</h2> 
+
+    <!-- טופס לעדכון המוצר, מחובר ל-FormGroup של אנגולר -->
+    <form [formGroup]="updateProductForm">
+      <label>שם מוצר:</label>
+      <input type="text" formControlName="name">
+
+      <!-- <label>כמות:</label>
+      <input type="number" formControlName="amount">
+
+      <label>יחידה:</label>
+      <input type="text" formControlName="unit"> -->
+
+      <label>תאריך תפוגה:</label>
+      <input type="date" formControlName="expiryDate">
+
+      <!-- כפתור שמירת השינויים -->
+      <button type="button" (click)="updateProduct()">💾 שמור</button>
+      <!-- כפתור ביטול הסגירה של המודל -->
+      <button type="button" (click)="cancel.emit()">❌ ביטול</button>
+    </form>
+  </div>
+</div>

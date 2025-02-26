@@ -1,5 +1,4 @@
-
-/* עיצוב הכותרת */
+/* 
 h1 {
   font-size: 36px;
   text-align: center;
@@ -9,7 +8,6 @@ h1 {
 
 
 
-/* תאריך - קטן יותר */
 .dateN {
   font-size: 14px;
   color: gray;
@@ -25,14 +23,7 @@ h1 {
   box-sizing: border-box;
 }
 
-body
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #1d061a
-}
+
 
 .container
 {
@@ -242,19 +233,111 @@ body
   background: #ffcf4d;
   border: 1px solid rgba(255, 0, 88, 0.4);
   box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+}*/
+/* רקע כללי שחור עם גוונים עמוקים */
+body {
+  background: #1d061a;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
 }
 
-.bigT{
+/* כפתור הוספת פתק – ממוקם קבוע בפינה השמאלית העליונה */
+.add-note-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.2s;
+  z-index: 1000;
+}
+
+.add-note-button:hover {
+  background-color: #e68900;
+  transform: scale(1.1);
+}
+
+/* כותרת ראשית עם אפקטים דינמיים */
+.bigT {
   text-transform: uppercase;
-  color: #0000;
   font-size: 60px;
   font-weight: bold;
-  background: 
-    repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
-    repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 50%/2500px 2500px;
+  background: repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0/2500px 2500px,
+              repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 50%/2500px 2500px;
   background-blend-mode: difference;
   mix-blend-mode: lighten;
   -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
+  text-align: center;
+  margin: 80px 0 20px; /* מתחשב במיקום הכפתור הקבוע */
+}
 
+/* מכולת הפתקים – תצוגה דינמית עם פריסה גמישה */
+.note-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  padding-right: 80px;
+}
+
+/* עיצוב פתק – דינמי בגובה לפי תוכנו */
+.note {
+  background: #fff8d1; /* רקע צהבהב עדין */
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  border-left: 5px solid #ffcc00;
+  text-align: right;
+  position: relative;
+  max-width: 300px; /* רוחב מרבי, אך גובה דינמי */
+  width: auto;
+  word-wrap: break-word;
+  margin: 15px;
+}
+
+/* אפקט סלוטייפ על הפתק */
+.note::before,
+.note::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  background: rgba(255,255,255,0.6);
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.note::before { top: -15px; }
+.note::after { bottom: -15px; transform: translateX(-50%) rotate(5deg); }
+
+/* עיצוב כותרת וטקסט בתוך הפתק */
+.note h2 {
+  font-size: 1.2em;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.note p {
+  font-size: 3em;
+  color: #333;
+  margin: 5px 0;
+}
+
+/* עיצוב הקישור בתוך הפתק */
+.note a {
+  text-decoration: none;
+  color: #ff9800;
+  font-weight: bold;
 }

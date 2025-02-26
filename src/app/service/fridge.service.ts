@@ -3,7 +3,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Fridge } from './fridge.model';
+import { Fridge } from '../model/fridge.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

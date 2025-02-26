@@ -1,5 +1,5 @@
 import internal from "stream";
-import { Product } from "../product/product.model";
+import { Product } from "./product.model";
 
 export class Recipe {
     id!: number;
@@ -10,6 +10,8 @@ export class Recipe {
     usedIngredientCount!: number
     missedIngredients!: Product[] 
     usedIngredients!: Product[]
+    missedPro!: string
+    usedPro!: string
     isCritical !: boolean;
     score!: number;
   }

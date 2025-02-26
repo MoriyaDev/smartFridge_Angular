@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {Product} from '../product/product.model';
+import {Product} from '../model/product.model';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +12,10 @@ export class ProductService {
 
 
     constructor(private _http: HttpClient) { }
+
+    getProductsFromServer(): Observable<any> {
+      return this._http.get<Product[]>(`${this.baseUrl}`)
+  }
     getProductsByFridgeIdFromServer(fridgeId: number): Observable<Product[]> {
         return this._http.get<Product[]>(`${this.baseUrl}/fridge/${fridgeId}`)
     }
@@ -23,11 +27,15 @@ export class ProductService {
         return this._http.get<{ id: number, name: string }[]>('https://localhost:7194/api/Categorys');
       }
 
-      deleteProductFromServer(productId: number) {
+      deleteProductFromServer(productId: number): Observable<any> {
         console.log("📡 שולח בקשת DELETE לשרת עם ID:", productId);
         return this._http.delete(`${this.baseUrl}/${productId}`)
       }
-  
+
+      updateProductFromServer(productId: number, updatedProduct: Product): Observable<Product> {
+        return this._http.put<Product>(`${this.baseUrl}/${productId}`, updatedProduct);
+      }
       
+  
 
 }

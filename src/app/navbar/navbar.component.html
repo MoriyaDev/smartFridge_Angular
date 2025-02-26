@@ -21,13 +21,22 @@
 
     <!-- מוצרים, מתכונים ופתקים יוצגו רק אם המשתמש מחובר -->
     <li class="navbar-item flexbox-left">
-      <a class="navbar-item-inner flexbox-left" [routerLink]="'/pro'">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/pro/Fridge'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">kitchen</span>
+          <span class="material-icons">kitchen</span> <!-- מקרר -->
         </div>
         <span class="link-text">מוצרים במקרר</span>
       </a>
     </li>
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/pro/Freezer'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">ac_unit</span> <!-- מקפיא -->
+        </div>
+        <span class="link-text">מוצרים במקפיא</span>
+      </a>
+    </li>
+    
 
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/rec'">
@@ -49,24 +58,24 @@
 
     }
 
-    <li class="navbar-item flexbox-left">
+    <!-- <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/tips'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <span class="material-icons">tips_and_updates</span>
         </div>
         <span class="link-text">טיפים</span>
       </a>
-    </li>
+    </li> -->
 
-    <li class="navbar-item flexbox-left">
+    <!-- <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/support'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <span class="material-icons">settings</span>
         </div>
         <span class="link-text">תמיכה</span>
       </a>
-    </li>
-
+    </li> -->
+<!-- 
     <li class="navbar-item flexbox-left">
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/settings'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
@@ -74,19 +83,25 @@
         </div>
         <span class="link-text">הגדרות</span>
       </a>
-    </li>
+    </li> -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <!-- כפתורי התחברות והרשמה יוצגו רק אם המשתמש אינו מחובר -->
-    <li class="navbar-item flexbox-left" *ngIf="!isAuthenticated">
+    @if(!isAuthenticated){   <li class="navbar-item flexbox-left" >
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/signup'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">signup</span>
+          <span class="material-icons">person_add</span>
         </div>
         <span class="link-text">הרשמה</span>
       </a>
     </li>
 
-    <li class="navbar-item flexbox-left" *ngIf="!isAuthenticated">
+    <li class="navbar-item flexbox-left" >
       <a class="navbar-item-inner flexbox-left" [routerLink]="'/login'">
         <div class="navbar-item-inner-icon-wrapper flexbox">
           <span class="material-icons">login</span>
@@ -94,15 +109,16 @@
         <span class="link-text">התחברות</span>
       </a>
     </li>
+  } 
 
-    <!-- כפתור יציאה יוצג רק אם המשתמש מחובר -->
-    <li class="navbar-item flexbox-left">
-      <a class="navbar-item-inner flexbox-left" (click)="logout()" style="cursor: pointer;">
-        <div class="navbar-item-inner-icon-wrapper flexbox">
-          <span class="material-icons">logout</span>
-        </div>
-        <span class="link-text">יציאה</span>
-      </a>
-    </li>
+    <li class="navbar-item flexbox-left" >
+  <a class="navbar-item-inner flexbox-left" (click)="logout()" style="cursor: pointer;">
+    <div class="navbar-item-inner-icon-wrapper flexbox">
+      <span class="material-icons">logout</span>
+    </div>
+    <span class="link-text">יציאה</span>
+  </a>
+</li>
+
   </ul>
 </nav>

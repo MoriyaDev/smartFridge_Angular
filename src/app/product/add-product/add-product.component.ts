@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Product } from '../product.model';
+import { Product } from '../../model/product.model';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FridgeService } from '../../fridge/fridge.service';
-import { ProductService } from '../product.service';
+import { FridgeService } from '../../service/fridge.service';
+import { ProductService } from '../../service/product.service';
 import { JsonPipe,NgIf } from '@angular/common';
+import { CategoryService } from '../../service/category.service';
 @Component({
   selector: 'app-add-product',
-  imports: [ReactiveFormsModule,JsonPipe, NgIf],
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css'
 })
@@ -18,7 +20,8 @@ export class AddProductComponent {
 
 
   constructor(private _productService: ProductService, 
-    private _fridgeService: FridgeService) { }
+    private _fridgeService: FridgeService,
+   private _categoryService :CategoryService) { }
 
     ngOnInit() {
       this._fridgeService.getFridgeObservable().subscribe(fridge => {
@@ -36,33 +39,20 @@ export class AddProductComponent {
         'name': new FormControl('', Validators.required),
         'fridgeId': new FormControl(this.currentFridge?.id, Validators.required),
         'categoryID': new FormControl(this.categories.length > 0 ? this.categories[0].id : '', Validators.required), // ✅ ברירת מחדל
-        'amount': new FormControl('', Validators.required),
-        'unit': new FormControl('', Validators.required),
-        'image': new FormControl('', Validators.required),
-        'purchaseDate': new FormControl('', Validators.required),
+        // 'amount': new FormControl('', Validators.required),
+        // 'unit': new FormControl('', Validators.required),
+        // 'image': new FormControl('', Validators.required),
+        // 'purchaseDate': new FormControl('', Validators.required),
         'expiryDate': new FormControl('', Validators.required),
         'location': new FormControl('', Validators.required)
       });
     }
     
     loadCategories() {
-      this._productService.getCategoriesFromServer().subscribe({
+      this._categoryService.getCategoriesFromServer().subscribe({
         next: (data) => {
           this.categories = data;
-          console.log("✅ קטגוריות שהתקבלו:", this.categories);
-    
-          // 🔥 בדיקה אם הרשימה לא ריקה
-          if (this.categories.length > 0) {
-            console.log("📌 יש קטגוריות, בונים את הטופס עכשיו.");
-          } else {
-            console.log("❌ אין קטגוריות, משהו השתבש.");
-          }
-    
-          // רק עכשיו יוצרים את הטופס
           this.createForm();
-        },
-        error: (error) => {
-          console.error('❌ שגיאה בטעינת קטגוריות', error);
         }
       });
     }
@@ -88,10 +78,10 @@ export class AddProductComponent {
           name: '',
           fridgeId: this.currentFridge.id,
           categoryID: '',
-          amount: '',
-          unit: '',
-          image: '',
-          purchaseDate: '',
+          // amount: '',
+          // unit: '',
+          // image: '',
+          // purchaseDate: '',
           expiryDate: '',
           location: ''
         });

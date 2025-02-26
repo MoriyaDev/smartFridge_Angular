@@ -1,21 +1,5 @@
 
 
-.add-product-button {
-  position: fixed;
-  top: 15px; /* מעלה את הכפתור לראש הדף */
-  left: 20px; /* ממקם אותו בצד שמאל */
-  background-color: #ff9800;
-  color: rgb(255, 21, 21);
-  border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background 0.3s, transform 0.2s;
-  z-index: 2000;
-}
 
 .add-product-button:hover {
   background-color: #e68900;
@@ -142,6 +126,7 @@
   margin-top: -40px; /* מבטיח שהתמונה תיגע במדף */
   padding-left: 10px; /* מרווחים בין מוצרים */
   padding-right: 10px;
+  z-index: 100;
 }
 
 /* עיצוב המדפים */
@@ -194,3 +179,162 @@
 .details-button:hover {
   background-color: #e68900;
 }
+
+
+/* מסגרת אזהרה למוצרים שעומדים לפוג */
+.warning-border {
+  /* position: absolute;
+  top:5px;
+  right: 5px;
+  font-size: 24px;
+  font-weight: bold; */
+
+  border: 5px solid yellow; /* ניתן לשנות את הצבע והעובי לפי הצורך */
+}
+
+/* סימן X למוצרים שפג תוקפם */
+.expired-mark {
+  position: absolute;
+  top:18px;
+  /* right: 5px; */
+  font-size: 100px;
+  text-shadow: 0 30px 30px rgb(235, 217, 9);
+
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+
+/* עיצוב מוצר שעומד לפוג תוקף - הדגשה עם אפקט פעימה */
+.expiring {
+  position: relative;
+  border: 3px solid rgba(255, 204, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+  animation: pulse 2s infinite;
+  border-radius: 12px;
+}
+
+/* אנימציית פעימה */
+@keyframes pulse {
+  0%   { box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); }
+  50%  { box-shadow: 0 0 20px rgba(255, 204, 0, 1); }
+  100% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); }
+}
+
+/* עיצוב מוצר שפג תוקף – אפקט דהוי עם סימן "X" */
+.expired {
+  position: relative;
+  filter: grayscale(88%);
+  opacity: 0.7;
+  border-radius: 12px;
+}
+
+.expired::after {
+  content: '✖';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: rgba(49, 0, 0, 0.412);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* עיצוב סרגל החיפוש והמיון */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #444;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  width: 82%;
+  margin-right: 200px;
+  gap: 20px;
+}
+
+.search-container input,
+.search-container select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.search-container input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+
+/* 🔹 קונטיינר החיפוש + הנורה */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* 🔹 מיקום הנורה וכפתור ההדלקה */
+.fridge-light-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 🔹 עיצוב רצועת הנורה */
+.fridge-light-strip {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 🔘 עיצוב הנקודות של הנורה */
+.light-dot {
+  width: 25px;
+  height: 25px;
+  background: #444;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+/* 🟢 כאשר האור דולק */
+.light-dot.on {
+  background: radial-gradient(circle, rgba(255, 255, 200, 1) 0%, rgba(255, 255, 150, 0.8) 50%, rgba(255, 255, 100, 0.5) 100%);
+  box-shadow: 0 0 10px rgba(255, 255, 200, 1);
+}
+
+
+
+/* 🔘 כפתור הדלקת האור */
+.light-toggle-button {
+  margin-top: 10px;
+  background: #333;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.light-toggle-button:hover {
+  background: #ffeb3b;
+  color: black;
+  transform: scale(1.1);
+}
+
