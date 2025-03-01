@@ -14,7 +14,6 @@ export class CategoryService {
     const url = `${this.apiUrl}/${categoryId}`;
     
     return this._http.get(url, { responseType: 'text' }).pipe(  // ✅ לוודא שהתגובה מתקבלת כטקסט
-      tap(response => console.log(`✅ תשובת השרת עבור קטגוריה ${categoryId}:`, response)),
       catchError(error => {
         return of("קטגוריה לא ידועה");
       })

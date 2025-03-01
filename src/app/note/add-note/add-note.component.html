@@ -1,24 +1,37 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+    <button class="close-button" (click)="closeModal()">✖</button>
 
+    <h2 class="text">📌 הוספת פתק</h2>
 
-<form [formGroup]="addNoteForm" class="product-form">
-  <!-- <div>
-    <label>frigeId</label>
-    <input type="number" formControlName="fridgeId" required>
-  </div> -->
+    <form [formGroup]="addNoteForm" class="modal-form">
+      <div class="form-group">
+        <label>📝 תוכן הפתק:</label>
+        <input type="text" formControlName="text" required placeholder="מה צריך לזכור?">
+      </div>
 
-  <div class="form-group">
-    <label>text</label>
-    <input type="text" formControlName="text" required>
+      <div class="form-group">
+        <label>📌 סוג פתק:</label>
+        <select formControlName="type">
+          <option value="תזכורת">תזכורת</option>
+          <option value="משימה">משימה</option>
+          <option value="אירוע">אירוע</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>📅 תאריך יצירה:</label>
+        <input type="date" formControlName="createdDate" required>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" formControlName="isResolved" id="resolved">
+        <label for="resolved">✔ הפתק הושלם?</label>
+      </div>
+    </form>
+
+    <div class="buttons-container">
+      <button class="testbutton" (click)="addNote()" [disabled]="!addNoteForm.valid">הוסף</button>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label>createdDate</label>
-    <input type="date" formControlName="createdDate" required>
-  </div>
-
-  <div class="form-group">
-    <label>isResolved</label>
-    <input type="checkbox" formControlName="isResolved" required>
-  </div>
-  <button  (click)="addNote()" class="add-button">add note</button>
-
+</div>

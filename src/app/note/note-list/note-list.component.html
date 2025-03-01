@@ -1,21 +1,30 @@
 
  <div class="notes-page">
   <button class="add-note-button" (click)="toggleAddNote()">➕ הוסף פתק חדש</button>
-  
+  @if(showAddNote) {
+<!-- מודל הוספת פתק -->
+<div class="modal-overlay" >
+  <div class="add-note-modal">
+    <span class="close-button" (click)="toggleAddNote()">&times;</span>
+    <app-add-note (noteAdded)="toggleAddNote(); getNotessByFridgeId(currentFridge.id)"></app-add-note>
+  </div>
+</div>
+  }
   <h1 class="bigT">תזכורות ופתקים</h1>
   
   <div class="note-list" dir="rtl">
-    @for (note of notes.reverse(); track $index) {
-      <div class="note">
+    @for (note of notes; track $index) {
+      <div class="note" [appBackgroundByType]="note.type">
         <h2>{{ note.type }}</h2>
         <p>{{ note.text }}</p>
-        <p>בוצע: {{ note.isResolved }}</p>
-        <a href="#" (click)="markAsDone(note)">סמן כבוצע</a>
-      </div>
-    }
-  </div>
+        
+        @if(note.type != '⚠️התראת מקרר') {
+          <p>תאריך לביצוע:</p>
+          <p> {{ formattedDate(note) }}</p>
+          <button (click)="deleteNote(note.id)">✔ ביצעתי את המשימה</button>
+        }
+      </div>}
+      
   
-  @if(showAddNote) {
-    <app-add-note></app-add-note>
-  }
+
 </div>

@@ -1,240 +1,4 @@
-/* 
-h1 {
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-}
 
-
-
-.dateN {
-  font-size: 14px;
-  color: gray;
-}
-
-
-
-
-*
-{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-
-.container
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 40px 0;
-}
-
-.container .box
-{
-  position: relative;
-  width: 320px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px 30px;
-  transition: 0.5s;
-}
-
-.container .box::before
-{
-  content:' ';
-  position: absolute;
-  top: 0;
-  left: 50px;
-  width: 50%;
-  height: 100%;
-  text-decoration: none;
-  background: #fff;
-  border-radius: 8px;
-  transform: skewX(15deg);
-  transition: 0.5s;
-}
-
-.container .box::after
-{
-  content:'';
-  position: absolute;
-  top: 0;
-  left: 50;
-  width: 50%;
-  height: 100%;
-  background: #fff;
-  border-radius: 8px;
-  transform: skewX(15deg);
-  transition: 0.5s;
-  filter: blur(30px);
-}
-
-.container .box:hover:before,
-.container .box:hover:after
-{
-  transform: skewX(0deg);
-  left: 20px;
-  width: calc(100% - 90px);
-  
-}
-
-.container .box:nth-child(1):before,
-.container .box:nth-child(1):after
-{
-  background: linear-gradient(315deg, #ffbc00, #ff0058)
-}
-
-.container .box:nth-child(2):before,
-.container .box:nth-child(2):after
-{
-  background: linear-gradient(315deg, #03a9f4, #ff0058)
-}
-
-.container .box:nth-child(3):before,
-.container .box:nth-child(3):after
-{
-  background: linear-gradient(315deg, #4dff03, #00d0ff)
-}
-
-.container .box span
-{
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.container .box span::before
-{
-  content:'';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  transition: 0.1s;  
-  animation: animate 2s ease-in-out infinite;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08)
-}
-
-.container .box:hover span::before
-{
-  top: -50px;
-  left: 50px;
-  width: 100px;
-  height: 100px;
-  opacity: 1;
-}
-
-.container .box span::after
-{
-  content:'';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  transition: 0.5s;
-  animation: animate 2s ease-in-out infinite;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-  animation-delay: -1s;
-}
-
-.container .box:hover span:after
-{
-  bottom: -50px;
-  right: 50px;
-  width: 100px;
-  height: 100px;
-  opacity: 1;
-}
-
-@keyframes animate
-{
-  0%, 100%
-  {
-    transform: translateY(10px);
-  }
-  
-  50%
-  {
-    transform: translate(-10px);
-  }
-}
-
-.container .box .content
-{
-  position: relative;
-  left: 0;
-  padding: 20px 40px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 1;
-  transform: 0.5s;
-  color: #fff;
-}
-
-.container .box:hover .content
-{
-  left: -25px;
-  padding: 60px 40px;
-}
-
-.container .box .content h2
-{
-  font-size: 2em;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.container .box .content p
-{
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  line-height: 1.4em;
-}
-
-.container .box .content a
-{
-  display: inline-block;
-  font-size: 1.1em;
-  color: #111;
-  background: #fff;
-  padding: 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 700;
-  margin-top: 5px;
-}
-
-.container .box .content a:hover
-{
-  background: #ffcf4d;
-  border: 1px solid rgba(255, 0, 88, 0.4);
-  box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
-}*/
-/* רקע כללי שחור עם גוונים עמוקים */
 body {
   background: #1d061a;
   margin: 0;
@@ -265,79 +29,237 @@ body {
   transform: scale(1.1);
 }
 
-/* כותרת ראשית עם אפקטים דינמיים */
-.bigT {
-  text-transform: uppercase;
-  font-size: 60px;
-  font-weight: bold;
-  background: repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0/2500px 2500px,
-              repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 50%/2500px 2500px;
-  background-blend-mode: difference;
-  mix-blend-mode: lighten;
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-align: center;
-  margin: 80px 0 20px; /* מתחשב במיקום הכפתור הקבוע */
-}
 
-/* מכולת הפתקים – תצוגה דינמית עם פריסה גמישה */
+/* 📜 רשימת הפתקים */
 .note-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   justify-content: center;
   padding: 20px;
-  padding-right: 80px;
 }
 
-/* עיצוב פתק – דינמי בגובה לפי תוכנו */
+/* 📝 פתק בסיסי עם גובה אוטומטי */
 .note {
   background: #fff8d1; /* רקע צהבהב עדין */
-  padding: 50px;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-left: 5px solid #ffcc00;
   text-align: right;
   position: relative;
-  max-width: 300px; /* רוחב מרבי, אך גובה דינמי */
-  width: auto;
+  width: auto; /* מאפשר גמישות */
+  min-width: 200px; /* מינימום רוחב */
+  max-width: 300px; /* מקסימום רוחב */
+  height: auto; /* גובה אוטומטי לפי התוכן */
   word-wrap: break-word;
-  margin: 15px;
+  margin: 10px;
 }
 
-/* אפקט סלוטייפ על הפתק */
+
+
+/* 🎗️ כותרת פתק */
+.note h2 {
+  font-size: 1.2em;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+/* ✍️ תוכן הפתק */
+.note p {
+  font-size: 1.1em;
+  color: #333;
+  margin: 5px 0;
+  white-space: normal; /* מלל נעטף לשורות */
+  overflow-wrap: break-word;
+}
+
+/* 📌 אפקט סלוטייפ דינמי */
 .note::before,
 .note::after {
   content: "";
   position: absolute;
   width: 80px;
   height: 30px;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
   left: 50%;
   transform: translateX(-50%) rotate(-5deg);
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
-.note::before { top: -15px; }
-.note::after { bottom: -15px; transform: translateX(-50%) rotate(5deg); }
+.note::before {
+  top: -15px;
+}
 
-/* עיצוב כותרת וטקסט בתוך הפתק */
-.note h2 {
-  font-size: 1.2em;
-  color: #444;
+.note::after {
+  bottom: -15px;
+  transform: translateX(-50%) rotate(5deg);
+}
+
+
+/* רקע כהה מאחורי המודל */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* רקע כהה חצי שקוף */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000; /* תמיד מעל הכל */
+}
+
+/* תוכן המודל */
+.add-note-modal {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 3px solid #ffcc00; /* מסגרת מודגשת */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* אפקט כניסה למודל */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* רקע מטושטש */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  z-index: 3000;
+}
+
+/* קופסת הטופס */
+.modal-container {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 40px;
+  border-radius: 6px;
+  width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* כפתור סגירה */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.close-button:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+/* כותרת עם מעבר צבעים */
+.text, .note h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(to right, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 10px;
 }
 
-.note p {
-  font-size: 3em;
-  color: #333;
-  margin: 5px 0;
+/* עיצוב גוף הפתק */
+.note {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s;
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-/* עיצוב הקישור בתוך הפתק */
-.note a {
-  text-decoration: none;
-  color: #ff9800;
+.note:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.note p {
+  font-size: 16px;
+  color: #000000;
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+/* כותרת לתאריך ביצוע */
+.note p:first-of-type {
+  font-size: 20px;
   font-weight: bold;
+  color: #292929;
+  text-transform: uppercase;
+}
+/* עיצוב הכפתור - קטן ועדין יותר */
+button {
+  border: 1px solid transparent;
+margin-top: 5px; 
+ padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  background: black;
+  color: white;
+  font-weight: normal;
+  position: relative;
+  z-index: 1;
+  width: auto;
+  min-width: 80px;
+}
+
+/* מסגרת צבעונית עדינה לכפתורים */
+button::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  z-index: -1;
+  border-radius: 6px;
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* כשהעכבר עובר */
+button:hover::before {
+  opacity: 0.7;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  color: #f1f1f1;
 }

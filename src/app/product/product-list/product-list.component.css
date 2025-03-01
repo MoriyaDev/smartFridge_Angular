@@ -6,30 +6,38 @@
   transform: scale(1.1);
 }
 
-/* עיצוב הטופס הקופץ */
-.modal {
+
+
+
+
+/* רקע מטושטש */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(10px);
   z-index: 3000; /* המודל מעל הכל */
 
 }
 
-.modal-content {
+/* קופסת הטופס */
+.modal-container {
   position: relative; /* כדי שכפתור ה-X לא יזוז מחוץ למודל */
-  background: rgb(99, 99, 99);
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
+
+  background: rgba(30, 30, 30, 0.95);
+  padding: 40px;
+  border-radius: 6px;
+  width: 350px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 
@@ -56,21 +64,7 @@
 }
 
 
-/* כפתור X לסגירת המודל */
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
 
-.close-button:hover {
-  color: red;
-}
 /* כפתור הוספת מוצר בראש הדף */
 .add-product-button {
   position: fixed;
@@ -337,4 +331,5 @@
   color: black;
   transform: scale(1.1);
 }
+
 

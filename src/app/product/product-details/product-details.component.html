@@ -1,11 +1,9 @@
 <div class="modal-overlay" *ngIf="isOpen">
-  <div class="modal-content">
-    
-    <!-- כפתור סגירה עם אפקט זוהר -->
-    <button class="close-btn" (click)="closeModal()">✖</button>
+  <div class="modal-container">
 
-    <!-- שם המוצר עם מסגרת זוהרת -->
-    <h2 class="modal-title glow">{{ product?.name }}</h2>
+    <!-- שם המוצר עם אפקט זוהר -->
+    <h2 class="text">{{ product?.name }}</h2>
+    <button class="close-button" (click)="closeModal()">✖</button>
 
     <!-- תמונת הקטגוריה כרקע -->
     <div class="modal-image-container"
@@ -14,26 +12,23 @@
 
     <!-- פרטי המוצר -->
     <div class="modal-info">
-      <p>ID: <span class="glow">{{ product?.id }}</span></p>
-      <p>קטגוריה: <span class="glow">{{ product?.categoryID }}</span></p>
-      <p>תאריך תפוגה: <span class="glow">{{ formatDate(product?.expiryDate) }}</span></p>
-      <p>מיקום במקרר: <span class="glow">{{ product?.location }}</span></p>
-
-      <button (click)="toggleUpdateForm()">📝 עדכן מוצר</button>
-      <button class="delete-btn" (click)="deleteProduct()">🗑️ מחק מוצר</button>
+      <p><strong>קטגוריה: </strong> <span class="glow">{{ product?.categoryID }}</span></p>
+      <p><strong>תאריך תפוגה: </strong> <span class="glow">{{ formatDate(product?.expiryDate) }}</span></p>
+      <p><strong>מיקום: </strong> <span class="glow">{{ product?.location }}</span></p>
     </div>
 
-
-
-
-
-
+    <!-- כפתורי פעולה -->
+    <div class="buttons-container">
+      <button class="testbutton" (click)="toggleUpdateForm()">עדכן מוצר</button>
+      <button class="testbutton delete-btn" (click)="deleteProduct()">מחק מוצר</button>
+    </div>
   </div>
 </div>
 
-@if(isUpdateFormOpen){
+@if(isUpdateFormOpen) {
   <app-update-product
-  [product]="product"
-  (updateSuccess)="handleUpdate($event)"
-  (cancel)="toggleUpdateForm()">
-</app-update-product>}
+    [product]="product"
+    (updateSuccess)="handleUpdate($event)"
+    (cancel)="toggleUpdateForm()">
+  </app-update-product>
+}

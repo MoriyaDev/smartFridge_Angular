@@ -1,6 +1,6 @@
 <!-- כפתור הוספת מוצר בראש הדף -->
 <button class="add-product-button" (click)="toggleAddProductModal()">➕ הוסף מוצר</button>
-<h2>📦 מוצרים ב-{{ location === 'Fridge' ? 'מקרר' : 'מקפיא' }}</h2>
+<h2>מוצרים ב-{{ location === 'Fridge' ? 'מקרר' : 'מקפיא' }}</h2>
 
 
 
@@ -8,13 +8,13 @@
 
 <div class="search-container">
   <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
-    <option value="">📂 כל הקטגוריות</option>
+    <option value="">כל הקטגוריות</option>
     <option *ngFor="let category of categories" [value]="category.id">
       {{ category.name }} (ID: {{ category.id }})
     </option>
   </select>
   
-  <input type="text" placeholder="🔍 חפש מוצר..." [(ngModel)]="searchQuery" (input)="filterProducts()">
+  <input type="text" placeholder="חפש מוצר..." [(ngModel)]="searchQuery" (input)="filterProducts()">
 
   <!-- 🔹 נורה עם כפתור הדלקה/כיבוי -->
   <div class="fridge-light-container">
@@ -74,12 +74,14 @@
 </div>
 
 <!-- מודל הוספת מוצר -->
-<div class="modal" *ngIf="isAddProductModalOpen">
-  <div class="modal-content">
+<div class="modal-overlay" *ngIf="isAddProductModalOpen">
+  <div class="modal-container">
     <span class="close-button" (click)="toggleAddProductModal()">&times;</span>
-    <app-add-product (productAdded)="toggleAddProductModal()"></app-add-product>
+    
+    <app-add-product (productAdded)="toggleAddProductModal()" (close)="toggleAddProductModal()"></app-add-product>
   </div>
 </div>
+
 
 <!-- מודל פרטי מוצר -->
 <app-product-details 

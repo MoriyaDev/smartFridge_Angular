@@ -1,101 +1,151 @@
-/* רקע אפור כהה מאחורי המודל */
+/* רקע מטושטש */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  /* overflow: visible !important; מוודא שהכפתור יוצג תמיד */
+
 }
 
-/* תוכן המודל */
-.modal-content {
-  background: #222; /* כהה */
-  padding: 20px;
-  border-radius: 15px;
-  width: 350px;
+/* קופסת הטופס */
+.modal-container {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 40px;
+  border-radius: 6px;
+  width: 400px;
   text-align: center;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  border: 3px solid #ffff00; /* מסגרת זוהרת */
-  animation: glow-border 1.5s infinite alternate;
+  gap: 20px;
+  position: relative; /* מוודא שכל מה שבתוכו יהיה ממוקם נכון */
+
+
 }
 
-/* אפקט זוהר למסגרת */
-@keyframes glow-border {
-  0% { box-shadow: 0 0 10px #ffff00; }
-  100% { box-shadow: 0 0 20px #ffff00, 0 0 30px #76ff03; }
-}
-
-/* כפתור סגירה עם זוהר */
-.close-btn {
+.close-button {
   position: absolute;
   top: 10px;
   right: 10px;
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
-  color: #fff;
-  transition: color 0.3s ease;
-  text-shadow: 0 0 10px red;
-}
-
-.close-btn:hover {
-  color: red;
-}
-
-/* שם המוצר זוהר */
-.modal-title {
-  font-size: 22px;
-  font-weight: bold;
   color: white;
-  text-shadow: 0 0 10px #f06292, 0 0 20px #4fc3f7;
+  transition: color 0.3s ease, transform 0.2s;
 }
 
-/* מסגרת זוהרת לכל הערכים */
-.glow {
-  color: #1c1c1c;
-  text-shadow: 0 0 10px #ffffff, 0 0 20px #ba68c8;
+
+
+.close-button:hover {
+  color: red;
+  transform: scale(1.2);
 }
 
-/* קונטיינר לתמונה */
-.modal-image-container {
- 
+/* שם המוצר - גדול יותר */
+.text {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  background: linear-gradient(to right, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
 }
 
-/* קונטיינר לתמונת הקטגוריה */
-.modal-image-container {
-  width: 250px;
-  height: 150px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-}
-
-/* תמונת המוצר */
-.modal-image {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px #4fc3f7);
-}
-
-/* פרטי המוצר */
+/* פרטי המוצר - עיצוב נקי וברור */
 .modal-info {
   text-align: center;
-  font-size: 14px;
-  color: #ccc;
+  font-size: 18px;
+  color: white;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+}
+
+.modal-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-info .glow {
+  color: #3bceff;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* תמונת הקטגוריה - יותר קטנה כדי לתת מקום למידע */
+.modal-image-container {
+  width: 80%;
+  height: 120px;
+  border-radius: 6px;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+}
+
+/* כפתורים */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+.testbutton {
+  border: 2px solid transparent;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+  background: black;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+/* מסגרת צבעונית מתחלפת */
+.testbutton::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 6px;
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* כשהעכבר עובר */
+.testbutton:hover::before {
+  opacity: 0.8;
+}
+
+.testbutton:hover {
+  transform: translateY(-2px);
+  color: #f1f1f1;
+}
+
+/* כפתור מחיקה */
+.delete-btn {
+  background: black;
+  border: 2px solid red;
+}
+
+.delete-btn:hover {
+  background: darkred;
 }

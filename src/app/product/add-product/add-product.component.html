@@ -1,63 +1,38 @@
 
-<form [formGroup]="addProductForm" class="product-form">
-  <h2>🛒 הוסף מוצר חדש</h2>
 
-
-
-
-
-<div class="form-group">
-  <label>📂 קטגוריה</label>
-  <select formControlName="categoryID" (change)="onCategoryChange($event)">
-    @for (category of categories; track category.id) {
-      <option [value]="category.id">
-        {{ category.name }}
-      </option>
-    }
-  </select>
-</div>
-
-<div>
-  <label>שם מוצר:</label>
-  <input type="text" formControlName="name" required placeholder="לדוגמה: חלב"> 
-</div>
-
-<!-- <div class="form-group">
-    <label>כמות</label>
-    <input type="number" formControlName="amount" required placeholder="לדוגמה: 2">
-  </div> 
-<div class="form-group">
-    <label>יחידה</label>
-    <input type="text" formControlName="unit" required placeholder="לדוגמה: ליטר">
-  </div> 
+<form [formGroup]="addProductForm" class="modal-form">
+  <h2 class="text">🛒 הוסף מוצר</h2>
 
   <div class="form-group">
-    <label>🔗 קישור לתמונה</label>
-    <input type="text" formControlName="image" required placeholder="הדבק כאן קישור לתמונה">
-  </div> 
-
- <div class="form-group">
-    <label>🛒 תאריך רכישה</label>
-    <input type="date" formControlName="purchaseDate" required>
-  </div>  -->
+    <label>קטגוריה</label>
+    <select formControlName="categoryID" (change)="onCategoryChange($event)">
+      @for (category of categories; track category.id) {
+        <option [value]="category.id">
+          {{ category.name }}
+        </option>
+      }
+    </select>
+  </div>
 
   <div class="form-group">
-    <label>⌛ תאריך תפוגה</label>
+    <label>שם מוצר</label>
+    <input type="text" formControlName="name" required placeholder="לדוגמה: חלב"> 
+  </div>
+
+  <div class="form-group">
+    <label>תאריך תפוגה</label>
     <input type="date" formControlName="expiryDate" required>
   </div>
 
   <div class="form-group">
-    <label>📍 מיקום במקרר</label>
+    <label>מיקום במקרר</label>
     <select formControlName="location">
       <option value="Fridge">מקרר</option>
       <option value="Freezer">מקפיא</option>
     </select>
   </div>
-  
-  
-  
-
-
-
-  <button (click)="addProduct()" class="add-button">➕ הוסף מוצר</button>
 </form>
+
+  <div class="buttons-container">
+    <button class="testbutton" (click)="addProduct()"  [disabled]="!addProductForm.valid">הוסף מוצר</button>
+  </div>

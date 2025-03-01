@@ -72,6 +72,17 @@ export class ProductListComponent {
 
     }
 
+      // 🔹 פתיחה/סגירה של מודל הוספת מוצר
+  toggleAddProductModal() {
+    this.isAddProductModalOpen = !this.isAddProductModalOpen;
+  }
+
+  // 🔹 כאשר מוצר נוסף, נסגור את המודל של ההוספה
+  handleProductAdded() {
+    this.isAddProductModalOpen = false;
+  }
+
+
  
     toggleLight() {
       this.isLightOn = !this.isLightOn;
@@ -168,16 +179,6 @@ export class ProductListComponent {
     this.isModalOpen = false;
   }
 
-  // 🔹 פתיחה/סגירה של מודל הוספת מוצר
-  toggleAddProductModal() {
-    this.isAddProductModalOpen = !this.isAddProductModalOpen;
-  }
-
-  // 🔹 כאשר מוצר נוסף, נסגור את המודל של ההוספה
-  handleProductAdded() {
-    this.isAddProductModalOpen = false;
-  }
-
 
   // 🔹 מיפוי תמונות רקע לכל קטגוריה
   categoryBackgrounds: { [key: string]: string } = {
@@ -199,6 +200,7 @@ export class ProductListComponent {
   }
 
   getExpiryIndicator(dateString: string): number {
+
     const expiryDate = new Date(dateString);
     const today = new Date();
 
@@ -212,7 +214,7 @@ export class ProductListComponent {
 
     if (diffDays < 0) {
       return -1;  // המוצר פג תוקפו
-    } else if (diffDays <= 3) {
+    } else if (diffDays <= 3) { 
       return 0;  // המוצר עומד לפוג ב-3 הימים הקרובים
     }
     return 1;

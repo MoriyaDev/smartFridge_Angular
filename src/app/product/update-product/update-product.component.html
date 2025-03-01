@@ -1,27 +1,24 @@
 <div class="modal-overlay">
-  <div class="modal-content">
-    <span class="close-button" (click)="cancel.emit()">&times;</span> 
-    <!-- כפתור סגירה של המודל -->
-    <h2>📝 עדכון מוצר</h2> 
+  <div class="modal-container">
+    <button class="close-button" (click)="cancel.emit()">✖</button>
 
-    <!-- טופס לעדכון המוצר, מחובר ל-FormGroup של אנגולר -->
-    <form [formGroup]="updateProductForm">
-      <label>שם מוצר:</label>
-      <input type="text" formControlName="name">
+    <h2 class="text">  ✏️ עדכון מוצר</h2>
 
-      <!-- <label>כמות:</label>
-      <input type="number" formControlName="amount">
+    <form [formGroup]="updateProductForm" class="modal-form">
+      <div class="form-group">
+        <label for="name">שם מוצר</label>
+        <input id="name" type="text" formControlName="name" required>
+      </div>
 
-      <label>יחידה:</label>
-      <input type="text" formControlName="unit"> -->
-
-      <label>תאריך תפוגה:</label>
-      <input type="date" formControlName="expiryDate">
-
-      <!-- כפתור שמירת השינויים -->
-      <button type="button" (click)="updateProduct()">💾 שמור</button>
-      <!-- כפתור ביטול הסגירה של המודל -->
-      <button type="button" (click)="cancel.emit()">❌ ביטול</button>
+      <div class="form-group">
+        <label for="expiryDate">תאריך תפוגה</label>
+        <input id="expiryDate" type="date" formControlName="expiryDate" required>
+      </div>
     </form>
+
+    <div class="buttons-container">
+      <button class="testbutton" (click)="updateProduct()">שמור</button>
+      <button class="testbutton"  (click)="cancel.emit()">ביטול</button>
+    </div>
   </div>
 </div>

@@ -1,31 +1,30 @@
 <html lang="en">
-<!-- <div dir="rtl" style="text-align: center;">
-  <h1 class="bigT">אין כמו המקרר של משפחת: {{ currentFridge.name }}</h1>
 
-</div> -->
 
 <div class="home-container">
-  <!-- צד ימין: קוביות -->
   <div class="right-section">
-    <!-- שעה ותאריך -->
 
-
-    <!-- פתקים -->
-    <!-- פתקים -->
-    <!-- פתקים בתוך כרטיס -->
     <div class="card">
+      @if(currentFridge?.notes?.[0]){
+      <div class="note">
+        <h2>{{currentFridge.notes[0].type}}</h2>
+        <p>מה {{currentFridge.notes[0].text}}</p>
+        <p>בוצע {{currentFridge.notes[0].isResolved}}</p>
+      </div>
+      }
+      @else(){
+      <div class="note">
+        <p> כאן אפשר להזכיר דברים חשובים</p>
+      </div>
+      }
+
+      @if(currentFridge?.notes?.[1]){
       <div class="note">
         <h2>{{currentFridge.notes[1].type}}</h2>
-        <p>מה {{currentFridge.notes[1].text}}</p>
+        <p>{{currentFridge.notes[1].text}}</p>
         <p>בוצע {{currentFridge.notes[1].isResolved}}</p>
-        <a href="#">סמן כבוצע</a>
       </div>
-      <div class="note">
-        <h2>{{currentFridge.notes[2].type}}</h2>
-        <p>{{currentFridge.notes[2].text}}</p>
-        <p>בוצע {{currentFridge.notes[2].isResolved}}</p>
-        <a href="#">סמן כבוצע</a>
-      </div>
+      }
       <button class="testbutton" (click)="tothenote()" data-label="כל הפתקים"></button>
     </div>
 
@@ -36,7 +35,7 @@
       @for (recipe of filteredRecipes.slice(0,1); track $index) {
       <div class="rec">
         <h4>{{ recipe.title }}</h4>
-        <p>{{ recipe.instructions | truncate:50 }}</p>
+        <p>{{ recipe.instructions | truncate:70 }}</p>
       </div>
       }
       } @else {
@@ -50,25 +49,21 @@
 
   <div class="fridge-container">
 
-  
+
 
     <div class="fridge">
-      <!-- מקרר עליון -->
       <div class="fridge-section refrigerator">
         <div class="handle"></div>
       </div>
 
-      <!-- מקפיא תחתון -->
       <div class="fridge-section freezer">
         <div class="handle"></div>
       </div>
 
-      <!-- תמונה של פנים המקרר (יופיע רק כשהמקרר נפתח) -->
       <div class="shelves fridge-content" (click)="goToLocation('Fridge')">
         <img src="fridge1.jpg" alt="תוכן המקרר" width="100%">
       </div>
 
-      <!-- תמונה של פנים המקפיא (יופיע רק כשהמקפיא נפתח) -->
       <div class="shelves freezer-content" (click)="goToLocation('Freezer')">
         <img src="frezz.jpg" alt="תוכן המקפיא" width="100%">
       </div>
@@ -78,12 +73,11 @@
 
 
 
-  <!-- צד שמאל: גרף -->
   <div class="left-section">
 
     <div class="card" id="nameF">
-      <div >
-        <h2 class="clock">המקרר של {{currentFridge.name}} </h2>
+      <div>
+        <h2 class="clock">המקרר של {{ fridgeName }} </h2>
       </div>
     </div>
 

@@ -44,7 +44,7 @@ export class AddProductComponent {
         // 'image': new FormControl('', Validators.required),
         // 'purchaseDate': new FormControl('', Validators.required),
         'expiryDate': new FormControl('', Validators.required),
-        'location': new FormControl('', Validators.required)
+        'location': new FormControl('Fridge', Validators.required) // ✅ ברירת מחדל = מקרר
       });
     }
     
