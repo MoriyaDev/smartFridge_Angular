@@ -1,28 +1,3 @@
-/* רקע מטושטש */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(10px);
-}
-
-/* קופסת הטופס */
-.modal-container {
-  background: rgba(30, 30, 30, 0.95);
-  padding: 40px;
-  border-radius: 6px;
-  width: 350px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
 /* כותרת עם מעבר צבעים */
 .text {

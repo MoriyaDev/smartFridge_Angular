@@ -3,12 +3,14 @@
   <button class="add-note-button" (click)="toggleAddNote()">➕ הוסף פתק חדש</button>
   @if(showAddNote) {
 <!-- מודל הוספת פתק -->
+
 <div class="modal-overlay" >
-  <div class="add-note-modal">
+  <div class="modal-container">
     <span class="close-button" (click)="toggleAddNote()">&times;</span>
     <app-add-note (noteAdded)="toggleAddNote(); getNotessByFridgeId(currentFridge.id)"></app-add-note>
   </div>
 </div>
+
   }
   <h1 class="bigT">תזכורות ופתקים</h1>
   

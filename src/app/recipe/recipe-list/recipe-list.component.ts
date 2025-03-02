@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Recipe } from '../../model/recipe.model';
 import { RecipeService } from '../../service/recipe.service';
 import { FridgeService } from '../../service/fridge.service';
 import { Product } from '../../model/product.model';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-list',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './recipe-list.component.css',
   imports: [CommonModule ],
 })
-export class RecipeListComponent {
+export class RecipeListComponent implements OnDestroy {
   recipes1: Recipe[] = [];
   recipes2: Recipe[] = [];
   currentFridge: any = null;
@@ -19,20 +20,51 @@ export class RecipeListComponent {
   filteredRecipes: Recipe[] = [];
   productString: string = '';
   products: Product[] = [];
-  constructor(private _recipeService: RecipeService,
-    private _fridgeService: FridgeService) { }
+  private fridgeSubscription!: Subscription; // ✅ משתנה לשמירת המנוי
+
+  constructor(
+    private _recipeService: RecipeService,
+    private _fridgeService: FridgeService
+  ) {}
 
   ngOnInit(): void {
     this.currentFridge = this._fridgeService.getFridge();
 
     if (this.currentFridge && this.currentFridge.products) {
-      this.products = this.currentFridge.products;
-      this.productString = this.products.map(pro => pro.name).join(',');
-      console.log(this.productString);
+      this.refreshRecipes(this.currentFridge.products);
+    }
+
+    // ✅ האזנה לכל שינוי במוצרים במקרר ורענון המתכונים בהתאם
+    this.fridgeSubscription = this._fridgeService.getFridgeProductsObservable().subscribe((products: Product[]) => {
+      console.log("🔄 קיבלנו עדכון מהמקרר, טוען מחדש את המתכונים!", products);
+      this.refreshRecipes(products);
+    });
+  }
+
+  // ✅ פונקציה לרענון רשימת המתכונים לפי המוצרים התקפים
+  refreshRecipes(products: Product[]) {
+    this.products = products;
+    this.productString = products
+    .filter(pro => {
+      const expiryDate = new Date(pro.expiryDate);
+      const today = new Date();
+    
+      // ✅ מאפסים את השעה כדי להשוות רק לפי תאריך
+      expiryDate.setHours(0, 0, 0, 0);
+      today.setHours(0, 0, 0, 0);
+    
+      return expiryDate >= today;
+    })
+        .map(pro => pro.name)
+      .join(',');
+
+    console.log("🔄 מוצרים תקפים:", this.productString);
+
+    if (this.productString) {
       this.fetchRecipesByProducts(this.productString);
     } else {
-      console.warn('No products found in fridge');
-      this.isLoading = false; // סיום טעינה גם אם אין מוצרים
+      console.log("⚠️ אין מוצרים תקפים, אין מתכונים להצגה.");
+      this.filteredRecipes = [];
     }
   }
 
@@ -64,9 +96,10 @@ export class RecipeListComponent {
     });
   }
 
-
-
-
-
-
+  // ✅ ביטול המנוי כאשר הקומפוננטה נסגרת כדי למנוע זליגת זיכרון
+  ngOnDestroy(): void {
+    if (this.fridgeSubscription) {
+      this.fridgeSubscription.unsubscribe();
+    }
+  }
 }

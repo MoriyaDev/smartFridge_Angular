@@ -20,7 +20,7 @@ export class UpdateProductComponent implements OnInit, OnChanges {
   updateProductForm!: FormGroup;
   currentFridge: any = null; // שמירת המקרר הנוכחי
 
-  constructor(private productService: ProductService, private _fridgeService: FridgeService) {}
+  constructor(private _productService: ProductService, private _fridgeService: FridgeService) {}
 
   ngOnInit() {
     console.log("🔄 מוצר שמתקבל לעריכה:", this.product);
@@ -80,16 +80,33 @@ export class UpdateProductComponent implements OnInit, OnChanges {
         ...this.updateProductForm.value,
         expiryDate: new Date(this.updateProductForm.value.expiryDate) // ✅ תאריך בפורמט נכון
       };
-
-      this.productService.updateProductFromServer(this.product.id, updatedProduct).subscribe({
+  
+      this._productService.updateProductFromServer(this.product.id, updatedProduct).subscribe({
         next: (updatedProduct: Product) => {
           console.log("✅ המוצר עודכן בהצלחה!", updatedProduct);
-
-          this.updateSuccess.emit(updatedProduct); // 🔥 שולח את המוצר המעודכן
-
-          setTimeout(() => {
-            this.cancel.emit(); // ✅ סוגר את המודל אחרי שמירה
-          }, 200);              
+  
+          if (this.currentFridge?.id) {
+            this._productService.getProductsByFridgeIdFromServer(this.currentFridge.id).subscribe({
+              next: (products: Product[]) => {
+                console.log("🔄 רשימת המוצרים רועננה!", products);
+                this._fridgeService.updateProducts(products); // ✅ עדכון המוצרים ב-FridgeService
+  
+                this.updateSuccess.emit(updatedProduct);
+  
+                setTimeout(() => {
+                  this.cancel.emit();
+                }, 200);
+              },
+              error: (err) => {
+                console.error("❌ שגיאה בטעינת המוצרים מהשרת", err);
+              }
+            });
+          } else {
+            this.updateSuccess.emit(updatedProduct);
+            setTimeout(() => {
+              this.cancel.emit();
+            }, 200);
+          }
         },
         error: (err) => {
           console.error("❌ שגיאה בעדכון המוצר", err);
@@ -97,4 +114,6 @@ export class UpdateProductComponent implements OnInit, OnChanges {
       });
     }
   }
+  
+  
 }

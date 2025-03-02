@@ -1,5 +1,5 @@
 <!-- כפתור הוספת מוצר בראש הדף -->
-<button class="add-product-button" (click)="toggleAddProductModal()">➕ הוסף מוצר</button>
+<button class="add-pro-button" (click)="toggleAddProductModal()">➕ הוסף מוצר</button>
 <h2>מוצרים ב-{{ location === 'Fridge' ? 'מקרר' : 'מקפיא' }}</h2>
 
 
@@ -40,7 +40,7 @@
 
 
 <!-- קונטיינר של המקרר -->
-<div class="fridge-container">
+<div class="fridge-container" [ngClass]="{ 'freezer-background': location === 'Freezer' }">
   <!-- <div class="fridge-light"></div> נורה למעלה -->
   
   <div class="fridge-content">
