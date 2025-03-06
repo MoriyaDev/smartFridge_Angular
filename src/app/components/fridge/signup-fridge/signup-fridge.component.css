@@ -1,130 +1,147 @@
-/* רקע מטושטש עדין */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px); /* טשטוש עדין לרקע */
-  }
-  
-  /* הקונטיינר של הטופס */
-  .modal-container {
-    background: rgba(30, 30, 30, 0.95);
-    padding: 40px;
-    border-radius: 6px; /* פחות עגול */
-    width: 350px;
-    text-align: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  /* כותרת עם צבעים עדינים */
-  .text {
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    background: linear-gradient(to right, #56d8e4, #9f01ea);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-  }
-  
-  /* טופס */
-  .modal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  /* קבוצת שדה בטופס */
-  .form-group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .form-group label {
-    color: #fff;
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-bottom: 2px solid #777; /* קו תחתון נקי */
-    font-size: 16px;
-    background: transparent;
-    color: white;
-    outline: none;
-    transition: border-color 0.3s;
-  }
-  
-  .form-group input:focus {
-    border-bottom: 2px solid #56d8e4;
-  }
-  
-  /* כפתורים */
-  .buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    width: 100%;
-  }
-  /* כפתורים */
-  .testbutton {
-    border: 2px solid transparent;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
-    background: black;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* מסגרת צבעונית מתחלפת */
-  .testbutton::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    z-index: -1;
-    border-radius: 4px;
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  /* כשהעכבר עובר - האנימציה תדגיש את המסגרת */
-  .testbutton:hover::before {
-    opacity: 0.8;
-  }
-  
-  .testbutton:hover {
-    transform: translateY(-2px);
-    color: #f1f1f1;
-  }
-  
-  /* אנימציה */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, rgba(40, 40, 40, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+.modal-container {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 10px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
+              0 0 40px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #fff, transparent);
+  animation: glow 2s infinite linear;
+}
+
+@keyframes glow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+h2.text {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.modal-form {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+}
+
+.testbutton {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #3f3f3f, #1a1a1a);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.testbutton::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(30deg);
+  animation: shine 3s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
+}
+
+.testbutton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.testbutton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.testbutton:disabled::after {
+  animation: none;
+}

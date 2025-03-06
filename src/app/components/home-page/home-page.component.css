@@ -33,7 +33,7 @@
     .right-section {
       display: flex;
       flex-direction: column;
-      gap: 25px;
+      gap: 30px;
     }
     
     /* 📊 צד שמאל - גרף */
@@ -41,12 +41,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 25px;
+      gap: 50px;
     }
     
     /* 📌 כרטיסים כלליים */
     .card {
-      background-color: #252a3f;
       border-radius: 16px;
       padding: 25px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -70,6 +69,34 @@
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     }
 
+
+   
+    /* מסגרות צבעוניות לכל כרטיס */
+    .right-section .card:nth-child(1) {
+      border-color: #f79533; 
+      box-shadow: 0 4px 12px rgba(247, 149, 51, 0.4); /* צל בצבע תואם */
+    }
+    
+    .right-section .card:nth-child(2) {
+      border-color: #ef4e7b; 
+      box-shadow: 0 4px 12px rgba(239, 78, 123, 0.4); /* צל בצבע תואם */
+    }
+    
+    .right-section .card:nth-child(3) {
+      border-color: #5073b8; 
+      box-shadow: 0 4px 12px rgba(80, 115, 184, 0.4); /* צל בצבע תואם */
+    }
+    
+    .right-section .card:nth-child(4) {
+      border-color: #1098ad; 
+      box-shadow: 0 4px 12px rgba(16, 152, 173, 0.4); /* צל בצבע תואם */
+    }
+    
+    .right-section .card:nth-child(5) {
+      border-color: #6fba82; 
+      box-shadow: 0 4px 12px rgba(111, 186, 130, 0.4); /* צל בצבע תואם */
+    }
+   
     /* 📝 עיצוב הפתקים עם אפקט סלוטייפ */
     .note {
       background: #fff8d1;
@@ -192,6 +219,7 @@
       border-radius: 50px;
       z-index: 10;
       transition: 0.3s;
+      color: #ffffff;
     }
 
     .testbutton:hover:after {
@@ -330,8 +358,8 @@
 
     /* 📌 תמונה של פנים המקפיא */
     .freezer-content {
-      bottom: 16%;
-      height: 30%;
+      bottom: 5%;
+      height: 40%;
     }
 
     /* 🔄 כשהמקרר נפתח – מציג את התמונה שלו */
@@ -468,5 +496,9 @@
         height: 260px;
       }
     }
+
+
+
+    
  
   

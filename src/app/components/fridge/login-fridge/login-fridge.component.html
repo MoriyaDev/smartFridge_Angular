@@ -1,22 +1,30 @@
 <div class="modal-overlay">
   <div class="modal-container">
-    <h2 class="text">🔑 התחברות</h2>
+    <h2 class="text">התחברות</h2>
 
     <form [formGroup]="loginForm" class="modal-form">
       <div class="form-group">
         <label for="name">שם משתמש</label>
         <input id="name" type="text" formControlName="name" required>
+
+        @if (nameNotFound) {
+          <small class="error">שם משתמש זה לא קיים במערכת.</small>
+        }
       </div>
 
       <div class="form-group">
         <label for="password">סיסמה</label>
         <input id="password" type="password" formControlName="password" required>
+
+        @if (wrongPassword) {
+          <small class="error">סיסמה שגויה, נסה שוב.</small>
+        }
       </div>
     </form>
 
     <div class="buttons-container">
-      <button class="testbutton" (click)="login()">🔓 התחבר</button>
-      <button class="testbutton" (click)="signup()">📝 אין לך חשבון?</button>
+      <button class="testbutton" (click)="login()">התחבר</button>
+      <button class="testbutton" (click)="signup()">אין לך חשבון?</button>
     </div>
   </div>
 </div>

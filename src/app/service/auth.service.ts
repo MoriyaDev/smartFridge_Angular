@@ -1,5 +1,5 @@
 import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FridgeService } from '../service/fridge.service';
 import { Router } from '@angular/router';
@@ -8,27 +8,65 @@ import { isPlatformBrowser } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit {
+export class AuthService   {
   private isBrowser: boolean;
   private currentFridge: any = null;
 
 
   private apiUrl = 'https://localhost:7194/api/Auth';
-  isAuthenticated$ = new BehaviorSubject<boolean>(false);
-  private isLoggedInSubject = new BehaviorSubject<boolean>(this.checkLoginStatus());
-  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
+
+  // isAuthenticated$ = new BehaviorSubject<boolean>(false);
+  // private isLoggedInSubject = new BehaviorSubject<boolean>(this.checkLoginStatus());
+  // isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
   constructor(
     private _httpClient: HttpClient,
     private _fridgeService: FridgeService,
     private _router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
 
-  ) {    this.isBrowser = isPlatformBrowser(this.platformId);
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    // בדיקת סטטוס התחברות כבר בקונסטרקטור
+    this.checkAndUpdateAuthStatus();
   }
 
-  ngOnInit() {
-    if (this.isBrowser && localStorage.getItem('appSession')) {
-      this.isAuthenticated$.next(true);
+  // ngOnInit() {
+  //   if (this.isBrowser && localStorage.getItem('appSession')) {
+  //     this.isAuthenticated$.next(true);
+  //   }
+  // }
+
+  private checkAndUpdateAuthStatus(): void {
+    if (this.isBrowser) {
+      const session = localStorage.getItem('appSession');
+      if (session) {
+        const parsed = JSON.parse(session);
+        // בדיקה אם הטוקן תקף (לא פג תוקף)
+        if (this.isTokenValid(parsed.token)) {
+          this.isLoggedInSubject.next(true);
+          return;
+        } else {
+          // אם הטוקן לא תקף, מנקים את ה-localStorage
+          localStorage.removeItem('appSession');
+        }
+      }
+      this.isLoggedInSubject.next(false);
+    }
+  }
+
+  private isTokenValid(token: string): boolean {
+    if (!token) return false;
+    
+    try {
+      const tokenData = JSON.parse(atob(token.split('.')[1]));
+      const expirationTime = tokenData.exp * 1000; // המרה למילישניות
+      return Date.now() < expirationTime;
+    } catch (e) {
+      console.error('שגיאה בניתוח הטוקן:', e);
+      return false;
     }
   }
 
@@ -36,47 +74,41 @@ export class AuthService implements OnInit {
     const session = localStorage.getItem('appSession');
     if (!session) return '';
 
-    const tokenData = JSON.parse(atob(JSON.parse(session).token.split('.')[1]));
-    console.log("🔹 נתוני ה-JWT:", tokenData); // הדפסה לבדיקה
+    const parsedSession = JSON.parse(session);
+    if (!parsedSession.token) return '';
 
-    return tokenData["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || '';
-}
-
-isAdmin(): boolean {
+    try {
+      const tokenData = JSON.parse(atob(parsedSession.token.split('.')[1]));
+      return tokenData["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || '';
+    } catch (e) {
+      console.error('שגיאה בקריאת התפקיד מהטוקן:', e);
+      return '';
+    }
+  }
+  isAdmin(): boolean {
     return this.getRole() === 'Admin';
-}
+  }
 
   getUserSession() {
     const sessionData = localStorage.getItem('appSession');
     if (sessionData) {
-      return JSON.parse(sessionData); // המרה חזרה לאובייקט JSON
+      return JSON.parse(sessionData);
     }
     return null;
   }
-  
-  private checkLoginStatus(): boolean {
-    if (this.isBrowser) {
-      return !!localStorage.getItem('appSession');
-    }
-    return false;
-  }
 
-  login(credentials: any): void {
-    this._httpClient.post<{ token: string; fridgeId: number }>(`${this.apiUrl}/login`, credentials).subscribe({
-      next: (res) => {
+  login(credentials: any): Observable<{ token: string; fridgeId: number }> {
+    return this._httpClient.post<{ token: string; fridgeId: number }>(`${this.apiUrl}/login`, credentials).pipe(
+      tap((res) => {
         if (res.token && res.fridgeId) {
           if (this.isBrowser) {
             localStorage.setItem('appSession', JSON.stringify({ user: res.fridgeId, token: res.token }));
           }
-          this.isAuthenticated$.next(true);
           this.isLoggedInSubject.next(true);
-          this.loadFridge(res.fridgeId); // ✅ טוען את המקרר מיד אחרי התחברות
+          this.loadFridge(res.fridgeId);
         }
-      },
-      error: (err) => {
-        alert('שגיאה בהתחברות: ' + err.error);
-      }
-    });
+      })
+    );
   }
   
 
@@ -101,8 +133,4 @@ isAdmin(): boolean {
       }
     });
   }
-
-  // private isBrowserF(): boolean {
-  //   return typeof window !== 'undefined';
-  // }
 }

@@ -1,6 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 
 // export const tokenInterceptor: HttpInterceptorFn = (request, next) => {
@@ -43,27 +44,37 @@ import { inject } from '@angular/core';
 
 //   return next(request);
 // };
+// 2. עכשיו נתקן את ה-Interceptor
+
 export const tokenInterceptor: HttpInterceptorFn = (request, next) => {
   const authService = inject(AuthService);
+  const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  const isRequestAuthorized = authService.isAuthenticated$.getValue() && request.url.startsWith("https://localhost:7194/");
-  const session = localStorage.getItem('appSession');
-  const token = session ? JSON.parse(session).token : null;
+  // בדיקה אם הבקשה צריכה להיות מאומתת (לשרת המקומי)
+  if (request.url.startsWith("https://localhost:7194/")) {
+    let token = null;
+    
+    // מנסים לקבל את הטוקן רק אם אנחנו בדפדפן
+    if (isBrowser) {
+      const session = localStorage.getItem('appSession');
+      token = session ? JSON.parse(session).token : null;
+    }
 
-  console.log("🔹 טוקן מתוך ה-Interceptor:", token); // הדפסת הטוקן ב-Console
+    // אם יש טוקן, נוסיף אותו לראש הבקשה
+    if (token) {
+      const clonedRequest = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  if (isRequestAuthorized && token) {
-    const clonedRequest = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    console.log("✅ בקשה עם טוקן:", clonedRequest.headers.get('Authorization')); // לבדוק אם נשלח נכון
-
-    return next(clonedRequest);
+      console.log("✅ בקשה עם טוקן:", clonedRequest.headers.get('Authorization'));
+      return next(clonedRequest);
+    }
+    
+    console.warn("⚠️ בקשה לשרת המקומי נשלחת ללא טוקן");
   }
 
-  console.warn("⚠️ בקשה נשלחת **ללא** טוקן");
+  // אם לא צריך אימות או אין טוקן, שולחים את הבקשה המקורית
   return next(request);
 };

@@ -1,3 +1,28 @@
+/* רקע מטושטש */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+/* קופסת הטופס */
+.modal-container {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 40px;
+  border-radius: 6px;
+  width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
 /* כותרת עם מעבר צבעים */
 .text {
@@ -33,7 +58,8 @@
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   width: 100%;
   padding: 10px;
   border: none;
@@ -44,45 +70,11 @@
   outline: none;
   transition: border-color 0.3s;
 }
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-bottom: 2px solid #777;
-  font-size: 16px;
-  background: #333; /* רקע כהה */
-  color: white;
-  outline: none;
-  transition: border-color 0.3s, background 0.3s;
-  appearance: none; /* מסתיר את הסטייל הדיפולטי של הדפדפן */
-  cursor: pointer;
-}
 
-/* כשפותחים את התפריט */
-.form-group select:focus {
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
   border-bottom: 2px solid #56d8e4;
-  background: #222; /* רקע קצת יותר בהיר בזמן הבחירה */
-}
-
-/* תיקון צבעים לאופציות בתפריט */
-.form-group select option {
-  background: #444; /* רקע כהה לכל האופציות */
-  color: white; /* צבע טקסט */
-}
-
-
-/* צ'קבוקס */
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #fff;
-  font-size: 14px;
-}
-
-.checkbox-group input {
-  width: auto;
-  transform: scale(1.2);
 }
 
 /* כפתורים */
@@ -107,8 +99,6 @@
   font-weight: bold;
   position: relative;
   z-index: 1;
-  margin-top: 7%;
-
 }
 
 /* מסגרת צבעונית מתחלפת */
@@ -133,37 +123,4 @@
 .testbutton:hover {
   transform: translateY(-2px);
   color: #f1f1f1;
-}
-
-/* כפתור סגירה */
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: white;
-  transition: color 0.3s ease, transform 0.2s;
-}
-
-.close-button:hover {
-  color: red;
-  transform: scale(1.2);
-}
-
-.error {
-  color: #ff4d4d; /* צבע אדום עדין */
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-  margin-top: 5px;
-  text-shadow: 0 0 5px rgba(255, 77, 77, 0.6);
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
 }

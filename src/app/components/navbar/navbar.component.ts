@@ -63,8 +63,10 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  isAuthenticated=false
+  // isAuthenticated=false
   isLoggedIn: boolean = false;
+  isMenuOpen = false;
+
 
   constructor(private _router: Router,
     private _authService: AuthService
@@ -73,7 +75,6 @@ export class NavbarComponent {
     //   this.isAuthenticated = authStatus;
     // });
   }
-  isMenuOpen = false;
   
   ngOnInit() {
     this._authService.isLoggedIn$.subscribe(status => {
@@ -97,17 +98,7 @@ export class NavbarComponent {
   }
 
   logout() {
-    // localStorage.removeItem('appSession'); // מחיקת הטוקן
-    // localStorage.removeItem('selectedFridge'); // אם יש נתוני משתמש
-    // setTimeout(() => {
-    //   window.location.reload(); // מרענן את העמוד כדי לוודא שהכל מתעדכן
-    // }, 100);
-    // this.isLoggedIn = false; // עדכון מיידי של הסטטוס
-
-    // this._router.navigate(['/home']); // ניתוב לדף הבית
     this._authService.logout();
-
-
   }
   
   

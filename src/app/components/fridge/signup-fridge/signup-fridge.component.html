@@ -1,21 +1,37 @@
 <div class="modal-overlay">
   <div class="modal-container">
-    <h2 class="text">📝 הרשמה</h2>
+    <h2 class="text">הרשמה</h2>
 
     <form [formGroup]="signupForm" class="modal-form">
       <div class="form-group">
         <label for="name">שם משתמש</label>
         <input id="name" type="text" formControlName="name" required>
+
+        @if (nameExists) {
+          <small class="error">שם משתמש זה כבר קיים, אנא בחר שם אחר.</small>
+        }
+
+        @if (signupForm.get('name')?.hasError('required') && signupForm.get('name')?.touched) {
+          <small class="error">יש להזין שם משתמש.</small>
+        }
       </div>
 
       <div class="form-group">
         <label for="password">סיסמה</label>
         <input id="password" type="password" formControlName="password" required>
+
+        @if (signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched) {
+          <small class="error"> הסיסמה חייבת להכיל לפחות 3 תווים.</small>
+        }
+
+        @if (signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched) {
+          <small class="error">יש להזין סיסמה.</small>
+        }
       </div>
     </form>
 
     <div class="buttons-container">
-      <button  class="testbutton"  (click)="signup()" [disabled]="!signupForm.valid">הרשם</button>
+      <button class="testbutton" (click)="signup()" [disabled]="signupForm.invalid || nameExists">הרשם</button>
     </div>
   </div>
 </div>

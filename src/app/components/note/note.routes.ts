@@ -1,8 +1,15 @@
 import { Routes } from '@angular/router';
 import { NoteListComponent } from './note-list/note-list.component';
 import { AddNoteComponent } from './add-note/add-note.component';
+import { AuthGuard } from '../../pages/auth.guard';
 
 export const NOTE_ROUTES: Routes = [
-  { path: '', component: NoteListComponent }, // ברירת מחדל
-  { path: 'add', component: AddNoteComponent }
+  { path: '',
+     component: NoteListComponent,
+     canActivate: [AuthGuard]
+    }, // ברירת מחדל
+  { path: 'add', 
+    component: AddNoteComponent,
+    canActivate: [AuthGuard]
+  }
 ];

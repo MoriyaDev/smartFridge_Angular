@@ -1,13 +1,82 @@
-
-
 @if(!isLoggedIn){
-  <div  class="welcome-container">
-  <h1>👋 ברוך הבא למקרר החכם!</h1>
-  <p>כדי להתחיל, התחבר או צור חשבון חדש.</p>
-  <button (click)="goToLogin()" class="login-button">🔑 התחבר</button>
+<div class="home-container">
+  <div class="right-section">
+    <div class="card">
+      <h3>ניהול מלאי המזון שלך</h3>
+
+    </div>
+    <div class="card">
+      <h3>מעקב אחר תאריכי תפוגה</h3>
+
+    </div>
+    <div class="card">
+      <h3>קבלת מתכונים מותאמים אישית</h3>
+
+    </div>
+    <div class="card">
+      <h3>צמצום בזבוז מזון</h3>
+
+    </div>
+    <div class="card">
+      <h3>תזכורות על משימות ואירועים</h3>
+
+    </div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+  <div class="fridge-container">
+    <div class="fridge">
+      <div class="fridge-section refrigerator">
+        <div class="handle"></div>
+      </div>
+
+      <div class="fridge-section freezer">
+        <div class="handle"></div>
+      </div>
+
+      <div class="shelves fridge-content" (click)="goToLocation('Fridge')">
+        <img src="em1.jpg" alt="תוכן המקרר" width="100%">
+      </div>
+
+      <div class="shelves freezer-content" (click)="goToLocation('Freezer')">
+        <img src="em2.jpg" alt="תוכן המקפיא" width="100%">
+      </div>
+    </div>
+  </div>
+
+  <div class="left-section">
+    <div class="card" id="nameF">
+      <div>
+        <h2 class="clock">כדי להפעיל את המקרר יש להתחבר אל החשבון</h2>
+        <div class="auth-buttons">
+          <!-- <button (click)="goToRegister()" class="register-button">📝 הרשמה</button> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="weather-clock">
+        <div class="weather">☀️ 25°C</div>
+        <div class="clock">🕒 {{currentDateTime}}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <button class="testbutton" (click)="goToLogin()" data-label="התחבר"></button>
+      <button class="testbutton" (click)="goToSignup()" data-label="הרשם"></button>
+    </div>
+  </div>
 </div>
 }
-@else {
+@else if(isLoggedIn){
 <html lang="en">
 
 
@@ -15,11 +84,10 @@
   <div class="right-section">
 
     <div class="card">
-      @if(currentFridge?.notes?.[0]){
+      @if(currentFridge?.notes?.length > 0){
       <div class="note">
         <h2>{{currentFridge.notes[0].type}}</h2>
-        <p>מה {{currentFridge.notes[0].text}}</p>
-        <p>בוצע {{currentFridge.notes[0].isResolved}}</p>
+        <p>{{currentFridge.notes[0].text}}</p>
       </div>
       }
       @else(){
@@ -32,7 +100,6 @@
       <div class="note">
         <h2>{{currentFridge.notes[1].type}}</h2>
         <p>{{currentFridge.notes[1].text}}</p>
-        <p>בוצע {{currentFridge.notes[1].isResolved}}</p>
       </div>
       }
       <button class="testbutton" (click)="tothenote()" data-label="כל הפתקים"></button>
@@ -41,7 +108,7 @@
 
 
     <div class="card">
-      @if (filteredRecipes.length > 0) {
+      @if (filteredRecipes && filteredRecipes.length > 0) {
       @for (recipe of filteredRecipes.slice(0,1); track $index) {
       <div class="rec">
         <h4>{{ recipe.title }}</h4>
@@ -71,11 +138,11 @@
       </div>
 
       <div class="shelves fridge-content" (click)="goToLocation('Fridge')">
-        <img src="fridge1.jpg" alt="תוכן המקרר" width="100%">
+        <img src="frid.jpg" alt="תוכן המקרר" width="100%">
       </div>
 
       <div class="shelves freezer-content" (click)="goToLocation('Freezer')">
-        <img src="frezz.jpg" alt="תוכן המקפיא" width="100%">
+        <img src="frez.jpg" alt="תוכן המקפיא" width="100%">
       </div>
     </div>
   </div>
@@ -94,7 +161,7 @@
     <div class="card">
       <div class="weather-clock">
         <div class="weather">☀️ 25°C</div>
-        <div class="clock">🕒 {{currentDateTime}} PM</div>
+        <div class="clock">🕒 {{currentDateTime}}</div>
       </div>
     </div>
 
@@ -105,12 +172,6 @@
       </div>
     </div>
 
-    <!-- <div class="card">
-      <div style="display: block;">
-        <canvas baseChart [data]="barChartData" [options]="barChartOptions">
-        </canvas>
-      </div>
-    </div> -->
 
   </div>
 

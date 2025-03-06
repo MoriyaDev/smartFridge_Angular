@@ -35,6 +35,9 @@ export class FridgeService {
   getFridgeByIdFromServer(id: number): Observable<any> {
     return this._http.get<any>(`${this.basicUrl}${id}`);
   }
+  getFridgesFromServer(): Observable<Fridge[]> {
+    return this._http.get<any>(`${this.basicUrl}`);
+  }
 
   signupFromServer(fridge: Fridge): Observable<any> {
     return this._http.post<any>(this.basicUrl, fridge);
