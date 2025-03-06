@@ -1,0 +1,101 @@
+<!-- כפתור הוספת מוצר בראש הדף -->
+<h2>📦 מוצרים ב-{{ location | locationTranslate }}</h2>
+
+
+
+
+
+<div class="search-container">
+  <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
+    <option value="">כל הקטגוריות</option>
+    <option *ngFor="let category of categories" [value]="category.id">
+      {{ category.name }} (ID: {{ category.id }})
+    </option>
+  </select>
+
+  <input type="text" placeholder="חפש מוצר..." [(ngModel)]="searchQuery" (input)="filterProducts()">
+
+  <!-- 🔹 נורה עם כפתור הדלקה/כיבוי -->
+  <div class="fridge-light-container">
+    <div class="fridge-light-strip">
+      <div *ngFor="let dot of lightDots" [class.on]="isLightOn" class="light-dot"></div>
+    </div>
+
+    <button class="light-toggle-button" (click)="toggleLight()">
+      {{ isLightOn ? '⚪ למצב שבת' : '⚫ למצב רגיל' }}
+    </button>
+  </div>
+
+
+  <!-- כפתור הדלקת אור -->
+
+
+</div>
+
+
+
+
+
+
+
+<!-- קונטיינר של המקרר -->
+<div class="fridge-container" [ngClass]="{ 'freezer-background': location === 'Freezer' }">
+  <!-- <div class="fridge-light"></div> נורה למעלה -->
+<div class="freezer-background">
+  <div class="large-flakes"></div>
+</div>
+  <div class="fridge-content">
+    <button class="add-pro-button" (click)="toggleAddProductModal()">➕ הוסף מוצר</button>
+
+
+    <!-- מדפים של המקרר -->
+    <div class="shelf" *ngFor="let shelf of shelves">
+      @for (pro of shelf; track $index) {
+      <div class="pro-item" [ngClass]="{
+               'expired': getExpiryIndicator(pro.expiryDate) === -1,
+               'expiring': getExpiryIndicator(pro.expiryDate) === 0
+             }" [ngStyle]="{'background-image': getCategoryBackground(pro.categoryID),
+                         'background-size': 'contain',
+                         'background-position': 'bottom center',
+                         'background-repeat': 'no-repeat'}">
+
+        <!-- שם המוצר -->
+        <!-- <div class="product-title">
+            <h3>{{ pro.name }}</h3>
+          </div> -->
+
+        <button class="product-title" (click)="showDetails(pro)">
+          <h3>{{ pro.name }}</h3>
+        </button>
+      </div>
+      }
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- מודל הוספת מוצר -->
+<div class="modal-overlay" *ngIf="isAddProductModalOpen">
+  <div class="modal-container">
+    <span class="close-button" (click)="toggleAddProductModal()">&times;</span>
+
+    <app-add-product (productAdded)="toggleAddProductModal()" (close)="toggleAddProductModal()"></app-add-product>
+  </div>
+</div>
+
+
+<!-- מודל פרטי מוצר -->
+<app-product-details [isOpen]="isModalOpen" (close)="closeModal()" (updateSuccess)="onProductUpdated($event)"
+  (delete)="deleteProduct($event)">
+</app-product-details>
+
+<!-- מודל פרטי מוצר -->
+<app-product-details 
+  [product]="selectedProduct" 
+  [isOpen]="isModalOpen" 
+  (close)="closeModal()"
+  (updateSuccess)="onProductUpdated($event)"
+  (delete)="deleteProduct($event)">
+</app-product-details>

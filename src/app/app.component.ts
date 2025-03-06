@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
-import {FooterComponent } from './footer/footer.component';
-import {NavbarComponent } from './navbar/navbar.component';
+import {FooterComponent } from './components/footer/footer.component';
+import {NavbarComponent } from '../app/components/navbar/navbar.component';
 //product
 
 @Component({

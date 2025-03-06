@@ -1,54 +1,215 @@
-/* You can add global styles to this file, and also import other style files */
-/* סגנון גלובלי */
-body {
-  background-color: #000000  ; /* רקע אפור כהה */
-  color: #FFFFFF ; /* טקסט בצבע לבן-אפרפר */
-    margin: 0;
-    padding: 0;
-    direction: rtl;
+/* ודא שכל הדף תופס 100% גובה */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #000000; /* רקע כהה */
+  color: #FFFFFF;
+  direction: rtl;
+  font-family: 'MyCustomFont', sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
 
 
-    
 
-
-  }
- 
   h1, h2, h3 ,p{
     font-weight: 700;
     align-self: center;
     text-align: center;
   }
-  /* h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 10vw;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    
-    color: #000119;
-    
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: #ff007f;
-    
-    text-shadow: 
-        0px 0px 5px rgba(255, 0, 127, 0.8),
-        0px 0px 10px rgba(255, 0, 127, 0.6),
-        0px 0px 20px rgba(255, 0, 127, 0.4);
-}
 
-   */
-  @font-face {
-    font-family: 'MyCustomFont';
-    src: url('/public/my-font.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 * {
     font-family: 'MyCustomFont', sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.error {
+  color: #ff4d4d;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+  text-shadow: 0 0 5px rgba(255, 77, 77, 0.6);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-button:hover {
+  color: #ff5252;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+
+/* עיצוב כפתורים ראשיים - לשימוש בכפתורי הוספה, חיפוש וכו' */
+.main-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #4a6bff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(74, 107, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+}
+
+/* אפקט זריחה בעת מעבר עכבר */
+.main-button:hover {
+  background-color: #5a78ff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(74, 107, 255, 0.3);
+}
+
+/* אפקט לחיצה */
+.main-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(74, 107, 255, 0.2);
+}
+
+/* אייקון בכפתור */
+.main-button .material-icons {
+  font-size: 1.3rem;
+  margin-left: 0.2rem;
+}
+
+/* וריאציות צבע */
+.main-button.success {
+  background-color: #4caf50;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+}
+
+.main-button.success:hover {
+  background-color: #5cb860;
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+}
+
+.main-button.warning {
+  background-color: #ff9800;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
+}
+
+.main-button.warning:hover {
+  background-color: #ffac33;
+  box-shadow: 0 6px 15px rgba(255, 152, 0, 0.3);
+}
+
+.main-button.danger {
+  background-color: #f44336;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.2);
+}
+
+.main-button.danger:hover {
+  background-color: #f55a4e;
+  box-shadow: 0 6px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* כפתור עם קו תחתון - לשימוש במקרים מסוימים */
+.main-button.outline {
+  background-color: transparent;
+  color: #4a6bff;
+  border: 2px solid #4a6bff;
+  box-shadow: none;
+}
+
+.main-button.outline:hover {
+  background-color: rgba(74, 107, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(74, 107, 255, 0.1);
+}
+
+/* כפתור עגול לאייקון בלבד */
+.main-button.icon-only {
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.main-button.icon-only .material-icons {
+  margin: 0;
+}
+
+/* כפתור גדול */
+.main-button.large {
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+}
+
+.main-button.large .material-icons {
+  font-size: 1.5rem;
+}
+
+/* כפתור קטן */
+.main-button.small {
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.main-button.small .material-icons {
+  font-size: 1.1rem;
+}
+
+/* כפתור מושבת */
+.main-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 768px) {
+  .main-button {
+    padding: 0.7rem 1.3rem;
+    font-size: 1rem;
+  }
+  
+  .main-button.icon-only {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+}

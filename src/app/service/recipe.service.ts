@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Recipe} from '../model/recipe.model';
+import { Recipe } from '../model/recipe.model';
 import { Product } from '../model/product.model';
 
 @Injectable({
@@ -21,21 +21,18 @@ export class RecipeService {
         return this._http.get<Recipe[]>(url);
     }
 
-    getRecipeByProductsFromServer(products: string): Observable<Recipe[]> {
-        const url = `${this.baseUrl}/bypro?ingredients=${encodeURIComponent(products)}`;
+    getRecipeByProductsFromServer(products: string, fridgeID: number): Observable<Recipe[]> {
+        const url = `${this.baseUrl}/bypro?ingredients=${encodeURIComponent(products)}&fridgeId=${fridgeID}`;
         return this._http.get<Recipe[]>(url);
     }
 
+    addRecipeFromServer(recipe: Recipe): Observable<{ message: string }> {
+        return this._http.post<{ message: string }>(`${this.baseUrl}/add`, recipe);
+    }
+    
 
-    // getRecipesByExpirationFromServer(products: Product[]): Observable<Recipe[]> {
-    //     return this._http.post<Recipe[]>(`${this.baseUrl}/recommend`, products,{
-    //         headers: new HttpHeaders({ 'Content-Type': 'application/json' }) // וידוא שהתוכן נשלח בפורמט JSON
 
-    //     });
-    // }
-    
-    
- 
-    
+
+
 
 }

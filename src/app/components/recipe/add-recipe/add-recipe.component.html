@@ -1,0 +1,35 @@
+<div class="recipe-container">
+    <h2>🍽️ הוספת מתכון חדש</h2>
+
+    @if(!isAdmin){
+    <div class="error-message">
+        ❌ רק מנהל יכול להוסיף מתכונים!
+    </div>
+    }
+
+    <!-- טופס הוספת מתכון (מוצג רק למנהלים) -->
+    <form [formGroup]="addRecipeForm" (ngSubmit)="submitRecipe()" >
+
+        <!-- שם המתכון -->
+        <label for="title">📌 שם המתכון</label>
+        <input id="title" type="text" formControlName="title" placeholder="לדוגמה: פסטה ברוטב עגבניות">
+
+        <!-- רשימת מוצרים -->
+        <label for="products">🛒 מוצרים</label>
+        <textarea id="products" formControlName="products" placeholder="לדוגמה: פסטה, עגבניות, שום..."></textarea>
+
+        <!-- הוראות הכנה -->
+        <label for="instructions">📖 הוראות הכנה</label>
+        <textarea id="instructions" formControlName="instructions" placeholder="איך מכינים?"></textarea>
+
+        <!-- כפתור שליחה -->
+        <button type="submit" [disabled]="addRecipeForm.invalid">➕ הוסף מתכון</button>
+
+    </form>
+
+    @if(message){
+    <small class="error">
+        {{ message }}
+    </small>
+    }
+</div>

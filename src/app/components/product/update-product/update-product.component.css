@@ -1,0 +1,293 @@
+/* רקע מטושטש */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  z-index: 3000;
+}
+
+/* קופסת הטופס */
+.modal-container {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  border: 1px solid rgba(100, 100, 100, 0.3);
+  overflow: hidden;
+}
+
+/* אפקט הילה מסביב לקופסא */
+.modal-container::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -2;
+  background: linear-gradient(60deg, 
+    #f79533, #f37055, #ef4e7b, #a166ab, 
+    #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: 25px;
+  filter: blur(10px);
+  opacity: 0.5;
+  animation: borderGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes borderGlow {
+  0% { opacity: 0.3; filter: blur(10px) hue-rotate(0deg); }
+  100% { opacity: 0.7; filter: blur(15px) hue-rotate(120deg); }
+}
+
+/* כפתור סגירה */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f79533, #f37055, #ef4e7b, #a166ab);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.close-button:hover {
+  transform: rotate(90deg) scale(1.2);
+}
+
+.close-button:hover::before {
+  opacity: 1;
+  animation: spinGradient 2s linear infinite;
+}
+
+@keyframes spinGradient {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* כותרת עם מעבר צבעים */
+.text {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(to right, #56d8e4, #9f01ea, #56d8e4);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  animation: shineText 3s linear infinite;
+}
+
+@keyframes shineText {
+  to { background-position: 200% center; }
+}
+
+/* פס דקורטיבי מתחת לכותרת */
+.text::after {
+  content: "";
+  display: block;
+  width: 80%;
+  height: 3px;
+  margin: 10px auto 15px;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(246, 92, 139, 1) 50%, 
+    rgba(255,255,255,0) 100%);
+  border-radius: 3px;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.5; width: 40%; }
+  50% { opacity: 1; width: 80%; }
+  100% { opacity: 0.5; width: 40%; }
+}
+
+/* טופס */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+/* קבוצת שדה בטופס */
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.form-group label {
+  color: #f1f1f1;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  border-bottom: 2px solid #777;
+  font-size: 16px;
+  background: rgba(50, 50, 50, 0.5);
+  color: white;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-bottom: 2px solid transparent;
+  background: rgba(60, 60, 60, 0.7);
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(86, 216, 228, 0.5);
+}
+
+/* אנימציה לפוקוס על שדה קלט */
+.form-group input:focus::after,
+.form-group select:focus::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #56d8e4, #9f01ea);
+  animation: expandLine 0.3s ease-out forwards;
+}
+
+@keyframes expandLine {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.form-group small.error {
+  color: #ff7675;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* כפתורים */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.testbutton {
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+  background: rgba(30, 30, 30, 0.9);
+  color: white;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* מסגרת צבעונית מתחלפת */
+.testbutton::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 8px;
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+}
+
+/* אפקט גלישה לכפתור */
+.testbutton::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20px;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
+}
+
+.testbutton:hover::after {
+  left: 130%;
+}
+
+/* כשהעכבר עובר */
+.testbutton:hover::before {
+  opacity: 0.8;
+  animation: borderRotate 2s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.testbutton:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
+}
+
+.testbutton:active {
+  transform: translateY(1px) scale(0.98);
+}

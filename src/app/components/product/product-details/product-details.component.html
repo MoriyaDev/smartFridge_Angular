@@ -1,0 +1,34 @@
+<div class="modal-overlay" *ngIf="isOpen">
+  <div class="modal-container">
+
+    <!-- שם המוצר עם אפקט זוהר -->
+    <h2 class="text">{{ product?.name }}</h2>
+    <button class="close-button" (click)="closeModal()">✖</button>
+
+    <!-- תמונת הקטגוריה כרקע -->
+    <div class="modal-image-container"
+         [ngStyle]="{'background-image': getCategoryBackground(product?.categoryID), 'background-size': 'cover'}">
+    </div>
+
+    <!-- פרטי המוצר -->
+    <div class="modal-info">
+      <p><strong>קטגוריה: </strong> <span class="glow">{{ categoryName }}</span></p>
+      <p><strong>תאריך תפוגה: </strong> <span class="glow">{{ formatDate(product?.expiryDate) }}</span></p>
+      <p><strong>מיקום: </strong> <span class="glow">{{ product?.location | locationTranslate }}</span></p>
+    </div>
+
+    <!-- כפתורי פעולה -->
+    <div class="buttons-container">
+      <button class="testbutton" (click)="toggleUpdateForm()">עדכן מוצר</button>
+      <button class="testbutton delete-btn" (click)="deleteProduct()">מחק מוצר</button>
+    </div>
+  </div>
+</div>
+
+@if(isUpdateFormOpen) {
+  <app-update-product
+    [product]="product"
+    (updateSuccess)="handleUpdate($event)"
+    (cancel)="toggleUpdateForm()">
+  </app-update-product>
+}

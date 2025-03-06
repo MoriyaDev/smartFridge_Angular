@@ -1,0 +1,52 @@
+<form [formGroup]="addProductForm" class="modal-form">
+  <h2 class="text">🛒 הוסף מוצר</h2>
+
+  <!-- קטגוריה -->
+  <div class="form-group">
+    <label>קטגוריה</label>
+    <select formControlName="categoryID" (change)="onCategoryChange($event)">
+      @for (category of categories; track category.id) {
+        <option [value]="category.id">{{ category.name }}</option>
+      }
+    </select>
+    @if (addProductForm.get('categoryID')?.invalid && addProductForm.get('categoryID')?.touched) {
+      <small class="error">אנא בחר קטגוריה תקפה</small>
+    }
+  </div>
+
+  <!-- שם מוצר -->
+  <div class="form-group">
+    <label>שם מוצר</label>
+    <input type="text" formControlName="name" required placeholder="לדוגמה: חלב">
+    @if (addProductForm.get('name')?.invalid && addProductForm.get('name')?.touched) {
+      <small class="error">שם המוצר חייב להיות בין 2 ל-20 תווים</small>
+    }
+  </div>
+
+  <!-- תאריך תפוגה -->
+  <div class="form-group">
+    <label>תאריך תפוגה</label>
+    <input type="date" formControlName="expiryDate" required>
+    @if (addProductForm.get('expiryDate')?.errors?.['pastDate']) {
+      <small class="error">תאריך תפוגה לא יכול להיות בעבר</small>
+    }
+    
+  </div>
+
+  <!-- מיקום במקרר -->
+  <div class="form-group">
+    <label>מיקום במקרר</label>
+    <select formControlName="location">
+      <option value="Fridge">מקרר</option>
+      <option value="Freezer">מקפיא</option>
+    </select>
+    @if (addProductForm.get('location')?.invalid && addProductForm.get('location')?.touched) {
+      <small class="error">אנא בחר מיקום</small>
+    }
+  </div>
+</form>
+
+<!-- כפתור הוספה -->
+<div class="buttons-container">
+  <button class="testbutton" (click)="addProduct()" [disabled]="!addProductForm.valid">הוסף מוצר</button>
+</div>

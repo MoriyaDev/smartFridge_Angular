@@ -1,0 +1,39 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+
+    <h2 class="text">📌 הוספת פתק</h2>
+
+    <form [formGroup]="addNoteForm" class="modal-form">
+      <div class="form-group">
+        <label>📝 תוכן הפתק:</label>
+        <input type="text" formControlName="text" required placeholder="מה צריך לזכור?">
+        
+        @if (addNoteForm.get('text')?.invalid && addNoteForm.get('text')?.touched) {
+          <small class="error">
+            יש להזין לפחות 3 תווים ולא יותר מ-80!
+          </small>
+        }
+      </div>
+      
+
+      <div class="form-group">
+        <label>📌 סוג פתק:</label>
+        <select formControlName="type">
+          <option value="תזכורת">תזכורת</option>
+          <option value="משימה">משימה</option>
+          <option value="אירוע">אירוע</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>📅 תאריך יצירה:</label>
+        <input type="date" formControlName="createdDate" required>
+      </div>
+
+    </form>
+
+    <div class="buttons-container">
+      <button class="testbutton" (click)="addNote()" [disabled]="addNoteForm.invalid">הוסף</button>
+    </div>
+  </div>
+</div>

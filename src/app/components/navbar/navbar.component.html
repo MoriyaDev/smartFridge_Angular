@@ -1,0 +1,112 @@
+<nav id="navbar">
+  <ul class="navbar-items flexbox-col">
+    <li class="navbar-logo flexbox-left">
+      <a class="navbar-item-inner flexbox">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">menu</span>
+        </div>
+      </a>
+    </li>
+
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/home'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">home</span>
+        </div>
+        <span class="link-text">בית</span>
+      </a>
+    </li>
+
+   
+    
+    @if(isLoggedIn){
+
+    <!-- מוצרים, מתכונים ופתקים יוצגו רק אם המשתמש מחובר -->
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/pro/Fridge'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">kitchen</span> <!-- מקרר -->
+        </div>
+        <span class="link-text">מוצרים במקרר</span>
+      </a>
+    </li>
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/pro/Freezer'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">ac_unit</span> <!-- מקפיא -->
+        </div>
+        <span class="link-text">מוצרים במקפיא</span>
+      </a>
+    </li>
+    
+
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/rec'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">restaurant</span>
+        </div>
+        <span class="link-text">מתכונים</span>
+      </a>
+    </li>
+
+    <li class="navbar-item flexbox-left" >
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/notes'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">sticky_note_2</span>
+        </div>
+        <span class="link-text">פתקים</span>
+      </a>
+    </li>
+
+    <li class="navbar-item flexbox-left" >
+      <a class="navbar-item-inner flexbox-left" (click)="logout()" style="cursor: pointer;">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">logout</span>
+        </div>
+        <span class="link-text">יציאה</span>
+      </a>
+    </li>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    }
+
+    <li class="navbar-item flexbox-left">
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/project'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">info</span>
+        </div>
+        <span class="link-text">עוד</span>
+      </a>
+    </li>
+@if(!isLoggedIn){
+   
+       <li class="navbar-item flexbox-left" >
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/fridge/signup'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">person_add</span>
+        </div>
+        <span class="link-text">הרשמה</span>
+      </a>
+    </li>
+
+    <li class="navbar-item flexbox-left" >
+      <a class="navbar-item-inner flexbox-left" [routerLink]="'/fridge/login'">
+        <div class="navbar-item-inner-icon-wrapper flexbox">
+          <span class="material-icons">login</span>
+        </div>
+        <span class="link-text">התחברות</span>
+      </a>
+    </li>
+ 
+  }
+
+
+  </ul>
+</nav>
