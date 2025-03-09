@@ -1,10 +1,8 @@
 <div class="recipe-buttons-container">
-  <button class="recipe-button" (click)="fetchRecipesApiByProducts(productString)">🍲 מ API מצא מתכונים</button>
-  <!-- @if(_authService.isAdmin()){ -->
-  <button class="recipe-button" (click)="openRecipeModal()">➕ הוסף מתכון</button>
-
-
-  <!-- } -->
+  <button class="recipe-button" (click)="fetchRecipesApiByProducts(productString)">  חיפוש מתכונים  GOOGLE</button>
+  @if(isAdmin){
+  <button class="recipe-button" (click)="openRecipeModal()">הוסף מתכון</button>
+  }
 
   <!-- <button class="recipe-button" (click)="fetchRecipesByProducts(productString)">מצא מתכונים בשבילי</button> -->
 </div>
@@ -19,8 +17,9 @@
     <app-add-recipe></app-add-recipe>
   </div>
 </div>
-<p>מתכונים</p>
-
+<div class="title_container">
+  <h2 class="title_page">מתכונים</h2>
+</div>
 
 @if (isLoading) {
 <div>

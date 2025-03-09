@@ -186,6 +186,8 @@ export class HomePageComponent implements OnInit {
   filteredRecipes: Recipe[] = [];
   productString: string = '';
   isLoggedIn: boolean = false;
+  expiringSoonCount =0;
+
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true
@@ -234,6 +236,8 @@ export class HomePageComponent implements OnInit {
         });
       }
     });
+
+
   }
 
   // עדכון התאריך והשעה
@@ -308,4 +312,11 @@ export class HomePageComponent implements OnInit {
   tothenote() {
     this.router.navigate(['/notes']);
   }
+
+  get fridgeStatus(): string {
+    if (this.currentFridge.products.length > 20) return "מלא 📦";
+    if (this.currentFridge.products.length > 10) return "חצי ריק 🤔";
+    return "צריך קניות 🛒";
+  }
+  
 }

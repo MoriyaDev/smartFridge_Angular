@@ -47,7 +47,7 @@ export class FridgeService {
     this.fridge$.next(fridge);
     this.fridgeProducts$.next(fridge.products || []);
 
-    if (this.isBrowser) {  // ✅ בדיקה לפני שמירה ב-localStorage
+    if (this.isBrowser) {  
       localStorage.setItem("selectedFridge", JSON.stringify(fridge));
     }
   }

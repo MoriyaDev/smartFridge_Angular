@@ -128,7 +128,8 @@ checkExpirations() {
   if (expiringSoonNames.length > 0) {
       this.notes.push({
           id: 0,
-          text: `⚠️ שים לב! המוצרים הבאים עומדים לפוג בקרוב: ${expiringSoonNames.join(", ")}`,
+          tit: 'המוצרים הבאים עומדים לפוג בקרוב',
+          text: `${expiringSoonNames.join(", ")}`,
           createdDate: new Date().toDateString(),
           type: '⚠️התראת מקרר',
           fridgeId: this.currentFridge ? this.currentFridge.id : 0,
@@ -139,7 +140,8 @@ checkExpirations() {
   if (expiringPassNames.length > 0) {
       this.notes.push({
           id: 0,
-          text: `❌ שים לב! המוצרים הבאים כבר פגו תוקפם: ${expiringPassNames.join(", ")}`,
+          tit:' מוצרים שפג תוקפם!',
+          text: `${expiringPassNames.join(",")}`,
           createdDate: new Date().toDateString(),
           type: '⚠️התראת מקרר',
           fridgeId: this.currentFridge ? this.currentFridge.id : 0,

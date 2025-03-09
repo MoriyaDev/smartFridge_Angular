@@ -29,12 +29,7 @@ body {
   
   /* 🏠 מבנה הדף */
   .home-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* צד ימין, מקרר, צד שמאל */
-    width: 90%;
-    max-width: 1200px;
-    margin-left: 80px;
-    margin-right: 22%;
+
     gap: 40px;
     align-items: center;
     /* background-color: #000; */
@@ -47,18 +42,7 @@ body {
   
   
   
-  /* 📌 צד ימין */
-  .right-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  /* 📊 צד שמאל - גרף */
-  .left-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+
   /* 📌 כרטיסים כלליים */
   .card {
     background-color: #252a3f;
@@ -70,265 +54,56 @@ body {
     flex-direction: column; /* מסדר הכל בטור */
     justify-content: space-between; /* מבטיח שהכפתור ילך לתחתית */
     align-items: center;
-    max-width: 300px;
+    /* max-width: 500px; */
     margin: auto;
     border: 1px solid #333;
     margin: 20px auto;
     width: 80%;
   }
-  
-  
-  /* 📝 עיצוב הפתקים עם אפקט סלוטייפ */
-  .note {
-    background: #fff8d1; /* צבע צהוב עדין */
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #ffcc00; /* קו צד כמו מחברת */
-    text-align: right;
-    position: relative;
-    margin: 10px 0;
-  }
-  
-  /* 🎗️ אפקט סלוטייפ */
-  .note::before,
-  .note::after {
-    content: "";
-    position: absolute;
-    width: 80px;
-    height: 30px;
-    background: rgba(255, 255, 255, 0.6);
-    left: 50%;
-    transform: translateX(-50%) rotate(-5deg);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-  }
-  
-  .note::before { top: -15px; }
-  .note::after { bottom: -15px; transform: translateX(-50%) rotate(5deg); }
-  
-  /* 📝 כותרות וטקסט בפתקים */
-  .note h2 { font-size: 1.2em; color: #444; }
-  .note p { font-size: 1em; color: #333; margin: 5px 0; }
-  
-  .rec {
-    background: rgb(195, 253, 245); /* צבע צהוב עדין */
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid #07b39b; /* קו צד כמו מחברת */
-    text-align: right;
-    position: relative;
-    margin: 10px 0;
-    color: #000000;
-    flex-direction: column; /* מסדר הכל בטור */
-    justify-content: space-between; /* מפזר בצורה אחידה */
-    align-items: center; /* ממרכז את כל התוכן */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  }
-  /* (60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); */
-  
-  /* 🎨 כפתורים */
-  .testbutton {
-    border: none;
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 50px; /* צורה מעוגלת */
-    cursor: pointer;
-    transition: 0.3s;
-    align-self: center;
-    margin-top: auto;
-    width: 160px; /* מעט גדול יותר מהכפתור הפנימי */
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* הוספת זוהר למסגרת */
-  }
-  
-  /* אנימציה כשהעכבר עובר */
-  .testbutton:hover {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-  
-  /* הכפתור הפנימי הקטן יותר */
-  .testbutton:after {
-    content: attr(data-label);
-    text-align: center;
-    font-size: 18px;
-    color: rgba(235, 235, 235, 1);
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 85%; /* קטן יותר מהכפתור החיצוני */
-    height: 75%; /* פחות גובה כדי להשאיר מסגרת */
-    position: absolute;
-    background-color: rgb(19, 20, 22); /* הצבע השחור הפנימי */
-    border-radius: 50px;
-    z-index: 10;
-  }
-  
-  
-  
-  
-  
-  
-  
-  /* ❄️ עיצוב מקרר */
-  .fridge-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .fridge {
-    position: relative;
-    width: 384px;
-    height: 720px;
-    background: linear-gradient(135deg, #d9d9d9, #f0f0f0);
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-  }
-  
-  /* 🏠 דלתות מקרר */
-  .fridge-section {
-    width: 100%;
-    position: absolute;
-    right: 0;
-    cursor: pointer;
-    transition: transform 0.7s ease-in-out, opacity 0.5s ease-in-out;
-    transform-origin: right center;
-    z-index: 10; /* כדי שהן יישארו קדימה כשהן סגורות */
-  }
-  
-  .refrigerator {
-    top: 0;
-    height: 410px;
-    background: #e6e6e6;
-    border-bottom: 2px solid #999;
-  }
-  
-  .freezer {
-    bottom: 0;
-    height: 310px;
-    background: #d1d1d1;
-    border-top: 2px solid #999;
-  }
-  
-  /* 🖐️ ידיות מקרר */
-  .handle {
-    position: absolute;
-    left: 10px; /* משאיר אותן בצד שמאל של הדלת */
-    top: 50%; /* ממקם באמצע גובה הדלת */
-    transform: translateY(-50%); /* מזיז אותן קצת למעלה כדי להיות בדיוק באמצע */
-    width: 20px;
-    height: 100px;
-    background: #333;
-    border-radius: 5px;
-    z-index: 15; /* מבטיח שהידיות יישארו תמיד מעל הדלת */
-  }
-  
-  
-  
-  /* 🔄 פתיחת הדלתות */
-  .refrigerator:hover {
-    transform: rotateY(110deg);
-    opacity: 0;
-  }
-  
-  .freezer:hover {
-    transform: rotateY(110deg);
-    opacity: 0;
-  }
-  
-  #nameF{
-    background-color: #f5c518;
-    color: #000000;
-    /* font-size: 1em; */
-  }
-  
-  
-  /* ❄️ תמונות פנים המקרר והמקפיא */
-  .shelves {
-    position: absolute;
-    width: 90%;
-    left: 5%;
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
-    z-index: 5; /* מוודא שהתמונה מעל הרקע */
-  }
-  
-  /* 📌 תמונה של פנים המקרר */
-  .fridge-content {
-    top: 3%;  /* הזזת התמונה טיפה למטה */
-    height: 60%;  /* התאמה קלה לגובה */
-    bottom: 16%;
-  }
-  
-  /* 📌 תמונה של פנים המקפיא */
-  .freezer-content {
-    
-    bottom: 16%; /* הרמת התמונה למעלה */
-    height: 30%; /* שמירה על פרופורציות */
-  }
-  
-  /* 🔄 כשהמקרר נפתח – מציג את התמונה שלו */
-  .refrigerator:hover ~ .fridge-content {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  /* 🔄 כשהמקפיא נפתח – מציג את התמונה שלו */
-  .freezer:hover ~ .freezer-content {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+/* מסגרות צבעוניות לכל כרטיס */
+.card:nth-child(1) {
+  border-color: #f79533;
+  box-shadow: 0 4px 12px rgba(247, 149, 51, 0.4);
+}
+
+.card:nth-child(2) {
+  border-color: #ef4e7b;
+  box-shadow: 0 4px 12px rgba(239, 78, 123, 0.4);
+}
+
+.card:nth-child(3) {
+  border-color: #5073b8;
+  box-shadow: 0 4px 12px rgba(80, 115, 184, 0.4);
+}
+
+.card:nth-child(4) {
+  border-color: #1098ad;
+  box-shadow: 0 4px 12px rgba(16, 152, 173, 0.4);
+}
+
+.card:nth-child(5) {
+  border-color: #6fba82;
+  box-shadow: 0 4px 12px rgba(111, 186, 130, 0.4);
+}
+
+.card:nth-child(6) {
+  border-color: #ffcc00;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+}
+
+.card:nth-child(7) {
+  border-color: #d66efd;
+  box-shadow: 0 4px 12px rgba(214, 110, 253, 0.4);
+}
+
+.card:nth-child(8) {
+  border-color: #ff5733;
+  box-shadow: 0 4px 12px rgba(255, 87, 51, 0.4);
+}
+
+.card:nth-child(9) {
+  border-color: #34eb6b;
+  box-shadow: 0 4px 12px rgba(52, 235, 107, 0.4);
+}

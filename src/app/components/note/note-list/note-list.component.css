@@ -11,7 +11,7 @@ body {
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: #ff9800;
+  /* background-color: #ff9800; */
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -24,10 +24,10 @@ body {
   z-index: 1000;
 }
 
-.add-note-button:hover {
+/* .add-note-button:hover {
   background-color: #e68900;
   transform: scale(1.1);
-}
+} */
 
 
 /* 📜 רשימת הפתקים */

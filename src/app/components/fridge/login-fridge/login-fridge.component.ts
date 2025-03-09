@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
 })
 export class LoginFridgeComponent {
   public loginForm!: FormGroup;
-  existingNames: string[] = []; // שמות המשתמשים הקיימים
-  nameNotFound: boolean = false; // האם השם לא נמצא
-  wrongPassword: boolean = false; // האם הסיסמה שגויה
+  existingNames: string[] = []; 
+  nameNotFound: boolean = false; 
+  wrongPassword: boolean = false;
 
   constructor(private _fridgeService: FridgeService, private router: Router,
     private _authService: AuthService) {}
@@ -25,7 +25,6 @@ export class LoginFridgeComponent {
       'password': new FormControl('', Validators.required)
     });
 
-    // טעינת שמות המשתמשים הקיימים מהשרת
     this._fridgeService.getFridgesFromServer().subscribe(fridges => {
       this.existingNames = fridges.map((fridge: any) => fridge.name);
     });
@@ -36,14 +35,12 @@ export class LoginFridgeComponent {
     const username = loginData.name;
     const password = loginData.password;
 
-    // בדיקה אם השם קיים
     if (!this.existingNames.includes(username)) {
       this.nameNotFound = true;
-      this.wrongPassword = false; // מנקים שגיאת סיסמה במקרה כזה
+      this.wrongPassword = false; 
       return;
     }
 
-    // אם השם קיים, נשלח את הנתונים לשרת לבדיקה
     this._authService.login(loginData).subscribe({
       next: (response) => {
         if (response.token) {

@@ -13,29 +13,30 @@ import { Note } from '../../../model/note.model';
 import { CategoryService } from '../../../service/category.service';
 import { FormsModule } from '@angular/forms';
 import { LocationPipe } from '../../../pages/pipes/location.pipe';
+import {ExpiryHighlightDirective } from '../../../pages/directives/expiry-highlight.directive'
+
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule, FormsModule ,LocationPipe,ProductDetailsComponent,AddProductComponent],
+  imports: [CommonModule, FormsModule ,LocationPipe,ProductDetailsComponent,AddProductComponent,ExpiryHighlightDirective],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
 
-  // 🔹 משתנים לניהול הנתונים
   products: Product[] = [];
   currentFridge: any = null;
   shelves: any[][] = [];
   selectedProduct: any = null;
-  filteredProducts: any[] = []; // מוצרים אחרי סינון
-  location: string = 'Fridge'; // ברירת מחדל
-  categories: { id: number, name: string }[] = []; // רשימת קטגוריות מהדאטה בייס
-  searchQuery: string = ''; // 🔍 טקסט לחיפוש מוצרים
-  selectedCategory: string = ''; // 📂 מזהה קטגוריה מסוננת
-  isLightOn: boolean = true; // נורה דולקת כברירת מחדל
-  lightDots = Array(15).fill(0); // יצירת 8 נקודות לנורה
+  filteredProducts: any[] = []; 
+  location: string = 'Fridge';
+  categories: { id: number, name: string }[] = []; 
+  searchQuery: string = '';
+  selectedCategory: string = ''; 
+  isLightOn: boolean = true; 
+  lightDots = Array(15).fill(0); 
   
   
-    isShabbatMode: boolean = false; // ברירת מחדל: מצב חול
+    isShabbatMode: boolean = false; 
   
   
   

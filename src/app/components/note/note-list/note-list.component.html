@@ -12,12 +12,17 @@
 </div>
 
   }
-  <h1 class="bigT">תזכורות ופתקים</h1>
-  
+  <div class="title_container">
+    <h2 class="title_page">תזכורות ופתקים</h2>
+  </div>
   <div class="note-list" dir="rtl">
     @for (note of notes; track $index) {
       <div class="note" [appBackgroundByType]="note.type">
         <h2>{{ note.type }}</h2>
+        @if(note.type == '⚠️התראת מקרר') {
+
+        <p>{{note.tit}}</p>
+      }
         <p>{{ note.text }}</p>
         
         @if(note.type != '⚠️התראת מקרר') {

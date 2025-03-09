@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
-import {FooterComponent } from './components/footer/footer.component';
-import {NavbarComponent } from '../app/components/navbar/navbar.component';
-//product
+import { NavbarComponent } from '../app/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +11,24 @@ import {NavbarComponent } from '../app/components/navbar/navbar.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    FooterComponent,
     NavbarComponent,
-
-],
-
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   currentFridge: any = null;
+
+  // ✅ הזרקת ה-TitleService בקונסטרקטור
+  constructor(private titleService: Title) {}
 
   ngOnInit() {
     const savedFridge = localStorage.getItem('selectedFridge');
     if (savedFridge) {
       this.currentFridge = JSON.parse(savedFridge);
+      this.titleService.setTitle(` מקרר חכם - מוריה  (${this.currentFridge.name}) `);
+    } else {
+      this.titleService.setTitle('מקרר חכם - מוריה');
     }
   }
-  title = 'smartFridge_Angular';
 }

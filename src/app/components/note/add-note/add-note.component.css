@@ -124,3 +124,28 @@
   transform: translateY(-2px);
   color: #f1f1f1;
 }
+
+
+/* עיצוב רשימת הבחירה */
+.form-group select {
+  background: #222; /* רקע לבן */
+  color: rgb(255, 255, 255); /* טקסט שחור */
+  border: 2px solid #222;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 8px;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+/* כשהעכבר עובר על האפשרויות */
+.form-group select option {
+  background: #222;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+}
+
+/* כשהשדה בפוקוס */
+.form-group select:focus {
+  border-color: #56d8e4;
+  background: #222;
+}

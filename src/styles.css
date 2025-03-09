@@ -134,3 +134,43 @@ html, body {
   height: 78%;
   background-color: rgb(25, 26, 30);
 }
+
+
+
+
+
+
+
+
+/* עיצוב לכותרת הדף */
+.title_page {
+  font-family: 'Rubik Spray Paint', cursive;
+  color: white; /* צבע טקסט לבן */
+  font-size: 3rem; /* גודל טקסט גדול */
+  font-weight: 200; /* עובי טקסט מודגש */
+  text-align: center; /* יישור למרכז */
+  padding: 20px 0; /* ריווח פנימי */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7),
+               0 0 20px rgba(255, 255, 255, 0.5),
+               0 0 30px rgba(255, 255, 255, 0.3); /* אפקט זוהר */
+  letter-spacing: 2px; /* מרווח בין אותיות */
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+/* אפקט מעבר עכבר */
+.title_page:hover {
+  transform: scale(1.03);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
+               0 0 25px rgba(255, 255, 255, 0.7),
+               0 0 35px rgba(255, 255, 255, 0.5);
+}
+
+/* וודא שהרקע של האזור שבו הכותרת נמצאת הוא שחור */
+.title_container {
+  background-color: black;
+  border-radius: 8px;
+  padding: 10px;
+}
