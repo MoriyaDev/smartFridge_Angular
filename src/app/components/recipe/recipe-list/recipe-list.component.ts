@@ -7,11 +7,13 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../service/auth.service';
 import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
+
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.css',
-  imports: [CommonModule, AddRecipeComponent],
+  imports: [CommonModule, AddRecipeComponent, FormsModule],
 })
 export class RecipeListComponent implements OnDestroy {
   recipes1: Recipe[] = [];
@@ -126,4 +128,86 @@ ngOnDestroy(): void {
   this.fridgeSubscription.unsubscribe();
 }
   }
+
+
+
+
+
+  
+
+  isChatOpen: boolean = false;
+  chatMessages: { text: string, sender: string }[] = [];
+  isLoading1: boolean = false;
+
+  // נתונים לבחירה: מוצרים ויחידות
+  productsI = ["קמח", "סוכר", "שמן", "אבקת אפייה", "חלב", "מלח"];
+  units = ["כף", "כוס", "כפית", "ליטר", "מ\"ל", "גרם"];
+  selectedAmount: number = 1;
+  selectedProductI: string = "";
+  selectedUnit: string = "";
+
+  // טבלת המרות: לכל מוצר יש ערכים בכל יחידה
+  conversionData: Record<string, Record<string, number>> = {
+    "קמח": { "כוס": 120, "כף": 10, "כפית": 3, "גרם": 1 },
+    "סוכר": { "כוס": 200, "כף": 15, "כפית": 5, "גרם": 1 },
+    "שמן": { "כוס": 240, "כף": 15, "כפית": 5, "מ\"ל": 1 },
+    "חלב": { "כוס": 250, "כף": 15, "כפית": 5, "מ\"ל": 1, "ליטר": 1000 },
+    "מלח": { "כוס": 230, "כף": 18, "כפית": 6, "גרם": 1 }
+  };
+
+  // פתיחה/סגירה של הצ'אט
+  toggleChat() {
+    this.isChatOpen = !this.isChatOpen;
+
+    if (this.isChatOpen && this.chatMessages.length === 0) {
+      this.chatMessages.push({ text: "שלום! בחר כמות, מוצר ויחידה להמרה.", sender: 'bot' });
+    }
+  }
+
+  // חישוב כל ההמרות האפשריות למוצר שנבחר
+  convertMeasurement(): string {
+    if (!this.selectedProductI || !this.selectedUnit) {
+      return "⚠ יש לבחור מוצר ויחידה לפני החישוב.";
+    }
+
+    const conversion = this.conversionData[this.selectedProductI]; // המרות של המוצר
+    if (!conversion) return "🤷‍♂️ לא מצאתי את ההמרה.";
+
+    let response = `${this.selectedAmount} ${this.selectedUnit} של ${this.selectedProductI} שווה ל:\n`;
+
+    // המרת הכמות לכל היחידות
+    const baseValue = this.selectedAmount * (conversion[this.selectedUnit] || 1); // המרה ליחידת הבסיס
+    for (let unit in conversion) {
+      if (unit !== this.selectedUnit) {
+        const convertedValue = baseValue / conversion[unit];
+        response += `▪️${convertedValue.toFixed(2)} ${unit}\n`;
+      }
+    }
+
+    return response.trim();
+  }
+
+  // שליחת בקשה לאחר בחירה
+  async sendMessage() {
+    if (!this.selectedProductI || !this.selectedUnit || !this.selectedAmount) {
+      return;
+    }
+
+    this.chatMessages.push({
+      text: `${this.selectedAmount} ${this.selectedUnit} של ${this.selectedProductI}`,
+      sender: 'user'
+    });
+
+    this.isLoading1 = true;
+
+    setTimeout(() => {
+      const botResponse = this.convertMeasurement();
+      this.chatMessages.push({ text: botResponse, sender: 'bot' });
+
+      this.isLoading1 = false;
+    }, 1000);
+  }
+
+
+
 }

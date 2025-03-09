@@ -3,7 +3,6 @@ import { Product } from '../../../model/product.model';
 import { ProductService } from '../../../service/product.service';
 import { Router } from '@angular/router';
 import { FridgeService } from '../../../service/fridge.service';
-import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { AddProductComponent } from "../add-product/add-product.component";
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +10,8 @@ import { log } from 'console';
 import { NoteService } from '../../../service/note.service';
 import { Note } from '../../../model/note.model';
 import { CategoryService } from '../../../service/category.service';
+import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { LocationPipe } from '../../../pages/pipes/location.pipe';
 import {ExpiryHighlightDirective } from '../../../pages/directives/expiry-highlight.directive'
@@ -230,31 +231,11 @@ export class ProductListComponent {
       }
     });
 
-
-    
   }
 
 
   
-  
-
-// הוסף את הפונקציה הזו לקומפוננטה שלך
-// Add this function to your component
-
-// פונקציה לטיפול בלחיצה על המוצר
-// Function to handle product click
-// showDetails(pro: any): void {
-
-
-//   // מציג את המודל עם פרטי המוצר
-//   // Show modal with product details
-//   this.selectedProduct = pro;
-//   this.isModalOpen = true;
-// }
+  }
 
 
 
-
-
-
-}
