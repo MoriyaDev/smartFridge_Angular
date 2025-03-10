@@ -1,50 +1,186 @@
-<div class="home-container">
-  <div class="section">
+<!DOCTYPE html>
+<html lang="he">
 
-    <div class="card">
-      <h2>🚀 יצירת הפרויקט</h2>
-      <p>בפרויקט שלי בניתי קומפוננטות עיקריות הכוללות את <strong>דף הבית</strong>, <strong>פתקים</strong>, <strong>מתכונים</strong>, <strong>מוצרים</strong> ו<strong>משתמשים</strong>. חילקתי את הקוד למודולים שונים, כך שהפרויקט מאורגן וקל לתחזוקה.</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📦 תיעוד מבנה הפרויקט</title>
+  <style>
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+    }
+
+    .sidebar {
+      width: 40%;
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 10px;
+      height: 90vh;
+      overflow-y: auto;
+    }
+
+    .content {
+      width: 60%;
+      padding: 20px;
+      background: #333;
+      border-radius: 10px;
+      margin-left: 20px;
+      height: 90vh;
+      overflow-y: auto;
+    }
+
+    .card {
+      background: #444;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="card">
+        <h2>🚀 יצירת הפרויקט</h2>
+        <p>בפרויקט שלי בניתי קומפוננטות עיקריות הכוללות את <strong>דף הבית</strong>, <strong>פתקים</strong>,
+          <strong>מתכונים</strong>, <strong>מוצרים</strong> ו<strong>משתמשים</strong>. 
+          שהפרויקט מאורגן וקל לתחזוקה.</p>
+      </div>
+      <div class="card">
+        <h2>🗺️ ניתובים וטעינה עצלה</h2>
+        <p>השתמשתי ב<strong>טעינה עצלה</strong> (Lazy Loading) כדי לשפר ביצועים ולאפשר טעינה מהירה יותר של האתר. בנוסף,
+          יצרתי נתיבים ייעודיים לכל דף בפרויקט.</p>
+      </div>
+      <div class="card">
+        <h2>📊 עבודה עם נתונים</h2>
+        <p>בפרויקט נעשה שימוש ב<strong>Services</strong> לניהול מוצרים, מקרר ופתקים, עם קריאות <strong>API</strong>
+          (GET/POST) לשרת לקבלת ועדכון נתונים.</p>
+      </div>
+      <div class="card">
+        <h2>🛠️ שימוש ב-Pipe ו-Directive</h2>
+        <p>יצרתי <strong>Pipe אישי</strong> כדי לבדוק אם אני נמצאת במקרר או במקפיא, וגם לחיתוך טקסטים ארוכים. 
+          <br>
+          בנוסף,
+          השתמשתי ב<strong>Directive</strong> המעניק צבע שונה לכל סוג פתק, מה שמסייע בזיהוי מהיר של הפתקים.
+        וכן אחד המתריע על מוצר שתוקפו הולך לפוג/ פג </p>
+      </div>
+      <div class="card">
+        <h2>🔒 אבטחה והרשאות</h2>
+        <p>הגדרתי <strong>Guards</strong> להגבלת גישה לדפים רק למשתמשים מורשים, והשתמשתי ב<strong>JWT</strong> לאימות
+          משתמשים, עם רמות הרשאה שונות למנהלים ולמשתמשים רגילים.</p>
+      </div>
+      <div class="card">
+        <h2>🔄 אינטרפטור להוספת טוקן</h2>
+        <p>בכל קריאה לשרת, אינטרפטור (Interceptor) מוסיף אוטומטית את <strong>הטוקן</strong> (Token) לאימות המשתמש, כדי
+          להבטיח אבטחת מידע.</p>
+      </div>
+      <div class="card">
+        <h2>🍽️ אינטגרציה עם API חיצוני</h2>
+        <p>חיברתי את הפרויקט ל<strong>API חיצוני</strong> שמספק מתכונים על בסיס המוצרים שבמקרר שלי. מכיוון שהמתכונים
+          מגיעים באנגלית, שילבתי API נוסף של <strong>Google Translate</strong> כדי לתרגם אותם לעברית.</p>
+      </div>
+      <div class="card">
+        <h2>✅ ולידציות ובדיקות טפסים</h2>
+        <p>כל הטפסים בפרויקט נבדקים עם <strong>ולידציות</strong>, כדי לוודא שהמשתמש מזין נתונים תקינים, וכדי למנוע
+          שגיאות.</p>
+      </div>
+      <div class="card">
+        <h2>📡 תקשורת בין קומפוננטות</h2>
+        <p>השתמשתי ב<strong>Input/Output</strong> כדי להעביר מידע בין קומפוננטות שונות, כך שהמערכת פועלת בצורה דינמית
+          ומגיבה לשינויים.</p>
+      </div>
+      <div class="card">
+        <h2>📡 תקשורת בין קומפוננטות</h2>
+        <p>השתמשתי ב<strong>Input/Output</strong> כדי להעביר מידע בין קומפוננטות שונות, כך שהמערכת פועלת בצורה דינמית
+          ומגיבה לשינויים.</p>
+      </div>
+      <div class="card">
+        <h2>🔄 ממיר מידות חכם</h2>
+        <p>השתמשתי ב<strong>אלגוריתם חכם</strong> שמאפשר להמיר <strong>כמות</strong>, <strong>סוג מאכל</strong> ו<strong>יחידות מידה</strong> 
+        בצורה מהירה ומדויקת, כך שהמשתמש יכול לבחור את המידות המתאימות לצרכיו.</p>
+      </div>
+      
     </div>
-
-    <div class="card">
-      <h2>🗺️ ניתובים וטעינה עצלה</h2>
-      <p>השתמשתי ב<strong>טעינה עצלה</strong> (Lazy Loading) כדי לשפר ביצועים ולאפשר טעינה מהירה יותר של האתר. בנוסף, יצרתי נתיבים ייעודיים לכל דף בפרויקט.</p>
+    <div class="sidebar">
+      <h2>📁 מבנה התקיות</h2>
+      <pre dir="ltr">  📦 src/app
+        ├── 📁 components            # קומפוננטות עיקריות של הפרויקט
+        │   ├── 📁 fridge           # עמודי התחברות והרשמה למקרר
+        │   │   ├── login-fridge   # עמוד התחברות
+        │   │   ├── signup-fridge  # עמוד הרשמה
+        │   │   ├── fridge.routes.ts  # נתיבי הניווט של המקרר
+        │   ├── 📁 note            # ניהול פתקים
+        │   │   ├── add-note       # הוספת פתק חדש
+        │   │   ├── note-list      # רשימת פתקים
+        │   │   ├── note.routes.ts # נתיבי ניהול הפתקים
+        │   ├── 📁 product         # ניהול מוצרים במקרר
+        │   │   ├── add-product    # הוספת מוצר
+        │   │   ├── product-details # הצגת פרטי מוצר
+        │   │   ├── product-list   # רשימת מוצרים
+        │   │   ├── update-product # עדכון מוצר קיים
+        │   │   ├── product.routes.ts # נתיבים של מוצרים
+        │   ├── 📁 recipe          # ניהול מתכונים
+        │   │   ├── add-recipe     # הוספת מתכון
+        │   │   ├── recipe-list    # רשימת מתכונים
+        │   │   ├── recipe.routes.ts # נתיבים של מתכונים
+        │   ├── 📁 navbar          # תפריט הניווט של האתר
+        │   ├── 📁 home-page       # עמוד הבית של המקרר החכם
+        │   ├── 📁 chat            # מערכת צ'אט (אם יש)
+        │   ├── 📁 footer          # פוטר האתר
+        │
+        ├── 📁 model               # מודלים הנתונים של הפרויקט
+        │   ├── fridge.model.ts    # מבנה נתונים של מקרר
+        │   ├── note.model.ts      # מבנה נתונים של פתק
+        │   ├── product.model.ts   # מבנה נתונים של מוצר
+        │   ├── recipe.model.ts    # מבנה נתונים של מתכון
+        │
+        ├── 📁 pages               # דפים עיקריים ותוספות
+        │   ├── 📁 directives      # דיירקטיבות מותאמות אישית
+        │   │   ├── background-by-type.directive.ts  # שינוי צבע רקע לפי סוג
+        │   │   ├── expiry-highlight.directive.ts    # הדגשה למוצרים שפג תוקפם
+        │   ├── 📁 pipes           # Pipes מותאמות אישית
+        │   │   ├── location.pipe.ts  # שינוי פורמט מיקום
+        │   │   ├── truncate.pipe.ts  # קיצור טקסט ארוך
+        |   |
+        │   ├── project-overview   # עמוד שמסביר איך המערכת פועלת
+        │   ├── 🛡️ admin.guard.ts       # שמירת גישה למשתמשים מנהלים
+        |   ├── 🛡️ auth.guard.ts        # שמירת גישה למשתמשים מחוברים
+        │
+        ├── 📁 service             # שירותים לניהול הנתונים
+        │   ├── auth.service.ts    # ניהול התחברות משתמשים
+        │   ├── category.service.ts # ניהול קטגוריות מוצרים
+        │   ├── fridge.service.ts  # ניהול מקררים
+        │   ├── note.service.ts    # ניהול פתקים
+        │   ├── product.service.ts # ניהול מוצרים
+        │   ├── recipe.service.ts  # ניהול מתכונים
+        │
+        
+      
+       
+       
+      </pre>
     </div>
-
-    <div class="card">
-      <h2>📊 עבודה עם נתונים</h2>
-      <p>בפרויקט נעשה שימוש ב<strong>Services</strong> לניהול מוצרים, מקרר ופתקים, עם קריאות <strong>API</strong> (GET/POST) לשרת לקבלת ועדכון נתונים.</p>
-    </div>
-
-    <div class="card">
-      <h2>🛠️ שימוש ב-Pipe ו-Directive</h2>
-      <p>יצרתי <strong>Pipe אישי</strong> כדי לבדוק אם אני נמצאת במקרר או במקפיא, וגם לחיתוך טקסטים ארוכים. בנוסף, השתמשתי ב<strong>Directive</strong> המעניק צבע שונה לכל סוג פתק, מה שמסייע בזיהוי מהיר של הפתקים.</p>
-    </div>
-
-    <div class="card">
-      <h2>🔒 אבטחה והרשאות</h2>
-      <p>הגדרתי <strong>Guards</strong> להגבלת גישה לדפים רק למשתמשים מורשים, והשתמשתי ב<strong>JWT</strong> לאימות משתמשים, עם רמות הרשאה שונות למנהלים ולמשתמשים רגילים.</p>
-    </div>
-
-    <div class="card">
-      <h2>🔄 אינטרפטור להוספת טוקן</h2>
-      <p>בכל קריאה לשרת, אינטרפטור (Interceptor) מוסיף אוטומטית את <strong>הטוקן</strong> (Token) לאימות המשתמש, כדי להבטיח אבטחת מידע.</p>
-    </div>
-
-    <div class="card">
-      <h2>🍽️ אינטגרציה עם API חיצוני</h2>
-      <p>חיברתי את הפרויקט ל<strong>API חיצוני</strong> שמספק מתכונים על בסיס המוצרים שבמקרר שלי. מכיוון שהמתכונים מגיעים באנגלית, שילבתי API נוסף של <strong>Google Translate</strong> כדי לתרגם אותם לעברית.</p>
-    </div>
-
-    <div class="card">
-      <h2>✅ ולידציות ובדיקות טפסים</h2>
-      <p>כל הטפסים בפרויקט נבדקים עם <strong>ולידציות</strong>, כדי לוודא שהמשתמש מזין נתונים תקינים, וכדי למנוע שגיאות.</p>
-    </div>
-
-    <div class="card">
-      <h2>📡 תקשורת בין קומפוננטות</h2>
-      <p>השתמשתי ב<strong>Input/Output</strong> כדי להעביר מידע בין קומפוננטות שונות, כך שהמערכת פועלת בצורה דינמית ומגיבה לשינויים.</p>
-    </div>
-
   </div>
-</div>
+</body>
+
+</html>

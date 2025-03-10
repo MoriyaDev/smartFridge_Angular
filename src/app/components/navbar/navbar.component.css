@@ -25,14 +25,11 @@ html, body {
   box-sizing: border-box;
 }
 
-/* ============ */
-/*    ניווט 📌  */
-/* ============ */
 
 #navbar {
   position: fixed;
   top: 0;
-  right: 0; /* 📌 עכשיו הסרגל בצד ימין */
+  right: 0;
   width: 5em;
   height: 100vh;
   background: rgba(20, 20, 20, 0.7); /* רקע עם שקיפות */
@@ -52,9 +49,6 @@ html, body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* ============ */
-/*    אייקונים  */
-/* ============ */
 
 .navbar-items {
   margin: 0;
@@ -75,7 +69,6 @@ html, body {
   font-size: 1.1rem;
   text-decoration: none;
   transition: background var(--transition-main), box-shadow 0.3s;
-  /* border-radius: 10px; */
 }
 
 .navbar-item-inner:hover {
@@ -101,9 +94,6 @@ html, body {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 }
 
-/* =============== */
-/*    טקסט קישורים 📝 */
-/* =============== */
 
 .link-text {
   width: 0;
@@ -116,15 +106,13 @@ html, body {
 #navbar:hover .link-text {
   width: auto;
   opacity: 1;
-  padding-right: 1em; /* 📌 כיוונון לטקסט בצד ימין */
+  padding-right: 1em;
 }
 
-/* ============== */
-/*    תוכן הדף 📄 */
-/* ============== */
+
 
 #main {
-  margin-right: 5em; /* 📌 שינינו מ-margin-left ל-margin-right */
+  margin-right: 5em;
   padding: 2em;
   transition: margin-right var(--transition-main);
 }
@@ -133,9 +121,6 @@ html, body {
   margin-right: 16em;
 }
 
-/* =============== */
-/*    @media רספונסיבי 📱 */
-/* =============== */
 
 @media only screen and (max-width: 768px) {
   #navbar {

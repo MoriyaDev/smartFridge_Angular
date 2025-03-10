@@ -80,3 +80,47 @@ body {
   border-color: #34eb6b;
   box-shadow: 0 4px 12px rgba(52, 235, 107, 0.4);
 }
+.card:nth-child(10) {
+  border-color: #f79533;
+  box-shadow: 0 4px 12px rgba(247, 149, 51, 0.4);
+}
+
+.card:nth-child(11) {
+  border-color: #ef4e7b;
+  box-shadow: 0 4px 12px rgba(239, 78, 123, 0.4);
+}
+
+.card:nth-child(12) {
+  border-color: #5073b8;
+  box-shadow: 0 4px 12px rgba(80, 115, 184, 0.4);
+}
+
+.card:nth-child(4) {
+  border-color: #1098ad;
+  box-shadow: 0 4px 12px rgba(16, 152, 173, 0.4);
+}
+
+.card:nth-child(5) {
+  border-color: #6fba82;
+  box-shadow: 0 4px 12px rgba(111, 186, 130, 0.4);
+}
+
+.card:nth-child(6) {
+  border-color: #ffcc00;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+}
+
+.card:nth-child(7) {
+  border-color: #d66efd;
+  box-shadow: 0 4px 12px rgba(214, 110, 253, 0.4);
+}
+
+.card:nth-child(8) {
+  border-color: #ff5733;
+  box-shadow: 0 4px 12px rgba(255, 87, 51, 0.4);
+}
+
+.card:nth-child(9) {
+  border-color: #34eb6b;
+  box-shadow: 0 4px 12px rgba(52, 235, 107, 0.4);
+}
