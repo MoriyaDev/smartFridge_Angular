@@ -1,7 +1,6 @@
 <form [formGroup]="addProductForm" class="modal-form">
   <h2 class="text">🛒 הוסף מוצר</h2>
 
-  <!-- קטגוריה -->
   <div class="form-group">
     <label>קטגוריה</label>
     <select formControlName="categoryID" (change)="onCategoryChange($event)">
@@ -14,7 +13,6 @@
     }
   </div>
 
-  <!-- שם מוצר -->
   <div class="form-group">
     <label>שם מוצר</label>
     <input type="text" formControlName="name" required placeholder="לדוגמה: חלב">
@@ -23,7 +21,6 @@
     }
   </div>
 
-  <!-- תאריך תפוגה -->
   <div class="form-group">
     <label>תאריך תפוגה</label>
     <input type="date" formControlName="expiryDate" required>
@@ -33,7 +30,6 @@
     
   </div>
 
-  <!-- מיקום במקרר -->
   <div class="form-group">
     <label>מיקום במקרר</label>
     <select formControlName="location">
@@ -46,7 +42,6 @@
   </div>
 </form>
 
-<!-- כפתור הוספה -->
 <div class="buttons-container">
   <button class="testbutton" (click)="addProduct()" [disabled]="!addProductForm.valid">הוסף מוצר</button>
 </div>

@@ -1,22 +1,20 @@
 <div class="recipe-buttons-container">
-  <button class="recipe-button" (click)="fetchRecipesApiByProducts(productString)">  חיפוש מתכונים  GOOGLE</button>
+  <button class="bcolor" (click)="fetchRecipesApiByProducts(productString)"> חיפוש מתכונים GOOGLE</button>
   @if(isAdmin){
-  <button class="recipe-button" (click)="openRecipeModal()">הוסף מתכון</button>
+  <button class="bcolor" (click)="openRecipeModal()">הוסף מתכון</button>
   }
 
-  <!-- <button class="recipe-button" (click)="fetchRecipesByProducts(productString)">מצא מתכונים בשבילי</button> -->
 </div>
 
 
 <div class="modal-overlay" *ngIf="isRecipeModalOpen">
   <div class="modal-content">
-    <!-- כפתור סגירה -->
     <span class="close-button" (click)="closeRecipeModal()">&times;</span>
-    
-    <!-- קומפוננטת הוספת מתכון -->
+
     <app-add-recipe></app-add-recipe>
   </div>
 </div>
+
 <div class="title_container">
   <h2 class="title_page">מתכונים</h2>
 </div>
@@ -46,7 +44,6 @@
 
       <img [src]="recipe.image" alt="recipe image">
 
-
       <div class="ingredient-section">
         <h3>מוצרים משומשים:</h3>
         @if (recipe.usedIngredients.length > 0) {
@@ -73,8 +70,6 @@
         {{ recipe.instructions }}
       </div>
 
-
-
     </div>
   </div>
 </div>
@@ -91,17 +86,11 @@
 <div class="recipe-container">
   <div *ngFor="let recipe of recipes1" class="recipe-card">
 
-    <!-- כותרת המתכון -->
     <h2 class="recipe-title">{{ recipe.title }}</h2>
 
-    <!-- מספר מוצרים משומשים וחסרים -->
     <p class="info"><strong>מוצרים משומשים:</strong> {{ recipe.usedIngredientCount }}</p>
     <p class="info"><strong>מוצרים חסרים:</strong> {{ recipe.missedIngredientCount }}</p>
 
-    <!-- תמונת המתכון -->
-    <!-- <img [src]="'public/1.jpg'" alt="recipe image" class="recipe-image"> -->
-
-    <!-- רשימת מוצרים משומשים -->
     <div class="ingredient-section">
       <h3>מוצרים משומשים:</h3>
       <div *ngFor="let used of recipe.usedPro.split(',')">
@@ -109,7 +98,6 @@
       </div>
     </div>
 
-    <!-- רשימת מוצרים חסרים -->
     @if(recipe.missedIngredientCount > 0){
     <div class="ingredient-section missing">
       <h3>מוצרים חסרים:</h3>
@@ -119,7 +107,6 @@
     </div>
     }
 
-    <!-- הוראות הכנה -->
     <div class="instructions">
       <h3>הוראות הכנה:</h3>
       {{ recipe.instructions }}
@@ -131,50 +118,11 @@
 
 }
 
-<button 
-    class="chat-button"
-    (click)="toggleChat()"
-    [class.active]="isChatOpen">
-    <i class="fa fa-comments"></i>
-  </button>
 
-  <!-- Chat Window -->
-  <div class="chat-window" [class.open]="isChatOpen">
-    <div class="chat-container" *ngIf="isChatOpen">
-      <div class="chat-header">
-        <span>🤖 עוזר ההמרות</span>
-        <button (click)="toggleChat()">✖</button>
-      </div>
-      <div class="chat-body">
-        <div *ngFor="let message of chatMessages">
-          <div class="message" [ngClass]="message.sender">{{ message.text }}</div>
-        </div>
-      </div>
-      <div class="chat-footer">
-        <div class="input-group">
-          <label>כמות:</label>
-          <input type="number" [(ngModel)]="selectedAmount" min="1" max="100">
-        </div>
-        
-        <div class="input-group">
-          <label>יחידה:</label>
-          <select [(ngModel)]="selectedUnit">
-            @for (unit of units; track $index) {
-            <option >{{ unit }}</option>}
-          </select>
-        </div>
-        
-        <div class="input-group">
-          <label>מוצר:</label>
-          <select [(ngModel)]="selectedProductI">
-            @for (product of productsI; track $index) {
-            <option >{{ product }}</option>}
-          </select>
-        </div>
-        
-        
-        
-        <button (click)="sendMessage()">שלח</button>
-      </div>
-    </div>
-  </div>
+
+
+<button class="chat-button" (click)="chat.toggleChat()">
+  <span class="material-icons">calculate</span>
+</button>
+
+<app-chat #chat></app-chat>

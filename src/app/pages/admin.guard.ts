@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+
 import { AuthService } from '../service/auth.service';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class AdminGuard implements CanActivate {
     if (this.authService.isAdmin()) {
       return true;
     } else {
-      this.router.navigate(['/home']); // משתמש רגיל ינותב לדף הבית
+      this.router.navigate(['/home']);
       return false;
     }
   }

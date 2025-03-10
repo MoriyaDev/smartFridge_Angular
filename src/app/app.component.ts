@@ -19,7 +19,6 @@ import { NavbarComponent } from '../app/components/navbar/navbar.component';
 export class AppComponent implements OnInit {
   currentFridge: any = null;
 
-  // ✅ הזרקת ה-TitleService בקונסטרקטור
   constructor(private titleService: Title) {}
 
   ngOnInit() {

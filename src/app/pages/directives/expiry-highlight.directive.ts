@@ -23,10 +23,8 @@ export class ExpiryHighlightDirective implements OnInit {
     const diffDays = diffTime / (1000 * 3600 * 24);
 
     if (diffDays < 0) {
-      // מוצר שפג תוקפו
       this.renderer.addClass(this.el.nativeElement, 'expired');
     } else if (diffDays <= 3) {
-      // מוצר שעומד לפוג
       this.renderer.addClass(this.el.nativeElement, 'expiring');
     }
   }

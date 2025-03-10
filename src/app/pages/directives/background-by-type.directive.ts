@@ -14,23 +14,22 @@ export class BackgroundByTypeDirective implements OnChanges {
 
     switch (this.noteType) {
       case 'תזכורת':
-        bgColor = '#d1f4ff'; // רקע תכלת
-        borderColor = '#00bcd4'; // גבול כחול
+        bgColor = '#d1f4ff'; 
+        borderColor = '#00bcd4'; 
         break;
       case 'משימה':
-        bgColor = '#d1ffd1'; // רקע ירוק
-        borderColor = '#4caf50'; // גבול ירוק כהה
+        bgColor = '#d1ffd1'; 
+        borderColor = '#4caf50'; 
         break;
       case 'אירוע':
-        bgColor = '#ffd1d1'; // רקע אדום בהיר
-        borderColor = '#f44336'; // גבול אדום כהה
+        bgColor = '#ffd1d1'; 
+        borderColor = '#f44336'; 
         break;
       default:
-        bgColor = '#'; // ברירת מחדל
+        bgColor = '#';
         borderColor = '#666';
     }
 
-    // שינוי צבע רקע
     this.renderer.setStyle(this.el.nativeElement, 'background', bgColor);
     this.renderer.setStyle(this.el.nativeElement, 'border-left', `5px solid ${borderColor}`);
     this.renderer.setStyle(this.el.nativeElement, 'padding', '10px');

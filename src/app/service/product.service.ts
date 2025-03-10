@@ -1,11 +1,14 @@
+import { Observable } from 'rxjs';
+
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
 import {Product} from '../model/product.model';
 
 @Injectable({
     providedIn: 'root'
 })
+
 export class ProductService {
 
     baseUrl = 'https://localhost:7194/api/Products';

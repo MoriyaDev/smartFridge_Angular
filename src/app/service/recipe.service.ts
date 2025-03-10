@@ -1,19 +1,16 @@
+import {  Observable } from 'rxjs';
+
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../model/recipe.model';
-import { Product } from '../model/product.model';
 
 @Injectable({
     providedIn: 'root'
 })
+
 export class RecipeService {
 
     baseUrl = 'https://localhost:7194/api/recipes';
-    // https://localhost:7194/api/recipes/bypro?ingredients=%D7%97%D7%9C%D7%91
-
-    // https://localhost:7194/api/recipes/findByIngredients?ingredients=%D7%97%D7%9C%D7%91&number=2
-
 
     constructor(private _http: HttpClient) { }
     getRecipeByProductsApiFromServer(products: string): Observable<Recipe[]> {
@@ -29,10 +26,5 @@ export class RecipeService {
     addRecipeFromServer(recipe: Recipe): Observable<{ message: string }> {
         return this._http.post<{ message: string }>(`${this.baseUrl}/add`, recipe);
     }
-    
-
-
-
-
 
 }

@@ -1,11 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { AuthService } from './service/auth.service';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 
 export const tokenInterceptor: HttpInterceptorFn = (request, next) => {
-  const authService = inject(AuthService);
+
   const isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   if (request.url.startsWith("https://localhost:7194/")) {
@@ -23,7 +22,6 @@ export const tokenInterceptor: HttpInterceptorFn = (request, next) => {
         },
       });
 
-      console.log("✅ בקשה עם טוקן:", clonedRequest.headers.get('Authorization'));
       return next(clonedRequest);
     }
     

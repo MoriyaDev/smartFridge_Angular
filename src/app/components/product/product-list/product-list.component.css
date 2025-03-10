@@ -1,8 +1,7 @@
-/* Base Fridge Styling with Enhanced 3D Effects */
 .fridge-container {
   width: 85%;
-  margin-left: auto;  /* שינוי מ-margin-right ל-margin-left כדי ליצור מרווח בצד ימין */
-  margin-right: 7%;  /* מרווח גדול יותר בצד ימין עבור סרגל הניווט */
+  margin-left: auto; 
+  margin-right: 7%;  
   margin-top: 30px;
   margin-bottom: 30px;
   background: linear-gradient(145deg, #303030, #1a1a1a);
@@ -21,7 +20,6 @@
   transition: all 0.5s ease;
 }
 
-/* Fridge Door Handle */
 .fridge-container::before {
   content: "";
   position: absolute;
@@ -35,7 +33,6 @@
   box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced Shelves with Glass Effect */
 .shelf {
   display: flex;
   justify-content: space-around;
@@ -47,7 +44,6 @@
   perspective: 800px;
 }
 
-/* Glass shelf effect */
 .shelf::after {
   content: "";
   position: absolute;
@@ -65,7 +61,6 @@
   backdrop-filter: blur(3px);
 }
 
-/* Shelf supports */
 .shelf::before {
   content: "";
   position: absolute;
@@ -78,7 +73,6 @@
   z-index: -1;
 }
 
-/* Enhanced product items */
 .pro-item {
   display: flex;
   flex-direction: column;
@@ -106,7 +100,6 @@
   transition: transform 0.1s ease;
 }
 
-/* Click effect animation */
 @keyframes clickEffect {
   0% { transform: scale(1); }
   50% { transform: scale(0.95); }
@@ -117,7 +110,6 @@
   animation: clickEffect 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Enhanced product title - now clickable */
 .product-title {
   background: rgba(0, 0, 0, 0.7);
   padding: 8px 15px;
@@ -165,7 +157,6 @@
   z-index: 2;
 }
 
-/* Enhanced expiring product styling */
 .expiring {
   position: relative;
   border: 4px solid rgba(255, 204, 0, 0.8);
@@ -181,7 +172,6 @@
   100% { box-shadow: 0 0 15px rgba(255, 204, 0, 0.8); }
 }
 
-/* Enhanced expired product styling */
 .expired {
   filter: grayscale(90%) brightness(0.7);
   transform-style: preserve-3d;
@@ -211,15 +201,8 @@
   background-position: center;
 }
 
-
-
-
-
-
-/* Enhanced Search Container */
 .search-container {
-  margin-right: 8%;  /* מרווח גדול יותר בצד ימין עבור סרגל הניווט */
-
+  margin-right: 8%;  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -227,13 +210,11 @@
   padding: 15px;
   border-radius: 12px;
   margin-bottom: 20px;
-  /* margin-top: 4%; */
   width: 85%;
   gap: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-  /* margin: 0 auto 20px auto; */
 }
 
 .search-container::after {
@@ -341,9 +322,8 @@
   left: 130%;
 }
 
-/* Enhanced Add Product Button */
 .add-pro-button {
-  position: absolute; /* שינוי מ-fixed ל-absolute כדי למקם ביחס למיכל המקרר */
+  position: absolute; 
   top: 25px;
   left: 25px;
   color: #fff;
@@ -411,7 +391,6 @@
   transform: translateY(1px) scale(0.98);
 }
 
-/* Enhanced Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;

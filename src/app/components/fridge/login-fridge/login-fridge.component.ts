@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { FridgeService } from '../../../service/fridge.service';
 import { AuthService } from '../../../service/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-fridge',
@@ -10,21 +11,22 @@ import { Router } from '@angular/router';
   templateUrl: './login-fridge.component.html',
   styleUrl: './login-fridge.component.css'
 })
+
 export class LoginFridgeComponent {
+
   public loginForm!: FormGroup;
-  existingNames: string[] = []; 
-  nameNotFound: boolean = false; 
+  existingNames: string[] = [];
+  nameNotFound: boolean = false;
   wrongPassword: boolean = false;
 
   constructor(private _fridgeService: FridgeService, private router: Router,
-    private _authService: AuthService) {}
+    private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       'name': new FormControl('', Validators.required),
       'password': new FormControl('', Validators.required)
     });
-
     this._fridgeService.getFridgesFromServer().subscribe(fridges => {
       this.existingNames = fridges.map((fridge: any) => fridge.name);
     });
@@ -33,11 +35,10 @@ export class LoginFridgeComponent {
   login() {
     const loginData = this.loginForm.value;
     const username = loginData.name;
-    const password = loginData.password;
 
     if (!this.existingNames.includes(username)) {
       this.nameNotFound = true;
-      this.wrongPassword = false; 
+      this.wrongPassword = false;
       return;
     }
 
@@ -55,7 +56,7 @@ export class LoginFridgeComponent {
         this.nameNotFound = false;
       }
     });
-    
+
   }
 
   signup() {

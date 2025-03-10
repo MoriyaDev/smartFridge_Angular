@@ -3,6 +3,4 @@ export class Fridge{
     name!: string;
     password!: string;
     
-
-
 }

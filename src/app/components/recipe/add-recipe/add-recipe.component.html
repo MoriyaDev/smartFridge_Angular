@@ -8,28 +8,23 @@
       </div>
       }
   
-      <!-- טופס הוספת מתכון (מוצג רק למנהלים) -->
       <form [formGroup]="addRecipeForm" (ngSubmit)="submitRecipe()" class="modal-form">
   
-          <!-- שם המתכון -->
           <div class="form-group">
             <label for="title">📌 שם המתכון</label>
             <input id="title" type="text" formControlName="title" placeholder="לדוגמה: פסטה ברוטב עגבניות">
           </div>
   
-          <!-- רשימת מוצרים -->
           <div class="form-group">
             <label for="products">🛒 מוצרים</label>
             <textarea id="products" formControlName="products" placeholder="לדוגמה: פסטה, עגבניות, שום..."></textarea>
           </div>
   
-          <!-- הוראות הכנה -->
           <div class="form-group">
             <label for="instructions">📖 הוראות הכנה</label>
             <textarea id="instructions" formControlName="instructions" placeholder="איך מכינים?"></textarea>
           </div>
   
-          <!-- כפתור שליחה -->
           <div class="buttons-container">
             <button type="submit" class="testbutton" [disabled]="addRecipeForm.invalid">➕ הוסף מתכון</button>
           </div>

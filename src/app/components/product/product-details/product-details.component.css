@@ -1,4 +1,3 @@
-/* רקע מטושטש */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -13,7 +12,6 @@
   z-index: 2000;
 }
 
-/* קופסת הטופס */
 .modal-container {
   background: rgba(30, 30, 30, 0.95);
   padding: 40px;
@@ -29,7 +27,6 @@
   overflow: hidden;
 }
 
-/* אפקט הילה מסביב לקופסא */
 .modal-container::before {
   content: "";
   position: absolute;
@@ -52,7 +49,6 @@
   100% { opacity: 0.7; filter: blur(15px) hue-rotate(120deg); }
 }
 
-/* כפתור סגירה */
 .close-button {
   position: absolute;
   top: 15px;
@@ -100,7 +96,6 @@
   100% { filter: hue-rotate(360deg); }
 }
 
-/* שם המוצר - גדול יותר */
 .text {
   text-align: center;
   font-size: 26px;
@@ -117,7 +112,6 @@
   to { background-position: 200% center; }
 }
 
-/* פס דקורטיבי מתחת לכותרת */
 .text::after {
   content: "";
   display: block;
@@ -138,7 +132,6 @@
   100% { opacity: 0.5; width: 40%; }
 }
 
-/* תמונת הקטגוריה - עיצוב משופר */
 .modal-image-container {
   width: 85%;
   height: 140px;
@@ -146,18 +139,12 @@
   background-size: cover;
   background-position: center;
   margin: 0 auto;
-  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */
-  /* border: 2px solid rgba(255, 255, 255, 0.1); */
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
 }
 
-/* .modal-image-container:hover {
-  transform: scale(1.03);
-} */
 
-/* אפקט זוהר על התמונה */
 .modal-image-container::after {
   content: "";
   position: absolute;
@@ -181,7 +168,6 @@
   100% { left: 100%; }
 }
 
-/* פרטי המוצר - עיצוב נקי וברור */
 .modal-info {
   text-align: center;
   font-size: 18px;
@@ -189,7 +175,6 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* background: rgba(0, 0, 0, 0.2); */
   padding: 15px;
   border-radius: 12px;
   border-left: 3px solid rgba(86, 216, 228, 0.5);
@@ -223,7 +208,6 @@
   transform: translateX(-3px);
 }
 
-/* כפתורים */
 .buttons-container {
   display: flex;
   flex-direction: column;
@@ -250,7 +234,6 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* מסגרת צבעונית מתחלפת */
 .testbutton::before {
   content: "";
   position: absolute;
@@ -265,7 +248,6 @@
   transition: opacity 0.4s ease;
 }
 
-/* אפקט גלישה לכפתור */
 .testbutton::after {
   content: "";
   position: absolute;
@@ -282,7 +264,6 @@
   left: 130%;
 }
 
-/* כשהעכבר עובר */
 .testbutton:hover::before {
   opacity: 0.8;
   animation: borderRotate 2s linear infinite;
@@ -302,7 +283,6 @@
   transform: translateY(1px) scale(0.98);
 }
 
-/* כפתור מחיקה - עיצוב מיוחד */
 .delete-btn {
   background: rgba(20, 20, 20, 0.9);
 }

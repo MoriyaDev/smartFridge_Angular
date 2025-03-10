@@ -1,16 +1,20 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Fridge } from '../model/fridge.model';
-import { HttpClient } from '@angular/common/http';
-import { Product } from '../model/product.model';
+
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+
+import { Product } from '../model/product.model';
+import { Fridge } from '../model/fridge.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FridgeService {
+
   private isBrowser: boolean;
-  private currentFridge: any = null;
   private basicUrl = 'https://localhost:7194/api/Fridges/';
 
   private fridge$ = new BehaviorSubject<any>(null);
@@ -22,7 +26,7 @@ export class FridgeService {
   ) { 
     this.isBrowser = isPlatformBrowser(this.platformId);
 
-    if (this.isBrowser) {  // ✅ בדיקה אם הקוד רץ בצד הלקוח לפני גישה ל-localStorage
+    if (this.isBrowser) {  
       const savedFridge = localStorage.getItem("selectedFridge");
       if (savedFridge) {
         const fridgeData = JSON.parse(savedFridge);

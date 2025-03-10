@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors ,ReactiveFormsModule} from '@angular/forms';
+
 import { ProductService } from '../../../service/product.service';
-import { CommonModule } from '@angular/common';
 import { FridgeService } from '../../../service/fridge.service';
 import { Product } from '../../../model/product.model';
 
@@ -12,26 +11,25 @@ import { Product } from '../../../model/product.model';
   styleUrls: ['./update-product.component.css'],
   imports: [ReactiveFormsModule]
 })
+
 export class UpdateProductComponent implements OnInit, OnChanges {
-  @Input() product!: Product; // מקבל את המוצר לעריכה
-  @Output() updateSuccess = new EventEmitter<Product>(); // אירוע שמתבצע כאשר המוצר מתעדכן בהצלחה
-  @Output() cancel = new EventEmitter<void>(); // אירוע לסגירת המודל
+
+  @Input() product!: Product;
+  @Output() updateSuccess = new EventEmitter<Product>(); 
+  @Output() cancel = new EventEmitter<void>(); 
 
   updateProductForm!: FormGroup;
-  currentFridge: any = null; // שמירת המקרר הנוכחי
+  currentFridge: any = null; 
 
   constructor(private _productService: ProductService, private _fridgeService: FridgeService) {}
 
   ngOnInit() {
-
-    // ✅ נוודא שהמקרר נטען **לפני** שנטען הטופס
     this._fridgeService.getFridgeObservable().subscribe(fridge => {
       if (fridge) {
         this.currentFridge = fridge;
       }
     });
-
-    this.initForm(); // יצירת הטופס
+    this.initForm(); 
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -53,30 +51,28 @@ export class UpdateProductComponent implements OnInit, OnChanges {
         Validators.minLength(2),
         Validators.maxLength(20)
       ]),
-      // amount: new FormControl('', [Validators.required, Validators.min(1)]),
-      // unit: new FormControl('', Validators.required),
+
       expiryDate:new FormControl('',Validators.required),
       categoryID: new FormControl('', Validators.required),
       location: new FormControl('', Validators.required),
-      // image: new FormControl('')
     });
 
     if (this.product) {
       this.updateProductForm.patchValue({
         ...this.product,
-        expiryDate: this.formatDateForInput(this.product.expiryDate) // ✅ שמירה על פורמט תקין
+        expiryDate: this.formatDateForInput(this.product.expiryDate) 
       });
     }
   }
 
    futureDateValidator(control: AbstractControl): ValidationErrors | null {
-      if (!control.value) return null; // אם השדה ריק, לא נבצע בדיקה
+      if (!control.value) return null;
     
       const today = new Date().toISOString().split('T')[0];
-      return control.value < today ? { 'pastDate': true } : null; // ודא שהמפתח pastDate הוא string
+      return control.value < today ? { 'pastDate': true } : null; 
     }
   formatDateForInput(date: any): string {
-    if (!date) return ''; // אם אין תאריך, נחזיר מחרוזת ריקה כדי למנוע שגיאות
+    if (!date) return '';
     const formattedDate = new Date(date).toISOString().split('T')[0];
     return formattedDate;
   }
@@ -87,7 +83,7 @@ export class UpdateProductComponent implements OnInit, OnChanges {
       const updatedProduct: Product = {
         ...this.product,
         ...this.updateProductForm.value,
-        expiryDate: new Date(this.updateProductForm.value.expiryDate) // ✅ תאריך בפורמט נכון
+        expiryDate: new Date(this.updateProductForm.value.expiryDate)
       };
   
       this._productService.updateProductFromServer(this.product.id, updatedProduct).subscribe({
@@ -98,7 +94,7 @@ export class UpdateProductComponent implements OnInit, OnChanges {
             this._productService.getProductsByFridgeIdFromServer(this.currentFridge.id).subscribe({
               next: (products: Product[]) => {
                 console.log("🔄 רשימת המוצרים רועננה!", products);
-                this._fridgeService.updateProducts(products); // ✅ עדכון המוצרים ב-FridgeService
+                this._fridgeService.updateProducts(products); 
   
                 this.updateSuccess.emit(updatedProduct);
   

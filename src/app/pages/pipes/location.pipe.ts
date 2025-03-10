@@ -9,6 +9,6 @@ export class LocationPipe implements PipeTransform {
       'Fridge': 'מקרר',
       'Freezer': 'מקפיא'
     };
-    return locationMap[value] || value; // אם יש מיקום אחר, הוא יוצג כמו שהוא
+    return locationMap[value] || value; 
   }
 }

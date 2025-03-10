@@ -30,7 +30,7 @@ body {
   width: 90%;
   max-width: 400px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
-              0 0 40px rgba(255, 255, 255, 0.05);
+    0 0 40px rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
@@ -48,8 +48,13 @@ body {
 }
 
 @keyframes glow {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 h2.text {
@@ -126,8 +131,13 @@ input:focus {
 }
 
 @keyframes shine {
-  0% { transform: translateX(-100%) rotate(30deg); }
-  100% { transform: translateX(100%) rotate(30deg); }
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
 }
 
 .testbutton:hover {

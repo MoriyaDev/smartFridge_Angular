@@ -1,14 +1,19 @@
-import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { FridgeService } from '../service/fridge.service';
+
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
+
+
+import { FridgeService } from '../service/fridge.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService   {
+
   private isBrowser: boolean;
   private currentFridge: any = null;
 
@@ -18,9 +23,7 @@ export class AuthService   {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  // isAuthenticated$ = new BehaviorSubject<boolean>(false);
-  // private isLoggedInSubject = new BehaviorSubject<boolean>(this.checkLoginStatus());
-  // isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+
   constructor(
     private _httpClient: HttpClient,
     private _fridgeService: FridgeService,
@@ -29,27 +32,18 @@ export class AuthService   {
 
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
-    // בדיקת סטטוס התחברות כבר בקונסטרקטור
     this.checkAndUpdateAuthStatus();
   }
-
-  // ngOnInit() {
-  //   if (this.isBrowser && localStorage.getItem('appSession')) {
-  //     this.isAuthenticated$.next(true);
-  //   }
-  // }
 
   private checkAndUpdateAuthStatus(): void {
     if (this.isBrowser) {
       const session = localStorage.getItem('appSession');
       if (session) {
         const parsed = JSON.parse(session);
-        // בדיקה אם הטוקן תקף (לא פג תוקף)
         if (this.isTokenValid(parsed.token)) {
           this.isLoggedInSubject.next(true);
           return;
         } else {
-          // אם הטוקן לא תקף, מנקים את ה-localStorage
           localStorage.removeItem('appSession');
         }
       }
@@ -62,7 +56,7 @@ export class AuthService   {
     
     try {
       const tokenData = JSON.parse(atob(token.split('.')[1]));
-      const expirationTime = tokenData.exp * 1000; // המרה למילישניות
+      const expirationTime = tokenData.exp * 1000; 
       return Date.now() < expirationTime;
     } catch (e) {
       console.error('שגיאה בניתוח הטוקן:', e);

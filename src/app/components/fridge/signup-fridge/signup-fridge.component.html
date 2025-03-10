@@ -8,11 +8,11 @@
         <input id="name" type="text" formControlName="name" required>
 
         @if (nameExists) {
-          <small class="error">שם משתמש זה כבר קיים, אנא בחר שם אחר.</small>
+        <small class="error">שם משתמש זה כבר קיים, אנא בחר שם אחר.</small>
         }
 
         @if (signupForm.get('name')?.hasError('required') && signupForm.get('name')?.touched) {
-          <small class="error">יש להזין שם משתמש.</small>
+        <small class="error">יש להזין שם משתמש.</small>
         }
       </div>
 
@@ -21,11 +21,11 @@
         <input id="password" type="password" formControlName="password" required>
 
         @if (signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched) {
-          <small class="error"> הסיסמה חייבת להכיל לפחות 3 תווים.</small>
+        <small class="error"> הסיסמה חייבת להכיל לפחות 3 תווים.</small>
         }
 
         @if (signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched) {
-          <small class="error">יש להזין סיסמה.</small>
+        <small class="error">יש להזין סיסמה.</small>
         }
       </div>
     </form>

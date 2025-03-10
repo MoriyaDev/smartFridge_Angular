@@ -1,5 +1,3 @@
-
-
 <div class="title_container">
   <h2 class="title_page">מוצרים ב-{{ location | locationTranslate }}</h2>
 </div>
@@ -15,7 +13,6 @@
 
   <input type="text" placeholder="חפש מוצר..." [(ngModel)]="searchQuery" (input)="filterProducts()">
 
-  <!-- 🔹 נורה עם כפתור הדלקה/כיבוי -->
   <div class="fridge-light-container">
     <div class="fridge-light-strip">
       <div *ngFor="let dot of lightDots" [class.on]="isLightOn" class="light-dot"></div>
@@ -25,50 +22,24 @@
       {{ isLightOn ? '⚪ למצב שבת' : '⚫ למצב רגיל' }}
     </button>
   </div>
-
-
-  <!-- כפתור הדלקת אור -->
-
-
 </div>
 
 
-
-
-
-
-
-<!-- קונטיינר של המקרר -->
 <div class="fridge-container" [ngClass]="{ 'freezer-background': location === 'Freezer' }">
-  <!-- <div class="fridge-light"></div> נורה למעלה -->
-<div class="freezer-background">
-  <div class="large-flakes"></div>
-</div>
+  <div class="freezer-background">
+    <div class="large-flakes"></div>
+  </div>
   <div class="fridge-content">
     <button class="add-pro-button" (click)="toggleAddProductModal()">➕ הוסף מוצר</button>
 
 
-    <!-- מדפים של המקרר -->
     <div class="shelf" *ngFor="let shelf of shelves">
       @for (pro of shelf; track $index) {
-      <div class="pro-item" 
-             [ngStyle]="{'background-image': getCategoryBackground(pro.categoryID),
+      <div class="pro-item" [ngStyle]="{'background-image': getCategoryBackground(pro.categoryID),
                          'background-size': 'contain',
                          'background-position': 'bottom center',
-                         'background-repeat': 'no-repeat'}"
-                   appExpiryHighlight [expiryDate]="pro.expiryDate"      >
+                         'background-repeat': 'no-repeat'}" appExpiryHighlight [expiryDate]="pro.expiryDate">
 
-        <!-- 
-        <div class="shelf" *ngFor="let shelf of shelves">
-          @for (pro of shelf; track $index) {
-          <div appExpiryHighlight [expiryDate]="pro.expiryDate" 
-                 [ngStyle]="{'background-image': getCategoryBackground(pro.categoryID),
-                             'background-size': 'contain',
-                             'background-position': 'bottom center',
-                             'background-repeat': 'no-repeat'}">
-    
-           -->
-    
 
         <button class="product-title" (click)="showDetails(pro)">
           <h3>{{ pro.name }}</h3>
@@ -76,13 +47,10 @@
       </div>
       }
 
-
-
     </div>
   </div>
 </div>
 
-<!-- מודל הוספת מוצר -->
 <div class="modal-overlay" *ngIf="isAddProductModalOpen">
   <div class="modal-container">
     <span class="close-button" (click)="toggleAddProductModal()">&times;</span>
@@ -91,19 +59,10 @@
   </div>
 </div>
 
-
-<!-- מודל פרטי מוצר -->
 <app-product-details [isOpen]="isModalOpen" (close)="closeModal()" (updateSuccess)="onProductUpdated($event)"
   (delete)="deleteProduct($event)">
 </app-product-details>
 
-<!-- מודל פרטי מוצר -->
-<app-product-details 
-  [product]="selectedProduct" 
-  [isOpen]="isModalOpen" 
-  (close)="closeModal()"
-  (updateSuccess)="onProductUpdated($event)"
-  (delete)="deleteProduct($event)">
+<app-product-details [product]="selectedProduct" [isOpen]="isModalOpen" (close)="closeModal()"
+  (updateSuccess)="onProductUpdated($event)" (delete)="deleteProduct($event)">
 </app-product-details>
-
-  

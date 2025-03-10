@@ -1,6 +1,9 @@
+import { Observable, map, take } from 'rxjs';
+
+
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
-import { Observable, map, take } from 'rxjs';
+
 import { AuthService } from '../service/auth.service';
 
 @Injectable({
@@ -20,7 +23,6 @@ export class AuthGuard implements CanActivate {
           return true;
         }
         
-        // אם המשתמש לא מחובר, מעבירים אותו לדף ההתחברות
         return this.router.createUrlTree(['/login']);
       })
     );

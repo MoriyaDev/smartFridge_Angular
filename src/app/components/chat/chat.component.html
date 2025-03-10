@@ -1,0 +1,42 @@
+<div class="chat-window" [class.open]="isChatOpen">
+    <div class="chat-container" *ngIf="isChatOpen">
+      <div class="chat-header">
+        <span>🤖 עוזר ההמרות</span>
+        <button (click)="toggleChat()">✖</button>
+      </div>
+      
+      <div class="chat-body">
+        @for (item of chatMessages; track item) {
+          <div class="message" [ngClass]="item.sender">{{ item.text }}</div>
+        }
+      </div>
+  
+      <div class="chat-footer">
+        <div class="input-group">
+          <label>כמות:</label>
+          <input type="number" [(ngModel)]="selectedAmount" min="1" max="100">
+        </div>
+  
+        <div class="input-group">
+          <label>יחידה:</label>
+          <select [(ngModel)]="selectedUnit">
+            @for (unit of units; track unit) {
+              <option>{{ unit }}</option>
+            }
+          </select>
+        </div>
+  
+        <div class="input-group">
+          <label>מוצר:</label>
+          <select [(ngModel)]="selectedProductI">
+            @for (product of productsI; track product) {
+              <option>{{ product }}</option>
+            }
+          </select>
+        </div>
+  
+        <button (click)="sendMessage()">שלח</button>
+      </div>
+    </div>
+  </div>
+  
