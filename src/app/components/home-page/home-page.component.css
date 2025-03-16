@@ -1,4 +1,3 @@
-/* 🌑 עיצוב כללי */
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap');
 
 body {
@@ -14,11 +13,9 @@ body {
   font-family: 'Heebo', Arial, sans-serif;
 }
 
-/* 🏠 מבנה הדף */
 .home-container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  /* צד ימין, מקרר, צד שמאל */
   width: 90%;
   max-width: 1400px;
   margin: 0 auto;
@@ -29,14 +26,12 @@ body {
   position: relative;
 }
 
-/* 📌 צד ימין */
 .right-section {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-/* 📊 צד שמאל - גרף */
 .left-section {
   display: flex;
   flex-direction: column;
@@ -44,7 +39,6 @@ body {
   gap: 50px;
 }
 
-/* 📌 כרטיסים כלליים */
 .card {
   border-radius: 16px;
   padding: 25px;
@@ -71,38 +65,31 @@ body {
 
 
 
-/* מסגרות צבעוניות לכל כרטיס */
 .right-section .card:nth-child(1) {
   border-color: #f79533;
   box-shadow: 0 4px 12px rgba(247, 149, 51, 0.4);
-  /* צל בצבע תואם */
 }
 
 .right-section .card:nth-child(2) {
   border-color: #ef4e7b;
   box-shadow: 0 4px 12px rgba(239, 78, 123, 0.4);
-  /* צל בצבע תואם */
 }
 
 .right-section .card:nth-child(3) {
   border-color: #5073b8;
   box-shadow: 0 4px 12px rgba(80, 115, 184, 0.4);
-  /* צל בצבע תואם */
 }
 
 .right-section .card:nth-child(4) {
   border-color: #1098ad;
   box-shadow: 0 4px 12px rgba(16, 152, 173, 0.4);
-  /* צל בצבע תואם */
 }
 
 .right-section .card:nth-child(5) {
   border-color: #6fba82;
   box-shadow: 0 4px 12px rgba(111, 186, 130, 0.4);
-  /* צל בצבע תואם */
 }
 
-/* 📝 עיצוב הפתקים עם אפקט סלוטייפ */
 .note {
   background: #fff8d1;
   padding: 20px;
@@ -121,7 +108,6 @@ body {
   transform: rotate(0deg) scale(1.03);
 }
 
-/* 🎗️ אפקט סלוטייפ */
 .note::before,
 .note::after {
   content: "";
@@ -145,7 +131,6 @@ body {
   transform: translateX(-50%) rotate(5deg);
 }
 
-/* 📝 כותרות וטקסט בפתקים */
 .note h2 {
   font-size: 1.2em;
   color: #444;
@@ -191,7 +176,6 @@ body {
   line-height: 1.5;
 }
 
-/* 🎨 כפתורים */
 .testbutton {
   border: none;
   padding: 12px 24px;
@@ -227,13 +211,11 @@ body {
   }
 }
 
-/* אנימציה כשהעכבר עובר */
 .testbutton:hover {
   transform: scale(1.08);
   box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* הכפתור הפנימי */
 .testbutton:after {
   content: attr(data-label);
   text-align: center;
@@ -258,7 +240,6 @@ body {
   background-color: rgb(25, 26, 30);
 }
 
-/* ❄️ עיצוב מקרר */
 .fridge-container {
   display: flex;
   justify-content: center;
@@ -284,7 +265,6 @@ body {
   transform: scale(1.02);
 }
 
-/* 🏠 דלתות מקרר */
 .fridge-section {
   width: 100%;
   position: absolute;
@@ -310,7 +290,6 @@ body {
   border-radius: 0 0 20px 20px;
 }
 
-/* 🖐️ ידיות מקרר */
 .handle {
   position: absolute;
   left: 15px;
@@ -330,7 +309,6 @@ body {
   top: 100px;
 }
 
-/* אפקט הצל מאחורי הידית */
 .handle::after {
   content: "";
   position: absolute;
@@ -342,7 +320,6 @@ body {
   border-radius: 0 10px 10px 0;
 }
 
-/* 🔄 פתיחת הדלתות */
 .refrigerator:hover {
   transform: rotateY(110deg);
   opacity: 0.2;
@@ -365,7 +342,6 @@ body {
   margin: 10px 0;
 }
 
-/* ❄️ תמונות פנים המקרר והמקפיא */
 .shelves {
   position: absolute;
   width: 90%;
@@ -379,32 +355,27 @@ body {
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-/* 📌 תמונה של פנים המקרר */
 .fridge-content {
   top: 3%;
   height: 60%;
   bottom: 16%;
 }
 
-/* 📌 תמונה של פנים המקפיא */
 .freezer-content {
   bottom: 5%;
   height: 40%;
 }
 
-/* 🔄 כשהמקרר נפתח – מציג את התמונה שלו */
 .refrigerator:hover~.fridge-content {
   opacity: 1;
   transform: scale(1);
 }
 
-/* 🔄 כשהמקפיא נפתח – מציג את התמונה שלו */
 .freezer:hover~.freezer-content {
   opacity: 1;
   transform: scale(1);
 }
 
-/* עיצוב דף ברוכים הבאים */
 .welcome-container {
   text-align: center;
   background-color: rgba(37, 42, 63, 0.7);
@@ -465,7 +436,6 @@ body {
   box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
 }
 
-/* Weather & Clock Card */
 .weather-clock {
   display: flex;
   flex-direction: column;
@@ -490,7 +460,6 @@ body {
   transform: scale(1.03);
 }
 
-/* מידיה קוורי לתמיכה במסכים קטנים יותר */
 @media (max-width: 1200px) {
   .home-container {
     grid-template-columns: 1fr 1fr;

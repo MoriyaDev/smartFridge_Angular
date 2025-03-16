@@ -24,11 +24,11 @@
   <div class="form-group">
     <label>תאריך תפוגה</label>
     <input type="date" formControlName="expiryDate" required>
-    @if (addProductForm.get('expiryDate')?.errors?.['pastDate']) {
-      <small class="error">תאריך תפוגה לא יכול להיות בעבר</small>
-    }
     
-  </div>
+    @if (addProductForm.get('expiryDate')?.errors?.['pastDate']) {
+      <small class="error">⚠️ תאריך תפוגה לא יכול להיות בעבר</small>
+    }
+</div>
 
   <div class="form-group">
     <label>מיקום במקרר</label>

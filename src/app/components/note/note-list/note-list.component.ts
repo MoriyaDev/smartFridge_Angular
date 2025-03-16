@@ -65,7 +65,6 @@ export class NoteListComponent {
 
   toggleAddNote() {
     this.showAddNote = !this.showAddNote;
-    console.log("🔄 מצב מודל הוספת פתק:", this.showAddNote);
   }
 
 

@@ -23,6 +23,16 @@ export class AddProductComponent {
   isConfirmOpen: boolean = false; 
   productToAdd: any = null; 
 
+  static futureDateValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) return null;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(control.value);
+
+    return selectedDate < today ? { 'pastDate': true } : null;
+  }
+
   constructor(private _productService: ProductService,
     private _fridgeService: FridgeService,
     private _categoryService: CategoryService) { }
@@ -48,7 +58,10 @@ export class AddProductComponent {
       ]),
       'fridgeId': new FormControl<number | null>(this.currentFridge?.id ?? null, Validators.required),
       'categoryID': new FormControl<string | number>(this.categories.length > 0 ? this.categories[0].id : 'שונות', Validators.required),
-      'expiryDate': new FormControl(this.getExpiryDateByCategory(defaultCategory), Validators.required),
+      'expiryDate': new FormControl(
+        this.getExpiryDateByCategory(defaultCategory),
+        [Validators.required, AddProductComponent.futureDateValidator] // שימוש נכון בפונקציה סטטית
+      ),
       'location': new FormControl<string>('Fridge', Validators.required)
     });
   }
@@ -65,18 +78,13 @@ export class AddProductComponent {
       8: 60
     };
   
-    const daysToAdd = daysToAddMap[categoryID] || 10; // ברירת מחדל אם הקטגוריה לא מוכרת
+    const daysToAdd = daysToAddMap[categoryID] || 10; 
     const today = new Date();
     today.setDate(today.getDate() + daysToAdd);
-    return today.toISOString().split('T')[0]; // פורמט yyyy-mm-dd
+    return today.toISOString().split('T')[0]; 
   }
 
-    futureDateValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) return null;
-  
-    const today = new Date().toISOString().split('T')[0];
-    return control.value < today ? { 'pastDate': true } : null; 
-  }
+
   
 
   loadCategories() {
@@ -134,7 +142,6 @@ export class AddProductComponent {
   onCategoryChange(event: any) {
     const selectedCategory = event.target.value;
     this.addProductForm.patchValue({ categoryID: +selectedCategory }); 
-    console.log("📌 קטגוריה שנבחרה:", selectedCategory);
   this.addProductForm.patchValue({
     categoryID: selectedCategory,
     expiryDate: this.getExpiryDateByCategory(selectedCategory) 

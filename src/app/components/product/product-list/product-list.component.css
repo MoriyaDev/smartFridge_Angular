@@ -246,7 +246,6 @@
   box-shadow: 0 0 10px rgba(121, 134, 203, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced Fridge Light */
 .fridge-light-container {
   display: flex;
   align-items: center;

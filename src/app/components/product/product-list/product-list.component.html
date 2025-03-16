@@ -7,7 +7,7 @@
   <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
     <option value="">כל הקטגוריות</option>
     <option *ngFor="let category of categories" [value]="category.id">
-      {{ category.name }} (ID: {{ category.id }})
+      {{ category.name }}
     </option>
   </select>
 

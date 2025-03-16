@@ -1,5 +1,4 @@
 
-/* Chat button styling - מינימליסטי שחור לבן עם נגיעות טורקיז */
 .chat-button {
     position: fixed;
     bottom: 25px;
@@ -41,7 +40,6 @@
     transform: rotate(45deg);
   }
   
-  /* Chat window styling - מינימליסטי שחור */
   .chat-window {
     position: fixed;
     bottom: 90px;
@@ -55,7 +53,7 @@
     flex-direction: column;
     overflow: hidden;
     z-index: 4000;
-    direction: rtl; /* For RTL layout */
+    direction: rtl; 
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -70,7 +68,6 @@
     to { transform: translateY(0); opacity: 1; }
   }
   
-  /* Chat container sections - שחור לבן */
   .chat-container {
     display: flex;
     flex-direction: column;
@@ -114,7 +111,6 @@
     box-shadow: 0 0 8px rgba(64, 224, 208, 0.5);
   }
   
-  /* Enlarged chat body - שחור */
   .chat-body {
     flex: 1;
     padding: 16px;
@@ -143,7 +139,6 @@
     box-shadow: 0 0 8px rgba(64, 224, 208, 0.5);
   }
   
-  /* Message styling - מינימליסטי שחור לבן */
   .message {
     margin-bottom: 12px;
     padding: 12px 16px;
@@ -190,7 +185,6 @@
     box-shadow: 0 0 8px rgba(64, 224, 208, 0.4);
   }
   
-  /* Compact chat footer styling - שחור */
   .chat-footer {
     padding: 14px;
     background-color: #000;
@@ -259,7 +253,6 @@
     transform: translateY(1px);
   }
   
-  /* Additional responsiveness for small screens */
   @media (max-width: 480px) {
     .chat-window {
       width: 90%;
@@ -273,7 +266,6 @@
     }
   }
   
-  /* אנימציה עבור לחצן שליחה - מינימליסטי */
   .chat-footer button:after {
     content: "🔄";
     position: absolute;
@@ -293,7 +285,6 @@
     100% { transform: rotate(360deg); }
   }
   
-  /* אנימציה עבור טעינת הודעות - מינימליסטי */
   .message.bot.loading {
     display: flex;
     align-items: center;
@@ -334,7 +325,6 @@
     40% { transform: scale(1); opacity: 1; }
   }
   
-  /* תוספת - נגיעות טורקיז קטנות */
   .chat-window::after {
     content: "";
     position: absolute;
@@ -361,7 +351,6 @@
     box-shadow: 0 0 8px rgba(64, 224, 208, 0.6);
   }
   
-  /* קטע טורקיז דקורטיבי */
   .chat-header::before {
     content: "";
     position: absolute;

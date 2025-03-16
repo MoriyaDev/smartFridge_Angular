@@ -34,7 +34,6 @@ export class UpdateProductComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['product'] && changes['product'].currentValue) {
-      console.log("🔄 שינוי במוצר זוהה, טופס מתעדכן!", this.product);
 
       if (!this.updateProductForm) {
         this.initForm();
@@ -88,12 +87,10 @@ export class UpdateProductComponent implements OnInit, OnChanges {
   
       this._productService.updateProductFromServer(this.product.id, updatedProduct).subscribe({
         next: (updatedProduct: Product) => {
-          console.log("✅ המוצר עודכן בהצלחה!", updatedProduct);
   
           if (this.currentFridge?.id) {
             this._productService.getProductsByFridgeIdFromServer(this.currentFridge.id).subscribe({
               next: (products: Product[]) => {
-                console.log("🔄 רשימת המוצרים רועננה!", products);
                 this._fridgeService.updateProducts(products); 
   
                 this.updateSuccess.emit(updatedProduct);

@@ -32,7 +32,6 @@
   margin-bottom: 10px;
 }
 
-/* טופס */
 .modal-form {
   display: flex;
   flex-direction: column;
@@ -40,7 +39,6 @@
   align-items: center;
 }
 
-/* קבוצת שדה בטופס */
 .form-group {
   width: 100%;
   display: flex;
@@ -74,7 +72,6 @@
   border-bottom: 2px solid #56d8e4;
 }
 
-/* כפתורים */
 .buttons-container {
   display: flex;
   flex-direction: column;

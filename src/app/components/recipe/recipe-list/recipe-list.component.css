@@ -38,7 +38,6 @@ body {
   transform: translateY(1px);
 }
 
-/* Loading Animation */
 ul {
   position: absolute;
   top: 50%;
@@ -112,7 +111,6 @@ ul li:nth-child(7) {
   box-shadow: 0 0 50px #673ab7;
 }
 
-/* Recipe Container Styling */
 p {
   text-align: center;
   color: white;
